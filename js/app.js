@@ -4,11 +4,14 @@ import {
   addDays, daysInMonth, diffDays, longDate, makeIso, parts, relative, shortDate, weekday,
 } from './dates.js';
 import { groupIcon, uiIcon } from './icons.js';
+import { haptic, initPullToRefresh, initSheet, initTabs, installInfo, onInstallChange, promptInstall, toast } from './shell.js';
 
 const BIN_OUT_BY = 6 * 60 + 30; // bins must be at the kerb by 06:30
 const COLLECTION_END = 16 * 60 + 30; // AWB's calendar blocks the collection window until 16:30
 const UPCOMING_COUNT = 6;
 const STORAGE_KEY = 'waste.hiddenGroups';
+const INSTALL_DISMISSED_KEY = 'waste.installDismissedAt';
+const STALE_AFTER_MS = 30 * 60 * 1000; // re-check the schedule when the app returns after half an hour
 
 const $ = (selector) => document.querySelector(selector);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -42,7 +45,10 @@ function realClock(timeZone) {
 const hhmm = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
 
 /* ---------- state ---------- */
-const state = { config: null, data: null, announcements: [], clock: null, view: null, selected: null, hidden: new Set(), dates: [], heroDates: new Set() };
+const state = {
+  config: null, data: null, announcements: [], clock: null, view: null, selected: null,
+  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {},
+};
 
 function loadHidden() {
   try {
@@ -183,13 +189,15 @@ function renderUpcoming() {
     const bins = binsOn(d, { filtered: true });
     if (!bins.length) continue;
     const { d: day, m } = parts(d);
-    rows.push(`<li class="row up-row">
-      <div class="date-icon" aria-hidden="true"><span class="wd">${WEEKDAYS_SHORT[weekday(d)]}</span><span class="dn">${day}</span></div>
-      <div class="row-main">
-        <p class="up-when">วัน${WEEKDAYS[weekday(d)]}ที่ ${day} ${MONTHS[m - 1]} · <strong>${relative(diffDays(today, d))}</strong></p>
-        <ul class="tags">${groupBins(bins).map((g) => `<li class="tag" data-group="${g.group}">${tile(g.group, 'xs')}${esc(g.th)}</li>`).join('')}</ul>
-      </div>
-    </li>`);
+    // phrasing content only inside <button>, so spans rather than div / p / ul
+    rows.push(`<li class="row-wrap"><button type="button" class="row row-link up-row" data-open="${d}">
+      <span class="date-icon" aria-hidden="true"><span class="wd">${WEEKDAYS_SHORT[weekday(d)]}</span><span class="dn">${day}</span></span>
+      <span class="row-main">
+        <span class="up-when">วัน${WEEKDAYS[weekday(d)]}ที่ ${day} ${MONTHS[m - 1]} · <strong>${relative(diffDays(today, d))}</strong></span>
+        <span class="tags">${groupBins(bins).map((g) => `<span class="tag" data-group="${g.group}">${tile(g.group, 'xs')}${esc(g.th)}</span>`).join('')}</span>
+      </span>
+      <span class="chev">${uiIcon('chevronRight')}</span>
+    </button></li>`);
     if (rows.length === UPCOMING_COUNT) break;
   }
   // Nothing to list and the hero already says "no data": hide the whole section instead of repeating it.
@@ -240,17 +248,16 @@ function renderCalendar() {
   $('#grid').innerHTML = cells.join('');
 }
 
-function renderDetail() {
-  const el = $('#detail');
-  const sel = state.selected;
-  if (!sel) {
-    el.innerHTML = '<p class="empty">แตะที่วันที่ในปฏิทินเพื่อดูรายละเอียด</p>';
-    return;
-  }
-  const bins = binsOn(sel);
-  const delta = diffDays(state.clock.date, sel);
-  const head = `<div class="detail-head"><h3>${longDate(sel)} ${parts(sel).y}</h3>${delta >= 0 && delta <= 2 ? `<span>${relative(delta)}</span>` : ''}</div>`;
-  el.innerHTML = bins.length ? `${head}${binRowsHtml(bins)}` : `${head}<p class="empty">ไม่มีการเก็บขยะในวันนี้</p>`;
+// Day details live in a bottom sheet, like a native detail view.
+function openDay(date, trigger) {
+  const bins = binsOn(date);
+  const delta = diffDays(state.clock.date, date);
+  state.shell.sheet.open({
+    title: `${longDate(date)} ${parts(date).y}`,
+    meta: delta >= 0 && delta <= 2 ? relative(delta) : '',
+    html: bins.length ? `<div class="card">${binRowsHtml(bins)}</div>` : '<p class="empty">ไม่มีการเก็บขยะในวันนี้</p>',
+    trigger,
+  });
 }
 
 function renderAnnouncements() {
@@ -289,12 +296,78 @@ function renderShare() {
   </div>`;
 }
 
-function renderFooter() {
+function renderAbout() {
   const { config, data } = state;
+  const a = config.address;
   const updated = data.fetchedAt
     ? new Intl.DateTimeFormat('en-CA', { timeZone: config.timezone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(data.fetchedAt))
     : null;
-  $('#source').innerHTML = `ข้อมูลจาก ${awbLink('Abfallwirtschaftsbetrieb Landkreis Augsburg (AWB)') || 'AWB Landkreis Augsburg'} · ครอบคลุมปี ${data.years.join(', ') || '–'}${updated ? ` · ตารางอัปเดตล่าสุด ${shortDate(updated)}` : ''}`;
+  const kv = (label, value) => `<li class="row kv"><span>${label}</span><span>${value}</span></li>`;
+  $('#about').innerHTML = `<ul class="rows">
+    ${kv('ที่อยู่', `${esc(a.strasse)} ${esc(a.hausnr)}<br>${esc(a.plz)} ${esc(a.ort)}`)}
+    ${kv('ข้อมูลจาก', awbLink('AWB Landkreis Augsburg') || 'AWB Landkreis Augsburg')}
+    ${kv('ปีที่มีข้อมูล', esc(data.years.join(', ') || '–'))}
+    ${updated ? kv('ตารางอัปเดตล่าสุด', shortDate(updated)) : ''}
+  </ul>`;
+  $('#source-note').textContent = 'เว็บนี้จัดทำโดยองค์กรเอง ไม่ใช่เว็บไซต์ทางการของ AWB — หากวันที่ไม่ตรงกัน ให้ยึดตามประกาศของ AWB';
+}
+
+/* ---------- install ("Add to Home Screen") ---------- */
+const installDismissed = () => {
+  try {
+    return Date.now() - Number(localStorage.getItem(INSTALL_DISMISSED_KEY)) < 30 * 86400000;
+  } catch {
+    return false;
+  }
+};
+
+function renderInstall() {
+  const info = installInfo();
+  if (info.standalone) {
+    $('#install').innerHTML = '';
+    $('#install-banner').innerHTML = '';
+    return;
+  }
+  $('#install').innerHTML = `<h2 class="section-title">ติดตั้งเป็นแอป</h2>
+    <div class="card"><div class="rows">
+      <button type="button" class="row row-link" data-install>
+        <span class="ico-tile" data-tone="green">${uiIcon('phone')}</span>
+        <span class="row-main"><span class="row-title">เพิ่มไว้ที่หน้าจอโฮม</span><span class="row-sub">เปิดได้ทันทีเหมือนแอป · ใช้งานออฟไลน์ได้</span></span>
+        <span class="chev">${uiIcon('chevronRight')}</span>
+      </button>
+    </div></div>`;
+
+  // a one-time nudge on phones only; the row above is always there
+  const nudge = (info.native || info.ios) && matchMedia('(pointer: coarse)').matches && !installDismissed();
+  $('#install-banner').innerHTML = nudge
+    ? `<div class="install-banner">
+        <span class="ico-tile" data-tone="green">${uiIcon('phone')}</span>
+        <span class="row-main"><span class="row-title">ติดตั้งเป็นแอป</span><span class="row-sub">เปิดเร็วขึ้น ใช้งานออฟไลน์ได้</span></span>
+        <button type="button" class="pill-btn" data-install>ติดตั้ง</button>
+        <button type="button" class="icon-btn" data-dismiss-install aria-label="ปิด">${uiIcon('close')}</button>
+      </div>`
+    : '';
+}
+
+async function startInstall(trigger) {
+  const info = installInfo();
+  if (info.native) {
+    if (await promptInstall()) toast('ติดตั้งแล้ว — เปิดจากหน้าจอโฮมได้เลย');
+    return;
+  }
+  const steps = info.ios
+    ? `<ol class="steps">
+        <li><span>แตะปุ่ม <strong>แชร์</strong> ${uiIcon('share')} ที่แถบล่างของ Safari</span></li>
+        <li><span>เลื่อนลงแล้วเลือก <strong>เพิ่มไปยังหน้าจอโฮม</strong> ${uiIcon('plusSquare')}</span></li>
+        <li><span>แตะ <strong>เพิ่ม</strong> ที่มุมขวาบน</span></li>
+      </ol>
+      <p class="footnote">บน iPhone / iPad ต้องเปิดหน้านี้ด้วย Safari</p>`
+    : `<ol class="steps">
+        <li><span>เปิดเมนูของเบราว์เซอร์ (⋮ หรือ ⋯)</span></li>
+        <li><span>เลือก <strong>ติดตั้งแอป</strong> หรือ <strong>เพิ่มไปยังหน้าจอหลัก</strong></span></li>
+        <li><span>ยืนยันการติดตั้ง</span></li>
+      </ol>`;
+  state.shell.sheet.open({ title: 'เพิ่มไว้ที่หน้าจอโฮม', meta: 'เปิดได้เหมือนแอป', html: steps, trigger });
 }
 
 function renderPrintSheet() {
@@ -336,8 +409,7 @@ function renderAll() {
   renderUpcoming();
   renderChips();
   renderCalendar();
-  renderDetail();
-  renderFooter();
+  renderAbout();
   renderPrintSheet();
 }
 
@@ -349,13 +421,12 @@ function setView(y, m) {
   const t = parts(state.clock.date);
   state.selected = t.y === y && t.m === m ? state.clock.date : null;
   renderCalendar();
-  renderDetail();
   renderPrintSheet();
 }
 
 function bindEvents() {
-  $('#prev').addEventListener('click', () => setView(state.view.y, state.view.m - 1));
-  $('#next').addEventListener('click', () => setView(state.view.y, state.view.m + 1));
+  $('#prev').addEventListener('click', () => { haptic(5); setView(state.view.y, state.view.m - 1); });
+  $('#next').addEventListener('click', () => { haptic(5); setView(state.view.y, state.view.m + 1); });
   $('#goto-today').addEventListener('click', () => {
     const t = parts(state.clock.date);
     setView(t.y, t.m);
@@ -363,11 +434,25 @@ function bindEvents() {
   $('#grid').addEventListener('click', (e) => {
     const cell = e.target.closest('[data-date]');
     if (!cell) return;
+    haptic(6);
     state.selected = cell.dataset.date;
     renderCalendar();
-    renderDetail();
-    $('#grid').querySelector('.is-selected')?.focus({ preventScroll: true });
+    openDay(state.selected, $('#grid .is-selected'));
   });
+  $('#upcoming').addEventListener('click', (e) => {
+    const row = e.target.closest('[data-open]');
+    if (!row) return;
+    haptic(6);
+    openDay(row.dataset.open, row);
+  });
+  $('#app').addEventListener('click', (e) => {
+    if (e.target.closest('[data-install]')) startInstall(e.target.closest('[data-install]'));
+    if (e.target.closest('[data-dismiss-install]')) {
+      try { localStorage.setItem(INSTALL_DISMISSED_KEY, String(Date.now())); } catch {}
+      renderInstall();
+    }
+  });
+  onInstallChange(renderInstall);
   // swipe the grid left / right to change month, like the Calendar app
   let touch = null;
   $('#grid').addEventListener('touchstart', (e) => { touch = { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY }; }, { passive: true });
@@ -411,13 +496,13 @@ function bindEvents() {
     }
   };
   setInterval(refresh, 60_000);
-  document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && refresh());
-
-  // condensed title in the navigation bar once the large title scrolls away
-  if ('IntersectionObserver' in window) {
-    const navbar = $('#navbar');
-    new IntersectionObserver(([entry]) => navbar.classList.toggle('is-visible', !entry.isIntersecting), { rootMargin: '-44px 0px 0px 0px' }).observe($('#title'));
-  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return;
+    refresh();
+    if (Date.now() - state.loadedAt > STALE_AFTER_MS) refreshData({ silent: true });
+  });
+  window.addEventListener('online', () => refreshData({ silent: true }));
+  window.addEventListener('offline', () => toast('ออฟไลน์ — แสดงข้อมูลที่บันทึกไว้'));
 }
 
 /* ---------- boot ---------- */
@@ -432,16 +517,56 @@ async function loadJson(url, optional = false) {
   }
 }
 
-async function main() {
+async function fetchAll() {
   const [config, data, announcements] = await Promise.all([
     loadJson('config.json'),
     loadJson('data/collections.json'),
     loadJson('data/announcements.json', true),
   ]);
+  return { config, data, announcements: Array.isArray(announcements) ? announcements : [] };
+}
+
+function applyData({ config, data, announcements }) {
   state.config = config;
   state.data = data;
-  state.announcements = Array.isArray(announcements) ? announcements : [];
+  state.announcements = announcements;
   state.dates = Object.keys(data.days).sort();
+}
+
+// Used by pull-to-refresh, "back online" and "app returned after a while".
+async function refreshData({ silent = false } = {}) {
+  if (!navigator.onLine) {
+    if (!silent) toast('ออฟไลน์อยู่ — แสดงข้อมูลที่บันทึกไว้');
+    return;
+  }
+  try {
+    const next = await fetchAll();
+    const same = ['config', 'data', 'announcements'].every((k) => JSON.stringify(next[k]) === JSON.stringify(state[k]));
+    state.loadedAt = Date.now();
+    if (!same) {
+      applyData(next);
+      renderAll();
+    }
+    if (!silent) toast(same ? 'ตารางเป็นเวอร์ชันล่าสุดแล้ว' : 'อัปเดตตารางแล้ว');
+  } catch {
+    if (!silent) toast('อัปเดตไม่สำเร็จ — ใช้ข้อมูลที่บันทึกไว้');
+  }
+}
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// Offline support and instant start once installed (see sw.js).
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  const register = () => navigator.serviceWorker.register('sw.js').catch((err) => console.warn('service worker:', err));
+  if (document.readyState === 'complete') register();
+  else window.addEventListener('load', register, { once: true });
+}
+
+async function main() {
+  applyData(await fetchAll());
+  const { config } = state;
+  state.loadedAt = Date.now();
   state.hidden = loadHidden();
   state.clock = getClock(config.timezone);
 
@@ -456,16 +581,23 @@ async function main() {
   $('#address').innerHTML = `${uiIcon('pin')}<span>${esc(a.strasse)} ${esc(a.hausnr)}, ${esc(a.plz)} ${esc(a.ort)}</span>`;
   $('#prev').innerHTML = uiIcon('chevronLeft');
   $('#next').innerHTML = uiIcon('chevronRight');
+  document.querySelectorAll('.tab').forEach((tab) => { tab.querySelector('.tab-icon').innerHTML = uiIcon(tab.dataset.icon); });
   if (state.clock.forced) {
     $('#debug').innerHTML = `<p class="debug">โหมดทดสอบ: วันที่ ${esc(state.clock.date)} เวลา ${hhmm(state.clock.minutes)} — เอา <code>?today=</code> ออกจาก URL เพื่อกลับเป็นเวลาจริง</p>`;
   }
 
   renderShare();
+  renderInstall();
   renderAll();
   bindEvents();
+
+  state.shell.sheet = initSheet();
+  state.shell.tabs = initTabs(location.hash.slice(1) || 'today');
+  initPullToRefresh(() => Promise.all([refreshData(), sleep(700)]));
+  registerServiceWorker();
 }
 
 main().catch((err) => {
   console.error(err);
-  $('#app').innerHTML = `<div class="banner is-warning" role="alert"><div><p class="banner-title">โหลดตารางไม่สำเร็จ</p><p class="banner-body">ลองรีเฟรชหน้านี้อีกครั้ง หากยังไม่ได้ผล ให้ดูตารางที่เว็บไซต์ AWB โดยตรง</p></div></div>`;
+  $('#app').innerHTML = `<div class="wrap"><div class="banner is-warning" role="alert" style="margin-top:80px"><div><p class="banner-title">โหลดตารางไม่สำเร็จ</p><p class="banner-body">ลองรีเฟรชหน้านี้อีกครั้ง หากยังไม่ได้ผล ให้ดูตารางที่เว็บไซต์ AWB โดยตรง</p></div></div></div>`;
 });
