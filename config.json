@@ -1,0 +1,17 @@
+{
+  "siteTitle": "ตารางเก็บขยะ",
+  "orgName": "Wat Phra Dhammakaya Bavaria",
+  "timezone": "Europe/Berlin",
+  "address": {
+    "gemeinde": "Königsbrunn",
+    "ort": "Königsbrunn",
+    "strasse": "Heinkelstraße",
+    "hausnr": "1",
+    "plz": "86343"
+  },
+  "source": {
+    "base": "https://web.c-trace.de/augsburglandkreis",
+    "awbUrl": "https://www.awb-landkreis-augsburg.de/aktuelles/abfuhrtermine"
+  },
+  "enabledBins": ["restmuell-container", "altpapier-container", "biotonne", "wertstoff"]
+}

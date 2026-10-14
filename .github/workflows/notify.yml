@@ -1,0 +1,39 @@
+name: Evening e-mail notification
+
+on:
+  schedule:
+    - cron: "0 16 * * *" # 17:00 CET / 18:00 CEST — the script decides whether tomorrow is a collection day
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the message instead of sending it"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    # Scheduled runs are off until the repository variable NOTIFY_EMAIL is set to "true".
+    if: ${{ vars.NOTIFY_EMAIL == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Send notification
+        run: node scripts/notify.mjs ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
