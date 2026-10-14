@@ -2,75 +2,70 @@
 <html lang="th">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <meta name="robots" content="noindex">
   <meta name="description" content="ตารางวันเก็บขยะ Königsbrunn สำหรับ Wat Phra Dhammakaya Bavaria">
   <title>ตารางเก็บขยะ · Wat Phra Dhammakaya Bavaria</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%91%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23248a3d'/%3E%3Cpath d='M30 36h40l-4 36a6 6 0 0 1-6 5H40a6 6 0 0 1-6-5zM26 36h48M42 36v-5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v5' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <p class="eyebrow" id="org">Wat Phra Dhammakaya Bavaria</p>
-      <h1 id="title">ตารางเก็บขยะ</h1>
-      <p class="address" id="address"></p>
-    </div>
+  <div class="navbar" id="navbar" aria-hidden="true">
+    <span class="navbar-title">ตารางเก็บขยะ</span>
+  </div>
+
+  <header class="large-title wrap">
+    <p class="org" id="org">Wat Phra Dhammakaya Bavaria</p>
+    <h1 id="title">ตารางเก็บขยะ</h1>
+    <p class="address" id="address"></p>
   </header>
 
   <main class="wrap" id="app">
-    <noscript><p class="notice">หน้านี้ต้องเปิด JavaScript เพื่อแสดงตารางเก็บขยะ</p></noscript>
+    <noscript><p class="banner">หน้านี้ต้องเปิด JavaScript เพื่อแสดงตารางเก็บขยะ</p></noscript>
     <div id="debug"></div>
     <div id="announcements"></div>
-    <section id="hero" class="hero" aria-live="polite" aria-label="การเก็บขยะครั้งถัดไป"></section>
 
-    <section class="panel" aria-labelledby="h-upcoming">
-      <h2 id="h-upcoming">กำหนดเก็บครั้งถัดไป</h2>
-      <div id="upcoming"></div>
+    <section id="hero" aria-live="polite" aria-label="การเก็บขยะครั้งถัดไป"></section>
+
+    <section aria-labelledby="h-upcoming">
+      <h2 class="section-title" id="h-upcoming">หลังจากนั้น</h2>
+      <div class="card" id="upcoming"></div>
     </section>
 
-    <section class="panel" aria-labelledby="h-calendar">
-      <h2 id="h-calendar">ปฏิทิน</h2>
-      <div id="chips" class="chips" role="group" aria-label="กรองประเภทขยะ"></div>
-      <div class="cal-head">
-        <button type="button" class="icon-btn" id="prev" aria-label="เดือนก่อนหน้า">‹</button>
-        <div class="cal-title" id="cal-title" aria-live="polite"></div>
-        <button type="button" class="icon-btn" id="next" aria-label="เดือนถัดไป">›</button>
-        <button type="button" class="btn btn-small" id="goto-today">วันนี้</button>
+    <section aria-labelledby="h-calendar">
+      <h2 class="section-title" id="h-calendar">ปฏิทิน</h2>
+      <div class="card cal-card">
+        <div class="cal-head">
+          <h3 class="cal-title" id="cal-title" aria-live="polite"></h3>
+          <div class="cal-actions">
+            <button type="button" class="text-btn" id="goto-today">วันนี้</button>
+            <button type="button" class="icon-btn" id="prev" aria-label="เดือนก่อนหน้า"></button>
+            <button type="button" class="icon-btn" id="next" aria-label="เดือนถัดไป"></button>
+          </div>
+        </div>
+        <div id="cal-notice"></div>
+        <div class="weekdays" aria-hidden="true">
+          <span>จ.</span><span>อ.</span><span>พ.</span><span>พฤ.</span><span>ศ.</span><span>ส.</span><span>อา.</span>
+        </div>
+        <div class="grid" id="grid"></div>
+        <div id="chips" class="chips" role="group" aria-label="ประเภทขยะที่แสดง"></div>
+        <p class="footnote chips-hint">แตะประเภทขยะเพื่อซ่อนหรือแสดงในรายการและปฏิทิน</p>
       </div>
-      <div id="cal-notice"></div>
-      <div class="weekdays" aria-hidden="true">
-        <span>จ.</span><span>อ.</span><span>พ.</span><span>พฤ.</span><span>ศ.</span><span>ส.</span><span>อา.</span>
-      </div>
-      <div class="grid" id="grid"></div>
-      <div id="detail" class="detail-panel" aria-live="polite"></div>
+      <div class="card detail-card" id="detail" aria-live="polite"></div>
     </section>
 
-    <section class="panel" aria-labelledby="h-share">
-      <h2 id="h-share">เพิ่มลงปฏิทิน / พิมพ์</h2>
-      <div class="btn-row">
-        <a class="btn" id="btn-webcal" href="#">📅 Apple / Outlook</a>
-        <a class="btn" id="btn-google" href="#" target="_blank" rel="noopener">📅 Google Calendar</a>
-        <a class="btn" id="btn-ics" href="data/calendar.ics" download="ตารางเก็บขยะ.ics">⬇️ ดาวน์โหลด .ics</a>
-        <button type="button" class="btn" id="btn-print">🖨️ พิมพ์ตารางทั้งปี</button>
-      </div>
-      <details class="help">
-        <summary>วิธีใช้ปฏิทิน</summary>
-        <ul>
-          <li><strong>Apple / Outlook:</strong> กดปุ่มแล้วเลือก "Subscribe" — ตารางจะอัปเดตเองเมื่อ AWB เปลี่ยนวัน และมีแจ้งเตือน 18:00 น. ของคืนก่อนวันเก็บ</li>
-          <li><strong>Google Calendar:</strong> กดปุ่มแล้วยืนยันการเพิ่มปฏิทิน (Google ไม่แสดงแจ้งเตือนของปฏิทินที่ subscribe — ตั้งค่าแจ้งเตือนเองได้ในการตั้งค่าปฏิทิน)</li>
-          <li><strong>ดาวน์โหลด .ics:</strong> นำเข้าครั้งเดียว ไม่อัปเดตอัตโนมัติ</li>
-        </ul>
-      </details>
+    <section aria-labelledby="h-share">
+      <h2 class="section-title" id="h-share">เพิ่มลงปฏิทิน / พิมพ์</h2>
+      <div class="card" id="share"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p id="source"></p>
-      <p class="muted">เว็บนี้จัดทำโดยองค์กรเอง ไม่ใช่เว็บไซต์ทางการของ AWB — หากวันที่ไม่ตรงกัน ให้ยึดตามประกาศของ AWB</p>
-    </div>
+  <footer class="site-footer wrap">
+    <p id="source"></p>
+    <p>เว็บนี้จัดทำโดยองค์กรเอง ไม่ใช่เว็บไซต์ทางการของ AWB — หากวันที่ไม่ตรงกัน ให้ยึดตามประกาศของ AWB</p>
   </footer>
 
   <section id="print-sheet" aria-hidden="true"></section>
