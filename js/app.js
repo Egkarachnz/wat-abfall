@@ -308,6 +308,7 @@ function renderAbout() {
     ${kv('ข้อมูลจาก', awbLink('AWB Landkreis Augsburg') || 'AWB Landkreis Augsburg')}
     ${kv('ปีที่มีข้อมูล', esc(data.years.join(', ') || '–'))}
     ${updated ? kv('ตารางอัปเดตล่าสุด', shortDate(updated)) : ''}
+    ${config.credits?.developer ? kv('พัฒนาโดย', esc(config.credits.developer)) : ''}
   </ul>`;
   $('#source-note').textContent = 'เว็บนี้จัดทำโดยองค์กรเอง ไม่ใช่เว็บไซต์ทางการของ AWB — หากวันที่ไม่ตรงกัน ให้ยึดตามประกาศของ AWB';
 }

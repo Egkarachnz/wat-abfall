@@ -13,5 +13,8 @@
     "base": "https://web.c-trace.de/augsburglandkreis",
     "awbUrl": "https://www.awb-landkreis-augsburg.de/aktuelles/abfuhrtermine"
   },
-  "enabledBins": ["restmuell-container", "altpapier-container", "biotonne", "wertstoff"]
+  "enabledBins": ["restmuell-container", "altpapier-container", "biotonne", "wertstoff"],
+  "credits": {
+    "developer": "Phramaha Egkarach"
+  }
 }
