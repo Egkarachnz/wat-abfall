@@ -19,6 +19,7 @@ const PRECACHE = [
   'js/bins.js',
   'js/dates.js',
   'js/icons.js',
+  'js/theme.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/apple-touch-icon.png',

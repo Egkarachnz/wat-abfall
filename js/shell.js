@@ -6,6 +6,7 @@ const $ = (selector) => document.querySelector(selector);
 // Android vibrates; iOS ignores it silently.
 export const haptic = (ms = 8) => {
   try {
+    if (navigator.userActivation?.hasBeenActive === false) return; // browsers refuse (and log) vibration before a tap
     navigator.vibrate?.(ms);
   } catch {}
 };
@@ -38,7 +39,7 @@ export function initTabs(initial) {
     navbar.classList.remove('is-visible');
     if (!('IntersectionObserver' in window)) return;
     observer = new IntersectionObserver(([entry]) => navbar.classList.toggle('is-visible', !entry.isIntersecting), {
-      rootMargin: '-44px 0px 0px 0px',
+      rootMargin: '-52px 0px 0px 0px', // height of the navigation bar
     });
     observer.observe(heading);
   }

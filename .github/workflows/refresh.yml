@@ -49,7 +49,7 @@ jobs:
       - name: Collect the files that get published
         run: |
           mkdir _site
-          cp -r index.html config.json manifest.json sw.js css js data icons _site/
+          cp -r index.html config.json manifest.json sw.js css js data icons fonts _site/
 
       - uses: actions/configure-pages@v5
 

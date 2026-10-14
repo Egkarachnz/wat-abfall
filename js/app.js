@@ -5,6 +5,7 @@ import {
 } from './dates.js';
 import { groupIcon, uiIcon } from './icons.js';
 import { haptic, initPullToRefresh, initSheet, initTabs, installInfo, onInstallChange, promptInstall, toast } from './shell.js';
+import { effectiveTheme, getPreference, onThemeChange, setPreference } from './theme.js';
 
 const BIN_OUT_BY = 6 * 60 + 30; // bins must be at the kerb by 06:30
 const COLLECTION_END = 16 * 60 + 30; // AWB's calendar blocks the collection window until 16:30
@@ -108,9 +109,10 @@ function binRowsHtml(bins) {
 }
 
 /* ---------- rendering ---------- */
-function heroHtml({ action, eyebrow, title, sub, date, bins, more }) {
+function heroHtml({ action, eyebrow, title, sub, date, bins, more, art }) {
   return `<div class="hero-card${action ? ' is-action' : ''}">
     <div class="hero-top">
+      <span class="hero-art" aria-hidden="true">${groupIcon(art)}</span>
       <p class="hero-eyebrow">${eyebrow}</p>
       <h2 class="hero-title">${title}</h2>
       ${sub ? `<p class="hero-sub">${sub}</p>` : ''}
@@ -145,6 +147,7 @@ function renderHero() {
           : 'ถังต้องอยู่ที่จุดรับตั้งแต่ 06:30 น. รถอาจมาถึงเมื่อไรก็ได้ในวันนี้',
       date: longDate(today),
       bins: todayBins,
+      art: todayBins[0].group,
       more: tomorrowBins.length ? { title: `พรุ่งนี้ก็มีเก็บ · ${longDate(tomorrow)}`, bins: tomorrowBins } : null,
     });
   } else if (tomorrowBins.length) {
@@ -157,6 +160,7 @@ function renderHero() {
       sub: out ? 'รถมาเก็บพรุ่งนี้เช้า วางถังที่จุดรับก่อน 06:30 น.' : 'ดูเวลาและจุดรับที่เว็บไซต์ AWB',
       date: `พรุ่งนี้ · ${longDate(tomorrow)}`,
       bins: tomorrowBins,
+      art: tomorrowBins[0].group,
     });
   } else {
     const next = nextDateAfter(today);
@@ -169,12 +173,14 @@ function renderHero() {
         sub: needsBinOut(nextBins) ? 'วางถังที่จุดรับก่อน 06:30 น. ของวันเก็บ' : 'ดูเวลาและจุดรับที่เว็บไซต์ AWB',
         date: longDate(next),
         bins: nextBins,
+        art: nextBins[0].group,
       });
     } else {
       html = heroHtml({
         eyebrow: 'ยังไม่มีข้อมูล',
         title: 'ยังไม่มีกำหนดเก็บ',
         sub: `ตารางปีถัดไปยังไม่ประกาศ — AWB มักประกาศช่วงพฤศจิกายน${awb ? ` · ${awb}` : ''}`,
+        art: 'restmuell',
       });
     }
   }
@@ -294,6 +300,36 @@ function renderShare() {
     ${row({ tag: 'a', attrs: `href="${esc(ics.href)}" download="ตารางเก็บขยะ.ics"`, tone: 'gray', icon: 'download', title: 'ดาวน์โหลดไฟล์ .ics', sub: 'นำเข้าครั้งเดียว ไม่อัปเดตอัตโนมัติ' })}
     ${row({ tag: 'button', attrs: 'type="button" id="btn-print"', tone: 'dark', icon: 'printer', title: 'พิมพ์ตารางทั้งปี', sub: 'A4 หน้าเดียว · บันทึกเป็น PDF ได้' })}
   </div>`;
+}
+
+/* ---------- appearance (light / dark / automatic) ---------- */
+const THEME_OPTIONS = [
+  { value: 'light', label: 'สว่าง' },
+  { value: 'dark', label: 'มืด' },
+  { value: 'auto', label: 'อัตโนมัติ' },
+];
+
+// Mini phone mock-ups; "automatic" shows both, split diagonally.
+function themePreview(value) {
+  const mock = (kind, extra = '') => `<span class="pv ${extra}" data-k="${kind}"><i></i><i></i><i></i><i></i></span>`;
+  return `<span class="theme-preview">${value === 'auto' ? mock('light') + mock('dark', 'is-half') : mock(value)}</span>`;
+}
+
+function renderAppearance() {
+  const current = getPreference();
+  $('#appearance').innerHTML = `<div class="theme-picker" role="radiogroup" aria-label="โหมดสีหน้าจอ">${THEME_OPTIONS.map(
+    ({ value, label }) => `<button type="button" class="theme-opt" role="radio" aria-checked="${value === current}" data-theme-opt="${value}">
+      ${themePreview(value)}<span>${label}</span><span class="theme-check">${uiIcon('check')}</span>
+    </button>`,
+  ).join('')}</div>`;
+}
+
+// The round button in the navigation bar flips between light and dark in one tap.
+function renderThemeToggle() {
+  const dark = effectiveTheme() === 'dark';
+  const button = $('#theme-toggle');
+  button.innerHTML = uiIcon(dark ? 'sun' : 'moon');
+  button.setAttribute('aria-label', dark ? 'เปลี่ยนเป็นโหมดสว่าง' : 'เปลี่ยนเป็นโหมดมืด');
 }
 
 function renderAbout() {
@@ -454,6 +490,23 @@ function bindEvents() {
     }
   });
   onInstallChange(renderInstall);
+  $('#theme-toggle').addEventListener('click', () => {
+    haptic(8);
+    setPreference(effectiveTheme() === 'dark' ? 'light' : 'dark');
+    renderAppearance();
+  });
+  $('#appearance').addEventListener('click', (e) => {
+    const option = e.target.closest('[data-theme-opt]');
+    if (!option) return;
+    haptic(6);
+    setPreference(option.dataset.themeOpt);
+    renderAppearance();
+    $(`[data-theme-opt="${option.dataset.themeOpt}"]`)?.focus();
+  });
+  onThemeChange(() => {
+    renderThemeToggle();
+    renderAppearance();
+  });
   // swipe the grid left / right to change month, like the Calendar app
   let touch = null;
   $('#grid').addEventListener('touchstart', (e) => { touch = { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY }; }, { passive: true });
@@ -587,6 +640,8 @@ async function main() {
     $('#debug').innerHTML = `<p class="debug">โหมดทดสอบ: วันที่ ${esc(state.clock.date)} เวลา ${hhmm(state.clock.minutes)} — เอา <code>?today=</code> ออกจาก URL เพื่อกลับเป็นเวลาจริง</p>`;
   }
 
+  renderThemeToggle();
+  renderAppearance();
   renderShare();
   renderInstall();
   renderAll();
