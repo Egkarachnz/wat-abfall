@@ -19,6 +19,7 @@
   },
   "weather": {
     "enabled": true,
+    "observations": true,
     "lat": 48.27,
     "lon": 10.89
   }

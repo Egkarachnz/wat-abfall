@@ -3,8 +3,11 @@
 // falling leaves) and a few little critters you can tap. Pure decoration: nothing here is needed
 // to read the schedule, and everything is switched off for people who prefer reduced motion.
 //
-// The sky follows the real weather in Königsbrunn from Open-Meteo (free, no key, no account;
-// only the town's coordinates are sent). Offline or blocked, it falls back to day / night + season.
+// The sky follows the real weather in Königsbrunn. The temperature and sky come from the German
+// weather service's station readings (DWD, via Bright Sky) and Open-Meteo's forecast model fills
+// the gaps (both free, no key, no account; only the town's coordinates are sent). Station readings
+// matter: the model ran about 1 °C too warm at night and up to 3 °C off in tests.
+// Offline or blocked, it falls back to day / night + season.
 // Debug: add ?sky=rain (clear, partly, cloudy, fog, drizzle, rain, snow, storm) to the URL.
 import { haptic } from './shell.js';
 
@@ -38,9 +41,17 @@ function kindFromCode(code) {
   return 'partly';
 }
 
+// DWD's own words for the sky ("icon" in Bright Sky); null = no opinion, ask the model
+const KIND_FROM_ICON = {
+  'clear-day': 'clear', 'clear-night': 'clear', 'partly-cloudy-day': 'partly', 'partly-cloudy-night': 'partly', cloudy: 'cloudy',
+  fog: 'fog', rain: 'rain', sleet: 'rain', hail: 'rain', snow: 'snow', thunderstorm: 'storm', wind: null,
+};
+
 const WEATHER_KEY = 'waste.weather';
-const FRESH_MS = 30 * 60 * 1000;
-const STALE_MS = 6 * 60 * 60 * 1000;
+const FRESH_MS = 20 * 60 * 1000; // look again after 20 minutes (stations report every hour)
+const STALE_MS = 6 * 60 * 60 * 1000; // an old reading still tells the sky, but ...
+const TEMP_MAX_AGE_MS = 90 * 60 * 1000; // ... its number is hidden once it is older than this
+const STATION_MAX_AGE_MS = 3 * 60 * 60 * 1000; // a station that has gone quiet is ignored
 
 const readCache = () => {
   try {
@@ -56,14 +67,37 @@ const writeCache = (weather) => {
   } catch {}
 };
 
-async function fetchWeather({ lat, lon }) {
-  const url = new URL('https://api.open-meteo.com/v1/forecast');
-  url.search = new URLSearchParams({ latitude: lat, longitude: lon, current: 'weather_code,temperature_2m', timezone: 'auto' }).toString();
+const getJson = async (url) => {
   const signal = typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(4000) : undefined;
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error(`weather: HTTP ${res.status}`);
-  const { current } = await res.json();
-  const weather = { at: Date.now(), kind: kindFromCode(current.weather_code), temp: Math.round(current.temperature_2m) };
+  return res.json();
+};
+
+async function fetchWeather({ lat, lon, observations = true }) {
+  const model = new URL('https://api.open-meteo.com/v1/forecast');
+  model.search = new URLSearchParams({ latitude: lat, longitude: lon, current: 'weather_code,temperature_2m', timezone: 'auto' }).toString();
+  const station = new URL('https://api.brightsky.dev/current_weather');
+  station.search = new URLSearchParams({ lat, lon, tz: 'Europe/Berlin' }).toString();
+
+  const [m, o] = await Promise.allSettled([getJson(model), observations ? getJson(station) : Promise.reject(new Error('off'))]);
+  if (m.status === 'rejected' && o.status === 'rejected') throw new Error('weather: no source answered');
+
+  const forecast = m.status === 'fulfilled' ? m.value.current : null;
+  const reading = o.status === 'fulfilled' ? o.value.weather : null;
+  const fresh = reading && Date.now() - Date.parse(reading.timestamp) < STATION_MAX_AGE_MS ? reading : null;
+
+  const modelKind = forecast ? kindFromCode(forecast.weather_code) : null;
+  const stationKind = fresh?.icon ? KIND_FROM_ICON[fresh.icon] ?? null : null;
+  const wet = (k) => ['drizzle', 'rain', 'snow', 'storm'].includes(k);
+  // what the station sees wins; but if either one reports rain or snow, show it (the hourly reading may be a bit behind)
+  let kind = stationKind ?? modelKind ?? 'partly';
+  if (modelKind && wet(modelKind) && !wet(kind)) kind = modelKind;
+  else if (modelKind === 'drizzle' && kind === 'rain') kind = 'drizzle';
+  else if (modelKind === 'storm' && wet(kind)) kind = 'storm';
+
+  const temp = fresh?.temperature ?? forecast?.temperature_2m;
+  const weather = { at: Date.now(), kind, temp: temp == null ? null : Math.round(temp), src: fresh?.temperature != null ? 'dwd' : 'model' };
   writeCache(weather);
   return weather;
 }
@@ -644,7 +678,9 @@ export function initScene({ config, getClock, onChange = () => {} }) {
     label() {
       if (!weather) return '';
       const text = KINDS[weather.kind][root.dataset.night === '1' ? 1 : 0];
-      return weather.temp == null ? text : `${weather.temp}° · ${text}`;
+      const known = weather.temp != null && Date.now() - weather.at < TEMP_MAX_AGE_MS; // never show an old number
+      // "≈" = estimated by the forecast model, no station reading was available
+      return known ? `${weather.src === 'model' ? '≈' : ''}${weather.temp}° · ${text}` : text;
     },
   };
 }
