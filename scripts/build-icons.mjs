@@ -38,6 +38,7 @@ const SPEC = {
   phone: 'device-mobile',
   plusSquare: 'plus-square',
   moreVertical: 'dots-three-vertical',
+  image: 'image',
   menuLines: 'list',
   textSize: 'text-aa',
 };

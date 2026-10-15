@@ -6,7 +6,7 @@ import {
 } from './dates.js';
 import { buildDayIcs } from './ics.js';
 import { groupGlyph, groupIcon, uiIcon } from './icons.js';
-import { pathsOf, pdfFromCanvas, renderSheet } from './pdf.js';
+import { canvasToBlob, pathsOf, pdfFromCanvas, renderSheet } from './pdf.js';
 import { initScene } from './scene.js';
 import { effectiveTheme, getPreference, getTextSize, onThemeChange, setPreference, setTextSize } from './prefs.js';
 import { haptic, initPullToRefresh, initSheet, initTabs, installInfo, onInstallChange, promptInstall, toast } from './shell.js';
@@ -497,8 +497,8 @@ function renderShare() {
     ${actionRow({ tag: 'a', attrs: `href="${esc(webcal)}"`, tone: 'green', icon: 'calendar', title: 'Apple / Outlook', sub: 'ติดตามอัตโนมัติ · เตือน 18:00 น.' })}
     ${actionRow({ tag: 'a', attrs: `href="${esc(google)}" target="_blank" rel="noopener"`, tone: 'blue', icon: 'calendar', title: 'Google Calendar', sub: 'ติดตามอัตโนมัติ · ไม่มีเตือน' })}
     ${actionRow({ tag: 'a', attrs: `href="${esc(ics.href)}" download="ตารางเก็บขยะ.ics"`, tone: 'gray', icon: 'download', title: 'ดาวน์โหลดไฟล์ .ics', sub: 'นำเข้าครั้งเดียว' })}
-    ${actionRow({ attrs: 'id="btn-print"', tone: 'dark', icon: 'printer', title: 'พิมพ์ตารางทั้งปี', sub: 'A4 หน้าเดียว · บันทึกเป็น PDF ได้' })}
-    ${actionRow({ attrs: 'data-pdf', tone: 'blue', icon: 'share', title: 'ส่งตารางทั้งปีเป็น PDF', sub: 'แชร์ผ่าน LINE หรือสั่งพิมพ์ได้ทุกเครื่อง' })}
+    ${actionRow({ attrs: 'id="btn-print"', tone: 'dark', icon: 'printer', title: 'พิมพ์ตารางทั้งปี', sub: 'A4 หน้าเดียว · บันทึกเป็น PDF หรือรูปภาพได้' })}
+    ${actionRow({ attrs: 'data-pdf', tone: 'blue', icon: 'share', title: 'ส่งตารางทั้งปี (PDF / รูปภาพ)', sub: 'แชร์ผ่าน LINE บันทึกเป็นไฟล์ หรือสั่งพิมพ์' })}
   </div>`;
 }
 
@@ -704,17 +704,22 @@ async function openYearPdf(trigger) {
   toast('กำลังสร้าง PDF…');
   try {
     const sheet = renderSheet(pdfSheetData());
-    const bytes = await pdfFromCanvas(sheet);
+    const [bytes, picture] = await Promise.all([pdfFromCanvas(sheet), canvasToBlob(sheet, 'image/png')]);
     const year = state.view.y;
-    state.pdf = { file: new File([bytes], `waste-schedule-${year}.pdf`, { type: 'application/pdf' }), year };
+    state.pdf = {
+      file: new File([bytes], `waste-schedule-${year}.pdf`, { type: 'application/pdf' }),
+      image: new File([picture], `waste-schedule-${year}.png`, { type: 'image/png' }),
+      year,
+    };
     const ios = installInfo().ios;
     state.shell.sheet.open({
       title: `ตารางปี ${year}`,
-      meta: 'PDF · A4 หน้าเดียว',
+      meta: 'PDF หรือรูปภาพ · A4 หน้าเดียว',
       html: `<img class="pdf-preview" src="${sheet.toDataURL('image/jpeg', 0.8)}" alt="ตัวอย่างตารางทั้งปี ${year}">
         <div class="card"><div class="rows">
           ${actionRow({ attrs: 'data-pdf-share', tone: 'blue', icon: 'share', title: 'แชร์ / พิมพ์', sub: ios ? 'เลือก "พิมพ์" ในเมนูที่ขึ้นมา' : 'ส่งผ่าน LINE หรือเลือกพิมพ์', arrow: false })}
           ${actionRow({ attrs: 'data-pdf-save', tone: 'green', icon: 'download', title: 'บันทึกไฟล์ PDF', arrow: false })}
+          ${actionRow({ attrs: 'data-img-save', tone: 'indigo', icon: 'image', title: 'บันทึกเป็นรูปภาพ', sub: ios ? 'เลือก "บันทึกรูปภาพ" ในเมนูที่ขึ้นมา' : 'ไฟล์ PNG คมชัด เปิดดูหรือส่งต่อได้', arrow: false })}
           ${ios ? '' : actionRow({ attrs: 'data-pdf-print', tone: 'dark', icon: 'printer', title: 'สั่งพิมพ์ทันที', sub: 'ถ้าเครื่องรองรับ', arrow: false })}
         </div></div>`,
       trigger,
@@ -725,14 +730,33 @@ async function openYearPdf(trigger) {
   }
 }
 
-function savePdf() {
-  const url = URL.createObjectURL(state.pdf.file);
-  const link = Object.assign(document.createElement('a'), { href: url, download: state.pdf.file.name });
+function downloadFile(file) {
+  const url = URL.createObjectURL(file);
+  const link = Object.assign(document.createElement('a'), { href: url, download: file.name });
   document.body.append(link);
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
   toast('บันทึกไฟล์แล้ว — ดูในโฟลเดอร์ดาวน์โหลด');
+}
+
+const savePdf = () => downloadFile(state.pdf.file);
+
+// iPhone has no download folder for pictures: its share sheet has "Save Image" (Photos). Elsewhere: a PNG file.
+async function saveImage() {
+  const { image, year } = state.pdf ?? {};
+  if (!image) return;
+  if (installInfo().ios) {
+    try {
+      if (navigator.canShare?.({ files: [image] })) {
+        await navigator.share({ files: [image], title: `${state.config.siteTitle} ${year}` });
+        return;
+      }
+    } catch (err) {
+      if (err?.name === 'AbortError') return;
+    }
+  }
+  downloadFile(image);
 }
 
 async function sharePdf() {
@@ -834,6 +858,7 @@ function bindEvents() {
     else if (hit('[data-goto]')) state.shell.tabs.show(hit('[data-goto]').dataset.goto);
     else if (hit('[data-pdf-share]')) sharePdf();
     else if (hit('[data-pdf-save]')) savePdf();
+    else if (hit('[data-img-save]')) saveImage();
     else if (hit('[data-pdf-print]')) {
       renderPrintSheet();
       window.print();

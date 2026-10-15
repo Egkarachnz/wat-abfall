@@ -216,7 +216,10 @@ export function buildPdf(jpeg, width, height) {
   return out;
 }
 
+export const canvasToBlob = (canvas, type, quality) =>
+  new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), type, quality));
+
 export async function pdfFromCanvas(canvas) {
-  const blob = await new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/jpeg', 0.92));
+  const blob = await canvasToBlob(canvas, 'image/jpeg', 0.92);
   return buildPdf(new Uint8Array(await blob.arrayBuffer()), canvas.width, canvas.height);
 }
