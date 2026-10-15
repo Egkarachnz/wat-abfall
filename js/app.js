@@ -6,6 +6,7 @@ import {
 } from './dates.js';
 import { buildDayIcs } from './ics.js';
 import { groupGlyph, groupIcon, uiIcon } from './icons.js';
+import { pathsOf, pdfFromCanvas, renderSheet } from './pdf.js';
 import { initScene } from './scene.js';
 import { effectiveTheme, getPreference, getTextSize, onThemeChange, setPreference, setTextSize } from './prefs.js';
 import { haptic, initPullToRefresh, initSheet, initTabs, installInfo, onInstallChange, promptInstall, toast } from './shell.js';
@@ -51,7 +52,7 @@ const hhmm = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String
 /* ---------- state ---------- */
 const state = {
   config: null, data: null, announcements: [], clock: null, view: null, selected: null,
-  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null, guide: { os: 'android', browser: 'chrome' },
+  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null, pdf: null, guide: { os: 'android', browser: 'chrome' },
 };
 
 function loadHidden() {
@@ -497,6 +498,7 @@ function renderShare() {
     ${actionRow({ tag: 'a', attrs: `href="${esc(google)}" target="_blank" rel="noopener"`, tone: 'blue', icon: 'calendar', title: 'Google Calendar', sub: 'ติดตามอัตโนมัติ · ไม่มีเตือน' })}
     ${actionRow({ tag: 'a', attrs: `href="${esc(ics.href)}" download="ตารางเก็บขยะ.ics"`, tone: 'gray', icon: 'download', title: 'ดาวน์โหลดไฟล์ .ics', sub: 'นำเข้าครั้งเดียว' })}
     ${actionRow({ attrs: 'id="btn-print"', tone: 'dark', icon: 'printer', title: 'พิมพ์ตารางทั้งปี', sub: 'A4 หน้าเดียว · บันทึกเป็น PDF ได้' })}
+    ${actionRow({ attrs: 'data-pdf', tone: 'blue', icon: 'share', title: 'ส่งตารางทั้งปีเป็น PDF', sub: 'แชร์ผ่าน LINE หรือสั่งพิมพ์ได้ทุกเครื่อง' })}
   </div>`;
 }
 
@@ -634,23 +636,33 @@ async function startInstall(trigger) {
 }
 
 /* ---------- print sheet ---------- */
-function renderPrintSheet() {
-  const { config, data } = state;
-  const year = state.view.y;
+// the whole year by month: feeds both the printed page and the PDF
+function yearData(year) {
   const present = new Set();
   const months = [];
   for (let m = 1; m <= 12; m++) {
-    const items = [];
+    const days = [];
     for (let d = 1; d <= daysInMonth(year, m); d++) {
       const date = makeIso(year, m, d);
       const bins = binsOn(date);
       if (!bins.length) continue;
-      const groups = groupBins(bins);
-      groups.forEach((g) => present.add(g.group));
-      items.push(`<li><span class="dd">${WEEKDAYS_SHORT[weekday(date)]} ${d}</span><span>${groups.map((g) => `${groupIcon(g.group)} ${esc(GROUPS[g.group].short)}`).join(' · ')}</span></li>`);
+      const groups = groupBins(bins).map((g) => g.group);
+      groups.forEach((g) => present.add(g));
+      days.push({ label: `${WEEKDAYS_SHORT[weekday(date)]} ${d}`, groups });
     }
-    months.push(`<div class="ps-month"><h2>${MONTHS[m - 1]}</h2>${items.length ? `<ul>${items.join('')}</ul>` : '<p>–</p>'}</div>`);
+    months.push({ name: MONTHS[m - 1], days });
   }
+  return { year, months, present };
+}
+
+function renderPrintSheet() {
+  const { config, data } = state;
+  const { year, months, present } = yearData(state.view.y);
+  const monthsHtml = months.map(({ name, days }) => {
+    const items = days.map(({ label, groups }) =>
+      `<li><span class="dd">${label}</span><span>${groups.map((g) => `${groupIcon(g)} ${esc(GROUPS[g].short)}`).join(' · ')}</span></li>`);
+    return `<div class="ps-month"><h2>${name}</h2>${items.length ? `<ul>${items.join('')}</ul>` : '<p>–</p>'}</div>`;
+  });
   const legend = Object.keys(GROUPS)
     .filter((g) => present.has(g))
     .map((g) => `<span>${groupIcon(g)} <strong>${esc(GROUPS[g].short)}</strong> = ${esc(GROUPS[g].th)} (${esc(GROUPS[g].de)})</span>`)
@@ -663,8 +675,78 @@ function renderPrintSheet() {
     </div>
     <div class="ps-legend">${legend}</div>
     ${data.years.includes(year) ? '' : `<p>ตารางปี ${year} ยังไม่ประกาศ</p>`}
-    <div class="ps-months">${months.join('')}</div>
+    <div class="ps-months">${monthsHtml.join('')}</div>
     <p class="ps-foot">ข้อมูลจาก AWB Landkreis Augsburg · ${esc(config.source.awbUrl)} · พิมพ์เมื่อ ${shortDate(state.clock.date)}</p>`;
+}
+
+/* ---------- the year as a PDF (window.print() does nothing in an installed iPhone app) ---------- */
+const PDF_COLORS = { restmuell: '#48484a', bio: '#8a5a2b', papier: '#0a60d6', wertstoff: '#b88600', problem: '#d92d20', other: '#48484a' };
+
+function pdfSheetData() {
+  const { config, data } = state;
+  const { year, months, present } = yearData(state.view.y);
+  const item = (g) => ({ text: GROUPS[g].short, color: PDF_COLORS[g] ?? PDF_COLORS.other, paths: pathsOf(groupGlyph(g)) });
+  const a = config.address;
+  return {
+    title: `${config.siteTitle} ${year}`,
+    subtitle: `${config.orgName} · ${a.strasse} ${a.hausnr}, ${a.plz} ${a.ort}`,
+    note: 'วางถังที่จุดรับก่อน 06:30 น. ของวันเก็บ',
+    months: months.map((m) => ({ name: m.name, days: m.days.map((d) => ({ label: d.label, items: d.groups.map(item) })) })),
+    legend: Object.keys(GROUPS).filter((g) => present.has(g)).map((g) => ({ ...item(g), text: `${GROUPS[g].short} = ${GROUPS[g].th} (${GROUPS[g].de})` })),
+    missing: data.years.includes(year) ? '' : `ตารางปี ${year} ยังไม่ประกาศ`,
+    footer: `ข้อมูลจาก AWB Landkreis Augsburg · ${config.source.awbUrl} · สร้างเมื่อ ${shortDate(state.clock.date)}`,
+  };
+}
+
+// Draw the page, wrap it in a PDF and show a preview. Sharing happens on a second tap, so the
+// phone's share sheet is opened straight from a button press (browsers insist on that).
+async function openYearPdf(trigger) {
+  toast('กำลังสร้าง PDF…');
+  try {
+    const sheet = renderSheet(pdfSheetData());
+    const bytes = await pdfFromCanvas(sheet);
+    const year = state.view.y;
+    state.pdf = { file: new File([bytes], `waste-schedule-${year}.pdf`, { type: 'application/pdf' }), year };
+    const ios = installInfo().ios;
+    state.shell.sheet.open({
+      title: `ตารางปี ${year}`,
+      meta: 'PDF · A4 หน้าเดียว',
+      html: `<img class="pdf-preview" src="${sheet.toDataURL('image/jpeg', 0.8)}" alt="ตัวอย่างตารางทั้งปี ${year}">
+        <div class="card"><div class="rows">
+          ${actionRow({ attrs: 'data-pdf-share', tone: 'blue', icon: 'share', title: 'แชร์ / พิมพ์', sub: ios ? 'เลือก "พิมพ์" ในเมนูที่ขึ้นมา' : 'ส่งผ่าน LINE หรือเลือกพิมพ์', arrow: false })}
+          ${actionRow({ attrs: 'data-pdf-save', tone: 'green', icon: 'download', title: 'บันทึกไฟล์ PDF', arrow: false })}
+          ${ios ? '' : actionRow({ attrs: 'data-pdf-print', tone: 'dark', icon: 'printer', title: 'สั่งพิมพ์ทันที', sub: 'ถ้าเครื่องรองรับ', arrow: false })}
+        </div></div>`,
+      trigger,
+    });
+  } catch (err) {
+    console.warn('pdf:', err);
+    toast('สร้าง PDF ไม่สำเร็จ — ลองเปิดเว็บในเบราว์เซอร์แล้วพิมพ์อีกครั้ง');
+  }
+}
+
+function savePdf() {
+  const url = URL.createObjectURL(state.pdf.file);
+  const link = Object.assign(document.createElement('a'), { href: url, download: state.pdf.file.name });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  toast('บันทึกไฟล์แล้ว — ดูในโฟลเดอร์ดาวน์โหลด');
+}
+
+async function sharePdf() {
+  const { file, year } = state.pdf ?? {};
+  if (!file) return;
+  try {
+    if (navigator.canShare?.({ files: [file] })) {
+      await navigator.share({ files: [file], title: `${state.config.siteTitle} ${year}` });
+      return;
+    }
+  } catch (err) {
+    if (err?.name === 'AbortError') return; // the user closed the share sheet
+  }
+  savePdf(); // this device cannot share files: save it instead
 }
 
 function renderAll() {
@@ -750,6 +832,12 @@ function bindEvents() {
     else if (hit('[data-add-date]')) addDayToCalendar(hit('[data-add-date]').dataset.addDate);
     else if (hit('[data-share-app]')) shareApp();
     else if (hit('[data-goto]')) state.shell.tabs.show(hit('[data-goto]').dataset.goto);
+    else if (hit('[data-pdf-share]')) sharePdf();
+    else if (hit('[data-pdf-save]')) savePdf();
+    else if (hit('[data-pdf-print]')) {
+      renderPrintSheet();
+      window.print();
+    } else if (hit('[data-pdf]')) openYearPdf(hit('[data-pdf]'));
     else if (hit('[data-install-guide]')) openInstallGuide(hit('[data-install-guide]'));
     else if (hit('[data-install]')) startInstall(hit('[data-install]'));
     else if (hit('[data-install-now]')) promptInstall().then((done) => done && (state.shell.sheet.close(), toast('ติดตั้งแล้ว — เปิดจากหน้าจอโฮมได้เลย')));
@@ -766,7 +854,9 @@ function bindEvents() {
     }
   });
   onInstallChange(renderInstall);
-  $('#btn-print').addEventListener('click', () => {
+  $('#btn-print').addEventListener('click', (e) => {
+    // window.print() is a dead button in an app installed to the home screen: hand over a PDF instead
+    if (installInfo().standalone) return openYearPdf(e.currentTarget);
     renderPrintSheet();
     window.print();
   });

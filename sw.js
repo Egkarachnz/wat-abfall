@@ -3,7 +3,7 @@
 // Strategy: network first (always revalidated, so a new deploy or a changed
 // collection date shows up right away), falling back to the last good copy when
 // the network is slow (> 4 s) or gone. Everything the app needs is precached.
-const CACHE = 'abfall-v3'; // bump when the set of files changes so the old cache is dropped on activate
+const CACHE = 'abfall-v4'; // bump when the set of files changes so the old cache is dropped on activate
 const NETWORK_TIMEOUT_MS = 4000;
 
 const PRECACHE = [
@@ -23,6 +23,7 @@ const PRECACHE = [
   'js/prefs.js',
   'js/ics.js',
   'js/scene.js',
+  'js/pdf.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/apple-touch-icon.png',
