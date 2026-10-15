@@ -1,3 +1,4 @@
+// © 2026 Phramaha Egkarach. All rights reserved. Not licensed for copying or reuse; see LICENSE.
 // Cute scenery for the app: a live sky behind the Today header (sun, moon, clouds, rain, snow,
 // falling leaves) and a few little critters you can tap. Pure decoration: nothing here is needed
 // to read the schedule, and everything is switched off for people who prefer reduced motion.

@@ -1,0 +1,37 @@
+Copyright (c) 2026 Phramaha Egkarach. All rights reserved.
+
+This is proprietary software. No licence is granted.
+
+The source code is visible in this repository, and in your browser when you use the
+website, only so that people can read it and so that the Wat Phra Dhammakaya Bavaria
+community can use the website at https://egkarachnz.github.io/wat-abfall/ . Being able
+to see the code does not give you any right to use it.
+
+Without prior written permission from the copyright holder you may NOT:
+
+  - copy, reproduce, or publish the code, the design, the layout, the texts, or the
+    illustrations (the bins, animals, trees, sun, moon, clouds and other artwork),
+    in whole or in part;
+  - modify, adapt, translate, or build derivative works from them;
+  - host, deploy, run, sell, sublicense, or distribute them, or use them in another
+    website, app, or product, whether commercial or not.
+
+What is allowed:
+
+  - reading the code, and using the website as it is published;
+  - the things GitHub's Terms of Service allow for public repositories (such as
+    viewing and forking inside GitHub), but only for viewing and for proposing
+    changes back to this repository, not for any other use.
+
+Third-party parts keep their own licences and are NOT covered by the restrictions
+above; see the files in the licenses/ folder:
+
+  - Inter font (SIL Open Font License 1.1)  - fonts/, licenses/Inter-LICENSE.txt
+  - Phosphor Icons (MIT)                    - js/icons.js, licenses/Phosphor-LICENSE.txt
+
+The collection dates in data/ come from AWB Landkreis Augsburg. They belong to AWB and
+are not covered by this licence.
+
+To ask for permission, contact the repository owner on GitHub: Egkarachnz.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

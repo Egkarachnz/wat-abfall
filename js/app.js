@@ -1,3 +1,4 @@
+// © 2026 Phramaha Egkarach. All rights reserved. Not licensed for copying or reuse; see LICENSE.
 import { GROUPS, binInfo, isEnabled, needsBinOut, sortBins } from './bins.js';
 import {
   MONTHS, MONTHS_SHORT, WEEKDAYS, WEEKDAYS_SHORT,

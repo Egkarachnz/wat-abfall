@@ -2,6 +2,7 @@
   "name": "abfall-koenigsbrunn",
   "version": "1.0.0",
   "private": true,
+  "license": "UNLICENSED",
   "type": "module",
   "description": "ตารางเก็บขยะ Königsbrunn สำหรับ Wat Phra Dhammakaya Bavaria",
   "scripts": {
