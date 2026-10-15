@@ -270,8 +270,11 @@ window.addEventListener('appinstalled', () => {
 
 export function installInfo() {
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  return { standalone, ios, native: Boolean(deferredPrompt) };
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (/Mac/i.test(navigator.platform) && navigator.maxTouchPoints > 1 && !/android/i.test(navigator.userAgent)); // iPadOS poses as a Mac
+  const ua = navigator.userAgent;
+  const android = /android/i.test(ua);
+  const browser = /SamsungBrowser/i.test(ua) ? 'samsung' : /Firefox|FxiOS/i.test(ua) ? 'firefox' : 'chrome';
+  return { standalone, ios, android, browser, native: Boolean(deferredPrompt) };
 }
 
 export async function promptInstall() {

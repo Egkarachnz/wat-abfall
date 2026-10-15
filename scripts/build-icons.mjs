@@ -37,6 +37,8 @@ const SPEC = {
   pin: 'map-pin',
   phone: 'device-mobile',
   plusSquare: 'plus-square',
+  moreVertical: 'dots-three-vertical',
+  menuLines: 'list',
   textSize: 'text-aa',
 };
 const WEIGHTS = ['regular', 'fill', 'bold'];

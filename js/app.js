@@ -51,7 +51,7 @@ const hhmm = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String
 /* ---------- state ---------- */
 const state = {
   config: null, data: null, announcements: [], clock: null, view: null, selected: null,
-  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null,
+  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null, guide: { os: 'android', browser: 'chrome' },
 };
 
 function loadHidden() {
@@ -547,10 +547,11 @@ function renderInstall() {
   $('#install').innerHTML = `<h2 class="section-title">ติดตั้งเป็นแอป</h2>
     <div class="card"><div class="rows">
       ${actionRow({ attrs: 'data-install', tone: 'green', icon: 'phone', title: 'เพิ่มไว้ที่หน้าจอโฮม', sub: 'เปิดเร็ว ใช้ออฟไลน์ได้' })}
+      ${actionRow({ attrs: 'data-install-guide', tone: 'gray', icon: 'info', title: 'วิธีติดตั้งทีละขั้น', sub: 'Android และ iPhone' })}
     </div></div>`;
 
   // a one-time nudge on phones only; the row above is always there
-  const nudge = (info.native || info.ios) && matchMedia('(pointer: coarse)').matches && !installDismissed();
+  const nudge = (info.native || info.ios || info.android) && matchMedia('(pointer: coarse)').matches && !installDismissed();
   $('#install-banner').innerHTML = nudge
     ? `<div class="install-banner">
         <span class="ico-tile" data-tone="green">${uiIcon('phone', 'fill')}</span>
@@ -561,25 +562,75 @@ function renderInstall() {
     : '';
 }
 
-async function startInstall(trigger) {
+// Where to tap, per browser. Button names vary a little with the phone's language and version.
+const ANDROID_STEPS = {
+  chrome: [
+    `แตะเมนูสามจุด ${uiIcon('moreVertical')} ที่มุมขวาบนของ Chrome`,
+    'เลือก <strong>ติดตั้งแอป</strong> (บางรุ่นเขียนว่า <strong>เพิ่มไปยังหน้าจอหลัก</strong> แล้วเลือก "ติดตั้ง")',
+    'แตะ <strong>ติดตั้ง</strong> เพื่อยืนยัน',
+  ],
+  samsung: [
+    `แตะเมนูสามขีด ${uiIcon('menuLines')} ที่มุมขวาล่างของ Samsung Internet`,
+    'เลือก <strong>เพิ่มหน้านี้ไปยัง</strong> แล้วเลือก <strong>หน้าจอหลัก</strong>',
+    'แตะ <strong>เพิ่ม</strong> เพื่อยืนยัน',
+  ],
+  firefox: [
+    `แตะเมนูสามจุด ${uiIcon('moreVertical')} ที่มุมขวาบนของ Firefox`,
+    'เลือก <strong>ติดตั้ง</strong>',
+    'แตะ <strong>เพิ่มไปยังหน้าจอโฮม</strong> เพื่อยืนยัน',
+  ],
+};
+const IOS_STEPS = [
+  `แตะปุ่ม <strong>แชร์</strong> ${uiIcon('share')} ที่แถบล่างของ Safari`,
+  `เลื่อนลงแล้วเลือก <strong>เพิ่มไปยังหน้าจอโฮม</strong> ${uiIcon('plusSquare')}`,
+  'แตะ <strong>เพิ่ม</strong> ที่มุมขวาบน',
+];
+const ANDROID_BROWSERS = [['chrome', 'Chrome'], ['samsung', 'Samsung'], ['firefox', 'Firefox']];
+
+const segment = (label, attr, current, options) =>
+  `<div class="seg guide-seg" role="radiogroup" aria-label="${label}">${options
+    .map(([value, text]) => `<button type="button" role="radio" aria-checked="${value === current}" ${attr}="${value}">${text}</button>`)
+    .join('')}</div>`;
+
+const stepsHtml = (steps) => `<ol class="steps">${steps.map((step) => `<li><span>${step}</span></li>`).join('')}</ol>`;
+
+function installGuideHtml({ os, browser }) {
+  const osPicker = segment('ระบบของเครื่อง', 'data-guide-os', os, [['android', 'Android'], ['ios', 'iPhone / iPad']]);
+  if (os === 'ios') {
+    return `${osPicker}${stepsHtml(IOS_STEPS)}<p class="footnote">บน iPhone / iPad ต้องเปิดหน้านี้ด้วย Safari</p>`;
+  }
+  const oneTap = browser === 'chrome' && installInfo().native
+    ? '<button type="button" class="pill-btn guide-go" data-install-now>ติดตั้งเลย</button>'
+    : '';
+  return `${osPicker}${segment('เบราว์เซอร์', 'data-guide-browser', browser, ANDROID_BROWSERS)}
+    ${oneTap}${stepsHtml(ANDROID_STEPS[browser])}
+    <div class="card guide-tips"><ul class="tips">
+      <li>เสร็จแล้วจะมีไอคอน "เก็บขยะ" ที่หน้าจอโฮมและในลิ้นชักแอป เปิดได้เต็มจอเหมือนแอปทั่วไป</li>
+      <li>กดค้างที่ไอคอนจะมีทางลัด "ปฏิทิน"</li>
+      <li>ถอนการติดตั้งได้เหมือนแอปอื่น: กดค้างที่ไอคอน แล้วเลือก "ถอนการติดตั้ง"</li>
+      <li>ไม่เห็นปุ่ม "ติดตั้งแอป" ให้ลองเปิดเว็บนี้ด้วย Chrome</li>
+    </ul></div>`;
+}
+
+function openInstallGuide(trigger) {
   const info = installInfo();
-  if (info.native) {
+  state.guide = { os: info.ios ? 'ios' : 'android', browser: info.browser };
+  state.shell.sheet.open({ title: 'ติดตั้งเป็นแอป', meta: 'เปิดได้เหมือนแอป ใช้ออฟไลน์ได้', html: installGuideHtml(state.guide), trigger });
+}
+
+// the pickers inside the sheet redraw it in place
+function updateInstallGuide(change, focusSelector) {
+  state.guide = { ...state.guide, ...change };
+  $('#sheet-body').innerHTML = installGuideHtml(state.guide);
+  $(focusSelector)?.focus({ preventScroll: true });
+}
+
+async function startInstall(trigger) {
+  if (installInfo().native) {
     if (await promptInstall()) toast('ติดตั้งแล้ว — เปิดจากหน้าจอโฮมได้เลย');
     return;
   }
-  const steps = info.ios
-    ? `<ol class="steps">
-        <li><span>แตะปุ่ม <strong>แชร์</strong> ${uiIcon('share')} ที่แถบล่างของ Safari</span></li>
-        <li><span>เลื่อนลงแล้วเลือก <strong>เพิ่มไปยังหน้าจอโฮม</strong> ${uiIcon('plusSquare')}</span></li>
-        <li><span>แตะ <strong>เพิ่ม</strong> ที่มุมขวาบน</span></li>
-      </ol>
-      <p class="footnote">บน iPhone / iPad ต้องเปิดหน้านี้ด้วย Safari</p>`
-    : `<ol class="steps">
-        <li><span>เปิดเมนูของเบราว์เซอร์ (⋮ หรือ ⋯)</span></li>
-        <li><span>เลือก <strong>ติดตั้งแอป</strong> หรือ <strong>เพิ่มไปยังหน้าจอหลัก</strong></span></li>
-        <li><span>ยืนยันการติดตั้ง</span></li>
-      </ol>`;
-  state.shell.sheet.open({ title: 'เพิ่มไว้ที่หน้าจอโฮม', meta: 'เปิดได้เหมือนแอป', html: steps, trigger });
+  openInstallGuide(trigger);
 }
 
 /* ---------- print sheet ---------- */
@@ -699,7 +750,16 @@ function bindEvents() {
     else if (hit('[data-add-date]')) addDayToCalendar(hit('[data-add-date]').dataset.addDate);
     else if (hit('[data-share-app]')) shareApp();
     else if (hit('[data-goto]')) state.shell.tabs.show(hit('[data-goto]').dataset.goto);
+    else if (hit('[data-install-guide]')) openInstallGuide(hit('[data-install-guide]'));
     else if (hit('[data-install]')) startInstall(hit('[data-install]'));
+    else if (hit('[data-install-now]')) promptInstall().then((done) => done && (state.shell.sheet.close(), toast('ติดตั้งแล้ว — เปิดจากหน้าจอโฮมได้เลย')));
+    else if (hit('[data-guide-os]')) {
+      const os = hit('[data-guide-os]').dataset.guideOs;
+      updateInstallGuide({ os }, `[data-guide-os="${os}"]`);
+    } else if (hit('[data-guide-browser]')) {
+      const browser = hit('[data-guide-browser]').dataset.guideBrowser;
+      updateInstallGuide({ browser }, `[data-guide-browser="${browser}"]`);
+    }
     else if (hit('[data-dismiss-install]')) {
       try { localStorage.setItem(INSTALL_DISMISSED_KEY, String(Date.now())); } catch {}
       renderInstall();

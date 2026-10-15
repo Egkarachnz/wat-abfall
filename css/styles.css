@@ -627,6 +627,12 @@ button.wk:active .wk-num { transform: scale(0.9); }
 .steps { list-style: none; margin: 0; padding: 4px 0 0; counter-reset: step; }
 .steps li { display: flex; gap: 14px; align-items: flex-start; padding: 12px 4px; }
 .steps li::before { counter-increment: step; content: counter(step); flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--tint); color: var(--tint-fg); font-weight: 700; font-size: var(--fs-sub); }
+.guide-seg { margin-top: 4px; }
+.guide-seg + .guide-seg { margin-top: 10px; }
+.guide-go { width: 100%; margin-top: 14px; }
+.guide-tips { margin-top: 12px; padding: 12px var(--gutter) 14px; }
+.tips { margin: 0; padding-left: 1.1em; color: var(--label2); font-size: var(--fs-sub); line-height: 1.5; }
+.tips li { padding: 4px 0; }
 .steps .ico { display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -0.2em; color: var(--tint); }
 
 /* ---------- settings: appearance picker + segmented control ---------- */
