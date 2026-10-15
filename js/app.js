@@ -605,7 +605,7 @@ function installGuideHtml({ os, browser }) {
   return `${osPicker}${segment('เบราว์เซอร์', 'data-guide-browser', browser, ANDROID_BROWSERS)}
     ${oneTap}${stepsHtml(ANDROID_STEPS[browser])}
     <div class="card guide-tips"><ul class="tips">
-      <li>เสร็จแล้วจะมีไอคอน "เก็บขยะ" ที่หน้าจอโฮมและในลิ้นชักแอป เปิดได้เต็มจอเหมือนแอปทั่วไป</li>
+      <li>เสร็จแล้วจะมีไอคอน "เก็บเพชรพลอย" ที่หน้าจอโฮมและในลิ้นชักแอป เปิดได้เต็มจอเหมือนแอปทั่วไป</li>
       <li>กดค้างที่ไอคอนจะมีทางลัด "ปฏิทิน"</li>
       <li>ถอนการติดตั้งได้เหมือนแอปอื่น: กดค้างที่ไอคอน แล้วเลือก "ถอนการติดตั้ง"</li>
       <li>ไม่เห็นปุ่ม "ติดตั้งแอป" ให้ลองเปิดเว็บนี้ด้วย Chrome</li>
