@@ -525,7 +525,7 @@ function renderAbout() {
     ${updated ? kv('ตารางอัปเดตล่าสุด', shortDate(updated)) : ''}
     ${config.credits?.developer ? kv('พัฒนาโดย', esc(config.credits.developer)) : ''}
   </ul>`;
-  $('#source-note').textContent = 'เว็บนี้จัดทำโดยองค์กรเอง ไม่ใช่เว็บไซต์ทางการของ AWB — หากวันที่ไม่ตรงกัน ให้ยึดตามประกาศของ AWB';
+  $('#source-note').textContent = 'เว็บนี้จัดทำขึ้นเอง ไม่ใช่เว็บไซต์ทางการของ AWB — หากวันที่ไม่ตรงกัน ให้ยึดตามประกาศของ AWB';
 }
 
 /* ---------- install ("Add to Home Screen") ---------- */
