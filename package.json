@@ -8,6 +8,7 @@
     "fetch": "node scripts/fetch-calendar.mjs",
     "notify": "node scripts/notify.mjs",
     "icons": "node scripts/make-icons.mjs",
+    "glyphs": "node scripts/build-icons.mjs",
     "serve": "python3 -m http.server 8080"
   },
   "engines": {

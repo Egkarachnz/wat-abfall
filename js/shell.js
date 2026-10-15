@@ -1,5 +1,6 @@
 // App chrome: tab navigation, bottom sheet, toast, pull-to-refresh, install helpers.
 // Nothing in here knows about waste data — js/app.js decides what goes inside.
+import { uiIcon } from './icons.js';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -31,6 +32,13 @@ export function initTabs(initial) {
   let current = null;
   let observer = null;
 
+  // Both versions of each icon live in the bar from the start, stacked: selecting a tab only
+  // cross-fades outline -> solid in place (see .ti in the CSS), so nothing is rebuilt or resized.
+  for (const button of document.querySelectorAll('[data-tab]')) {
+    button.querySelector('.tab-icon').innerHTML =
+      `<span class="ti ti-off">${uiIcon(button.dataset.icon, 'regular')}</span><span class="ti ti-on">${uiIcon(button.dataset.icon, 'fill')}</span>`;
+  }
+
   // The condensed title in the navigation bar follows the active screen's large title.
   function watchTitle(screen) {
     observer?.disconnect();
@@ -39,7 +47,7 @@ export function initTabs(initial) {
     navbar.classList.remove('is-visible');
     if (!('IntersectionObserver' in window)) return;
     observer = new IntersectionObserver(([entry]) => navbar.classList.toggle('is-visible', !entry.isIntersecting), {
-      rootMargin: '-52px 0px 0px 0px', // height of the navigation bar
+      rootMargin: '-44px 0px 0px 0px', // height of the navigation bar
     });
     observer.observe(heading);
   }

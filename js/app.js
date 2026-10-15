@@ -1,15 +1,16 @@
 import { GROUPS, binInfo, isEnabled, needsBinOut, sortBins } from './bins.js';
 import {
-  MONTHS, WEEKDAYS, WEEKDAYS_SHORT,
+  MONTHS, MONTHS_SHORT, WEEKDAYS, WEEKDAYS_SHORT,
   addDays, daysInMonth, diffDays, longDate, makeIso, parts, relative, shortDate, weekday,
 } from './dates.js';
-import { groupIcon, uiIcon } from './icons.js';
+import { buildDayIcs } from './ics.js';
+import { groupGlyph, groupIcon, uiIcon } from './icons.js';
+import { effectiveTheme, getPreference, getTextSize, onThemeChange, setPreference, setTextSize } from './prefs.js';
 import { haptic, initPullToRefresh, initSheet, initTabs, installInfo, onInstallChange, promptInstall, toast } from './shell.js';
-import { effectiveTheme, getPreference, onThemeChange, setPreference } from './theme.js';
 
 const BIN_OUT_BY = 6 * 60 + 30; // bins must be at the kerb by 06:30
 const COLLECTION_END = 16 * 60 + 30; // AWB's calendar blocks the collection window until 16:30
-const UPCOMING_COUNT = 6;
+const UPCOMING_COUNT = 4;
 const STORAGE_KEY = 'waste.hiddenGroups';
 const INSTALL_DISMISSED_KEY = 'waste.installDismissedAt';
 const STALE_AFTER_MS = 30 * 60 * 1000; // re-check the schedule when the app returns after half an hour
@@ -85,22 +86,36 @@ function nextDateAfter(date) {
 }
 
 /* ---------- shared markup ---------- */
-const tile = (group, size = '') => `<span class="ico-tile ${size}" data-group="${group}">${groupIcon(group)}</span>`;
+const chev = () => `<span class="chev">${uiIcon('chevronRight', 'bold')}</span>`;
+const tile = (group) => `<span class="ico-tile" data-group="${group}">${groupIcon(group)}</span>`;
 const awbLink = (text = 'AWB') => {
   const url = safeUrl(state.config.source.awbUrl);
   return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${text}</a>` : '';
 };
 
-// One row per waste group: coloured tile, Thai name, German name(s) + size / frequency.
-function binRowsHtml(bins) {
+// A settings-style row: coloured tile, title, optional one-line subtitle, optional chevron.
+// `tag` is 'a' or 'button' (never a block element inside, so it stays valid HTML).
+function actionRow({ tag = 'button', attrs = '', tone, icon, title, sub = '', arrow = true }) {
+  return `<${tag} class="row row-link" ${tag === 'button' ? 'type="button"' : ''} ${attrs}>
+    <span class="ico-tile" data-tone="${tone}">${uiIcon(icon, 'fill')}</span>
+    <span class="row-main"><span class="row-title">${title}</span>${sub ? `<span class="row-sub">${sub}</span>` : ''}</span>
+    ${arrow ? chev() : ''}
+  </${tag}>`;
+}
+
+// One row per waste group. Compact by default (Thai + German name); `detailed` adds size / frequency.
+function binRowsHtml(bins, { detailed = false } = {}) {
   return `<ul class="rows">${groupBins(bins)
     .map((g) => {
       const note = g.items.find((b) => b.note)?.note;
+      const subs = detailed
+        ? g.items.map((b) => `${esc(b.de)}${b.detail ? ` · ${esc(b.detail)}` : ''}`)
+        : [esc([...new Set(g.items.map((b) => b.de))].join(' · '))];
       return `<li class="row" data-group="${g.group}">
         ${tile(g.group)}
         <div class="row-main">
           <p class="row-title">${esc(g.th)}</p>
-          ${g.items.map((b) => `<p class="row-sub">${esc(b.de)}${b.detail ? ` · ${esc(b.detail)}` : ''}</p>`).join('')}
+          ${subs.map((s) => `<p class="row-sub">${s}</p>`).join('')}
           ${note ? `<p class="row-sub row-note">${esc(note)} · ${awbLink()}</p>` : ''}
         </div>
       </li>`;
@@ -108,18 +123,53 @@ function binRowsHtml(bins) {
     .join('')}</ul>`;
 }
 
-/* ---------- rendering ---------- */
-function heroHtml({ action, eyebrow, title, sub, date, bins, more, art }) {
+// A friendly wheelie bin in its group's colour, with the group's glyph on the front.
+// Colours come from CSS (--g / --g-fg set by [data-group]), so it follows light and dark mode.
+function binArt(group) {
+  return `<svg class="bin-art" viewBox="0 0 72 86" aria-hidden="true" focusable="false">
+    <ellipse class="bin-shadow" cx="36" cy="82" rx="27" ry="4"/>
+    <circle class="bin-wheel" cx="22" cy="77" r="5"/><circle class="bin-wheel" cx="50" cy="77" r="5"/>
+    <path class="bin-body" d="M12 25h48l-5 49.5q-.4 3.5-3.9 3.5H20.9q-3.5 0-3.9-3.5z"/>
+    <path class="bin-shine" d="M14.6 29h6.4l2.2 41h-3.9z"/>
+    <rect class="bin-lid" x="7" y="13" width="58" height="14" rx="6.5"/>
+    <rect class="bin-handle" x="25" y="6" width="22" height="9" rx="4.5"/>
+    <svg class="bin-glyph" x="23" y="40" width="26" height="26" viewBox="0 0 256 256" fill="currentColor">${groupGlyph(group)}</svg>
+  </svg>`;
+}
+
+// The bins to put out, standing in a row. `bare` = pictures only (decorative), `onCard` = for a light background.
+function lineupHtml(bins, { bare = false, onCard = false } = {}) {
+  const items = groupBins(bins)
+    .map((g, i) => `<li class="lineup-item" data-group="${g.group}" style="--i:${i}">${binArt(g.group)}${
+      bare ? '' : `<span class="lineup-name">${esc(GROUPS[g.group].short)}</span><span class="lineup-de">${esc(GROUPS[g.group].de)}</span>`
+    }</li>`)
+    .join('');
+  return `<ul class="lineup${bare ? ' is-bare' : ''}${onCard ? ' on-card' : ''}"${bare ? ' aria-hidden="true"' : ''}>${items}</ul>`;
+}
+
+const greeting = (minutes) =>
+  minutes >= 5 * 60 && minutes < 11 * 60 ? 'สวัสดีตอนเช้า'
+    : minutes >= 11 * 60 && minutes < 16 * 60 ? 'สวัสดีตอนบ่าย'
+      : minutes >= 16 * 60 && minutes < 19 * 60 ? 'สวัสดีตอนเย็น'
+        : 'สวัสดีตอนค่ำ';
+
+/* ---------- rendering: Today ---------- */
+function heroHtml({ action, eyebrow, title, sub, date, bins, more, shareDate, detailDate }) {
+  const note = bins?.find((b) => b.note)?.note;
   return `<div class="hero-card${action ? ' is-action' : ''}">
     <div class="hero-top">
-      <span class="hero-art" aria-hidden="true">${groupIcon(art)}</span>
-      <p class="hero-eyebrow">${eyebrow}</p>
+      <div class="hero-head">
+        <p class="hero-eyebrow">${eyebrow}</p>
+        ${shareDate ? `<button type="button" class="hero-share" data-share-date="${shareDate}" aria-label="แชร์วันเก็บนี้">${uiIcon('share')}</button>` : ''}
+      </div>
       <h2 class="hero-title">${title}</h2>
       ${sub ? `<p class="hero-sub">${sub}</p>` : ''}
       ${date ? `<p class="hero-date">${date}</p>` : ''}
+      ${bins ? lineupHtml(bins, { onCard: !action }) : ''}
+      ${note ? `<p class="hero-note">${esc(note)} · ${awbLink()}</p>` : ''}
     </div>
-    ${bins ? binRowsHtml(bins) : ''}
-    ${more ? `<p class="hero-more-title">${more.title}</p>${binRowsHtml(more.bins)}` : ''}
+    ${detailDate ? `<button type="button" class="row row-link row-all hero-detail" data-open="${detailDate}"><span class="row-main"><span class="row-title">ดูรายละเอียด</span></span>${chev()}</button>` : ''}
+    ${more ? `<div class="hero-more"><p class="hero-more-title">${more.title}</p>${lineupHtml(more.bins, { onCard: true })}</div>` : ''}
   </div>`;
 }
 
@@ -129,6 +179,7 @@ function renderHero() {
   const todayBins = binsOn(today);
   const tomorrowBins = binsOn(tomorrow);
   const awb = awbLink('ดูที่ AWB');
+  const seeAwb = 'ดูเวลาและจุดรับที่เว็บไซต์ AWB';
   let html;
   state.heroDates = new Set(); // the list below skips what the hero card already shows
 
@@ -140,14 +191,11 @@ function renderHero() {
       action: true,
       eyebrow: 'วันนี้',
       title: out ? 'วันเก็บขยะ' : 'รอบเก็บขยะอันตราย',
-      sub: !out
-        ? 'ดูเวลาและจุดรับที่เว็บไซต์ AWB'
-        : minutes < BIN_OUT_BY
-          ? 'นำถังไปวางที่จุดรับก่อน 06:30 น.'
-          : 'ถังต้องอยู่ที่จุดรับตั้งแต่ 06:30 น. รถอาจมาถึงเมื่อไรก็ได้ในวันนี้',
+      sub: !out ? seeAwb : minutes < BIN_OUT_BY ? 'วางที่จุดรับก่อน 06:30 น.' : 'ถังต้องอยู่ที่จุดรับแล้ว · รถอาจมาเมื่อไรก็ได้',
       date: longDate(today),
       bins: todayBins,
-      art: todayBins[0].group,
+      shareDate: today,
+      detailDate: today,
       more: tomorrowBins.length ? { title: `พรุ่งนี้ก็มีเก็บ · ${longDate(tomorrow)}`, bins: tomorrowBins } : null,
     });
   } else if (tomorrowBins.length) {
@@ -157,10 +205,11 @@ function renderHero() {
       action: true,
       eyebrow: 'คืนนี้',
       title: out ? 'นำถังออกวาง' : 'พรุ่งนี้มีรอบเก็บขยะอันตราย',
-      sub: out ? 'รถมาเก็บพรุ่งนี้เช้า วางถังที่จุดรับก่อน 06:30 น.' : 'ดูเวลาและจุดรับที่เว็บไซต์ AWB',
+      sub: out ? 'วางที่จุดรับก่อน 06:30 น. พรุ่งนี้เช้า' : seeAwb,
       date: `พรุ่งนี้ · ${longDate(tomorrow)}`,
       bins: tomorrowBins,
-      art: tomorrowBins[0].group,
+      shareDate: tomorrow,
+      detailDate: tomorrow,
     });
   } else {
     const next = nextDateAfter(today);
@@ -170,21 +219,39 @@ function renderHero() {
       html = heroHtml({
         eyebrow: 'ครั้งถัดไป',
         title: relative(diffDays(today, next)),
-        sub: needsBinOut(nextBins) ? 'วางถังที่จุดรับก่อน 06:30 น. ของวันเก็บ' : 'ดูเวลาและจุดรับที่เว็บไซต์ AWB',
+        sub: needsBinOut(nextBins) ? 'วางที่จุดรับก่อน 06:30 น. ของวันเก็บ' : seeAwb,
         date: longDate(next),
         bins: nextBins,
-        art: nextBins[0].group,
+        shareDate: next,
+        detailDate: next,
       });
     } else {
       html = heroHtml({
         eyebrow: 'ยังไม่มีข้อมูล',
         title: 'ยังไม่มีกำหนดเก็บ',
         sub: `ตารางปีถัดไปยังไม่ประกาศ — AWB มักประกาศช่วงพฤศจิกายน${awb ? ` · ${awb}` : ''}`,
-        art: 'restmuell',
       });
     }
   }
   $('#hero').innerHTML = html;
+}
+
+// The next seven days at a glance, one coloured dot per kind of waste.
+function renderWeek() {
+  const { date: today } = state.clock;
+  $('#week-section').hidden = !state.dates.length;
+  $('#week').innerHTML = `<div class="week">${Array.from({ length: 7 }, (_, i) => addDays(today, i))
+    .map((d) => {
+      const groups = groupBins(binsOn(d, { filtered: true }));
+      const label = `${longDate(d)}${groups.length ? `: ${groups.map((g) => g.th).join(', ')}` : ': ไม่มีเก็บขยะ'}`;
+      const inner = `<span class="wk-name">${WEEKDAYS_SHORT[weekday(d)]}</span><span class="wk-num">${parts(d).d}</span>
+        <span class="wk-dots" aria-hidden="true">${groups.map((g) => `<i data-group="${g.group}"></i>`).join('')}</span>`;
+      const cls = `wk${groups.length ? ' has' : ''}${d === today ? ' is-today' : ''}`;
+      return groups.length
+        ? `<button type="button" class="${cls}" data-open="${d}" aria-label="${esc(label)}">${inner}</button>`
+        : `<div class="${cls}" role="img" aria-label="${esc(label)}">${inner}</div>`;
+    })
+    .join('')}</div>`;
 }
 
 function renderUpcoming() {
@@ -199,32 +266,57 @@ function renderUpcoming() {
     rows.push(`<li class="row-wrap"><button type="button" class="row row-link up-row" data-open="${d}">
       <span class="date-icon" aria-hidden="true"><span class="wd">${WEEKDAYS_SHORT[weekday(d)]}</span><span class="dn">${day}</span></span>
       <span class="row-main">
-        <span class="up-when">วัน${WEEKDAYS[weekday(d)]}ที่ ${day} ${MONTHS[m - 1]} · <strong>${relative(diffDays(today, d))}</strong></span>
-        <span class="tags">${groupBins(bins).map((g) => `<span class="tag" data-group="${g.group}">${tile(g.group, 'xs')}${esc(g.th)}</span>`).join('')}</span>
-      </span>
-      <span class="chev">${uiIcon('chevronRight')}</span>
+        <span class="up-top"><span class="up-when">วัน${WEEKDAYS[weekday(d)]} ${day} ${MONTHS_SHORT[m - 1]}</span><span class="up-rel">${relative(diffDays(today, d))}</span></span>
+        <span class="up-tags">${groupBins(bins).map((g) => `<span class="tag" data-group="${g.group}">${esc(GROUPS[g.group].short)}</span>`).join('')}</span>
+      </span>${chev()}
     </button></li>`);
     if (rows.length === UPCOMING_COUNT) break;
   }
   // Nothing to list and the hero already says "no data": hide the whole section instead of repeating it.
   const section = $('#upcoming').closest('section');
   section.hidden = !rows.length && !state.heroDates.size && !state.hidden.size;
-  let html = rows.length
-    ? `<ol class="rows">${rows.join('')}</ol>`
-    : `<p class="empty">ยังไม่มีกำหนดเก็บเพิ่มเติม${state.hidden.size ? ' (ตอนนี้ซ่อนบางประเภทด้วยตัวกรองในปฏิทิน)' : ''}</p>`;
+  let html;
+  if (rows.length) {
+    rows.push(`<li class="row-wrap row-wrap-all"><button type="button" class="row row-link row-all" data-goto="calendar">
+      <span class="row-main"><span class="row-title">ดูทั้งหมดในปฏิทิน</span></span>${chev()}
+    </button></li>`);
+    html = `<ol class="rows">${rows.join('')}</ol>`;
+  } else {
+    html = `<p class="empty">ยังไม่มีกำหนดเก็บเพิ่มเติม${state.hidden.size ? ' (ตอนนี้ซ่อนบางประเภทด้วยตัวกรองในปฏิทิน)' : ''}</p>`;
+  }
   const lastYear = state.data.years.at(-1);
-  if (rows.length < UPCOMING_COUNT && lastYear) {
+  if (rows.length - 1 < UPCOMING_COUNT && lastYear) {
     html += `<p class="footnote list-foot">ข้อมูลครอบคลุมถึงสิ้นปี ${lastYear} — ตารางปี ${lastYear + 1} ยังไม่ประกาศ (AWB มักประกาศช่วงพฤศจิกายน) หน้านี้จะอัปเดตเองเมื่อประกาศแล้ว</p>`;
   }
   $('#upcoming').innerHTML = html;
 }
 
+function renderAnnouncements() {
+  const today = state.clock.date;
+  const active = state.announcements.filter((a) => (!a.from || a.from <= today) && (!a.until || a.until >= today));
+  $('#announcements').innerHTML = active
+    .map((a) => {
+      const warning = a.type === 'warning';
+      const link = safeUrl(a.link?.url);
+      return `<div class="banner${warning ? ' is-warning' : ''}" role="note">
+        <span class="ico-tile">${uiIcon(warning ? 'problem' : 'info', 'fill')}</span>
+        <div>
+          ${a.title ? `<p class="banner-title">${esc(a.title)}</p>` : ''}
+          ${a.body ? `<p class="banner-body">${esc(a.body).replace(/\n/g, '<br>')}</p>` : ''}
+          ${link ? `<p class="banner-body"><a href="${esc(link)}" target="_blank" rel="noopener">${esc(a.link.text || 'รายละเอียด')}</a></p>` : ''}
+        </div>
+      </div>`;
+    })
+    .join('');
+}
+
+/* ---------- rendering: Calendar ---------- */
 function renderChips() {
   const present = new Set();
   for (const d of state.dates) for (const b of binsOn(d)) present.add(b.group);
   $('#chips').innerHTML = Object.keys(GROUPS)
     .filter((g) => present.has(g))
-    .map((g) => `<button type="button" class="chip" data-group="${g}" data-chip="${g}" aria-pressed="${!state.hidden.has(g)}">${esc(GROUPS[g].th)}</button>`)
+    .map((g) => `<button type="button" class="chip" data-group="${g}" data-chip="${g}" aria-label="${esc(GROUPS[g].th)}" aria-pressed="${!state.hidden.has(g)}"><span class="chip-ico">${groupIcon(g)}</span>${esc(GROUPS[g].short)}</button>`)
     .join('');
 }
 
@@ -232,7 +324,9 @@ function renderCalendar() {
   const { y, m } = state.view;
   const { date: today } = state.clock;
   const years = state.data.years;
+  const t = parts(today);
   $('#cal-title').textContent = `${MONTHS[m - 1]} ${y}`;
+  $('#goto-today').hidden = t.y === y && t.m === m; // only shown when you've wandered off
   $('#prev').disabled = !years.length || makeIso(y, m, 1) <= makeIso(years[0], 1, 1);
   $('#next').disabled = !years.length || y * 12 + m >= (years.at(-1) + 1) * 12 + 12;
 
@@ -252,61 +346,103 @@ function renderCalendar() {
     </button>`);
   }
   $('#grid').innerHTML = cells.join('');
+  renderMonthSummary();
+}
+
+// "This month": how many times each kind of waste is collected, with the bins drawn again.
+function renderMonthSummary() {
+  const { y, m } = state.view;
+  const counts = new Map();
+  for (let day = 1; day <= daysInMonth(y, m); day++) {
+    for (const g of groupBins(binsOn(makeIso(y, m, day)))) counts.set(g.group, (counts.get(g.group) ?? 0) + 1);
+  }
+  const section = $('#month-summary');
+  section.hidden = counts.size === 0;
+  if (!counts.size) return;
+  $('#h-month').textContent = `สรุปเดือน${MONTHS[m - 1]}`;
+  $('#month-summary-card').innerHTML = `<ul class="lineup on-card">${Object.keys(GROUPS)
+    .filter((g) => counts.has(g))
+    .map((g, i) => `<li class="lineup-item" data-group="${g}" style="--i:${i}">${binArt(g)}<span class="lineup-name">${counts.get(g)} ครั้ง</span><span class="lineup-de">${esc(GROUPS[g].short)}</span></li>`)
+    .join('')}</ul>`;
 }
 
 // Day details live in a bottom sheet, like a native detail view.
 function openDay(date, trigger) {
   const bins = binsOn(date);
   const delta = diffDays(state.clock.date, date);
+  const actions = bins.length
+    ? `<div class="card"><div class="rows">
+        ${actionRow({ attrs: `data-share-date="${date}"`, tone: 'blue', icon: 'share', title: 'แชร์วันเก็บนี้', arrow: false })}
+        ${actionRow({ attrs: `data-add-date="${date}"`, tone: 'green', icon: 'calendarPlus', title: 'เพิ่มลงปฏิทิน', arrow: false })}
+      </div></div>`
+    : '';
   state.shell.sheet.open({
     title: `${longDate(date)} ${parts(date).y}`,
     meta: delta >= 0 && delta <= 2 ? relative(delta) : '',
-    html: bins.length ? `<div class="card">${binRowsHtml(bins)}</div>` : '<p class="empty">ไม่มีการเก็บขยะในวันนี้</p>',
+    html: bins.length ? `<div class="sheet-bins">${lineupHtml(bins, { bare: true, onCard: true })}</div><div class="card">${binRowsHtml(bins, { detailed: true })}</div>${actions}` : '<p class="empty">ไม่มีการเก็บขยะในวันนี้</p>',
     trigger,
   });
 }
 
-function renderAnnouncements() {
-  const today = state.clock.date;
-  const active = state.announcements.filter((a) => (!a.from || a.from <= today) && (!a.until || a.until >= today));
-  $('#announcements').innerHTML = active
-    .map((a) => {
-      const warning = a.type === 'warning';
-      const link = safeUrl(a.link?.url);
-      return `<div class="banner${warning ? ' is-warning' : ''}" role="note">
-        <span class="ico-tile">${uiIcon(warning ? 'problem' : 'info')}</span>
-        <div>
-          ${a.title ? `<p class="banner-title">${esc(a.title)}</p>` : ''}
-          ${a.body ? `<p class="banner-body">${esc(a.body).replace(/\n/g, '<br>')}</p>` : ''}
-          ${link ? `<p class="banner-body"><a href="${esc(link)}" target="_blank" rel="noopener">${esc(a.link.text || 'รายละเอียด')}</a></p>` : ''}
-        </div>
-      </div>`;
-    })
-    .join('');
+/* ---------- share & add to calendar ---------- */
+const appUrl = () => new URL('.', location.href).href; // the app's folder, without debug query strings
+
+function summaryText(date) {
+  const delta = diffDays(state.clock.date, date);
+  const when = delta === 0 ? 'วันนี้' : delta === 1 ? 'พรุ่งนี้' : '';
+  const bins = binsOn(date);
+  const rule = needsBinOut(bins) ? 'วางถังที่จุดรับก่อน 06:30 น.' : 'ดูเวลาและจุดรับที่เว็บไซต์ AWB';
+  return `${when ? `${when} ` : ''}${longDate(date)} เก็บ: ${groupBins(bins).map((g) => g.th).join(', ')}\n${rule}`;
 }
 
-function renderShare() {
-  const ics = new URL('data/calendar.ics', location.href);
-  const webcal = ics.href.replace(/^https?:/, 'webcal:');
-  const google = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcal)}`;
-  const row = ({ tag, attrs, tone, icon, title, sub }) => `<${tag} class="row row-link" ${attrs}>
-      <span class="ico-tile" data-tone="${tone}">${uiIcon(icon)}</span>
-      <span class="row-main"><span class="row-title">${title}</span><span class="row-sub">${sub}</span></span>
-      <span class="chev">${uiIcon('chevronRight')}</span>
-    </${tag}>`;
-  $('#share').innerHTML = `<div class="rows">
-    ${row({ tag: 'a', attrs: `href="${esc(webcal)}"`, tone: 'green', icon: 'calendar', title: 'เพิ่มใน Apple Calendar / Outlook', sub: 'Subscribe · อัปเดตเอง · เตือน 18:00 น. คืนก่อนวันเก็บ' })}
-    ${row({ tag: 'a', attrs: `href="${esc(google)}" target="_blank" rel="noopener"`, tone: 'blue', icon: 'calendar', title: 'เพิ่มใน Google Calendar', sub: 'Google ไม่แสดงเตือนของปฏิทินที่ subscribe' })}
-    ${row({ tag: 'a', attrs: `href="${esc(ics.href)}" download="ตารางเก็บขยะ.ics"`, tone: 'gray', icon: 'download', title: 'ดาวน์โหลดไฟล์ .ics', sub: 'นำเข้าครั้งเดียว ไม่อัปเดตอัตโนมัติ' })}
-    ${row({ tag: 'button', attrs: 'type="button" id="btn-print"', tone: 'dark', icon: 'printer', title: 'พิมพ์ตารางทั้งปี', sub: 'A4 หน้าเดียว · บันทึกเป็น PDF ได้' })}
-  </div>`;
+// Native share sheet where there is one (LINE, Messages, …), otherwise copy to the clipboard.
+async function share(text) {
+  const { siteTitle, orgName } = state.config;
+  const url = appUrl();
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: `${siteTitle} · ${orgName}`, text, url });
+      return;
+    }
+  } catch (err) {
+    if (err?.name === 'AbortError') return; // the user closed the share sheet
+  }
+  try {
+    await navigator.clipboard.writeText(`${text}\n${url}`);
+    toast('คัดลอกข้อความแล้ว — วางส่งต่อได้เลย');
+  } catch {
+    toast('แชร์ไม่ได้บนอุปกรณ์นี้');
+  }
 }
 
-/* ---------- appearance (light / dark / automatic) ---------- */
+const shareDay = (date) => share(summaryText(date));
+function shareApp() {
+  const target = [...state.heroDates].sort()[0] ?? nextDateAfter(state.clock.date);
+  return share(`${state.config.siteTitle} · ${state.config.orgName}${target ? `\n${summaryText(target)}` : ''}`);
+}
+
+// One event with the 18:00 evening-before reminder; iOS opens its "add event" screen, others download it.
+function addDayToCalendar(date) {
+  const ics = buildDayIcs(date, state.data.days[date] ?? [], state.config);
+  const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+  const link = Object.assign(document.createElement('a'), { href: url, download: `waste-${date}.ics` });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  toast('เพิ่มวันนี้ลงปฏิทินแล้ว — ตรวจดูในแอปปฏิทิน');
+}
+
+/* ---------- rendering: More ---------- */
 const THEME_OPTIONS = [
   { value: 'light', label: 'สว่าง' },
   { value: 'dark', label: 'มืด' },
   { value: 'auto', label: 'อัตโนมัติ' },
+];
+const TEXT_OPTIONS = [
+  { value: 'normal', label: 'ปกติ' },
+  { value: 'large', label: 'ใหญ่' },
+  { value: 'xlarge', label: 'ใหญ่มาก' },
 ];
 
 // Mini phone mock-ups; "automatic" shows both, split diagonally.
@@ -316,31 +452,66 @@ function themePreview(value) {
 }
 
 function renderAppearance() {
-  const current = getPreference();
-  $('#appearance').innerHTML = `<div class="theme-picker" role="radiogroup" aria-label="โหมดสีหน้าจอ">${THEME_OPTIONS.map(
-    ({ value, label }) => `<button type="button" class="theme-opt" role="radio" aria-checked="${value === current}" data-theme-opt="${value}">
-      ${themePreview(value)}<span>${label}</span><span class="theme-check">${uiIcon('check')}</span>
-    </button>`,
-  ).join('')}</div>`;
+  const theme = getPreference();
+  const size = getTextSize();
+  $('#appearance').innerHTML = `
+    <div class="setting">
+      <div class="setting-label"><span class="ico-tile" data-tone="dark">${uiIcon('moon', 'fill')}</span><span id="theme-label">โหมดสี</span></div>
+      <div class="theme-picker" role="radiogroup" aria-labelledby="theme-label">${THEME_OPTIONS.map(
+        ({ value, label }) => `<button type="button" class="theme-opt" role="radio" aria-checked="${value === theme}" data-theme-opt="${value}">
+          ${themePreview(value)}<span>${label}</span><span class="theme-check">${uiIcon('check', 'bold')}</span>
+        </button>`,
+      ).join('')}</div>
+    </div>
+    <div class="setting">
+      <div class="setting-label"><span class="ico-tile" data-tone="indigo">${uiIcon('textSize', 'fill')}</span><span id="size-label">ขนาดตัวอักษร</span></div>
+      <div class="seg" role="radiogroup" aria-labelledby="size-label">${TEXT_OPTIONS.map(
+        ({ value, label }) => `<button type="button" role="radio" aria-checked="${value === size}" data-size-opt="${value}">${label}</button>`,
+      ).join('')}</div>
+    </div>`;
 }
 
 // The round button in the navigation bar flips between light and dark in one tap.
 function renderThemeToggle() {
   const dark = effectiveTheme() === 'dark';
   const button = $('#theme-toggle');
-  button.innerHTML = uiIcon(dark ? 'sun' : 'moon');
+  button.innerHTML = uiIcon(dark ? 'sun' : 'moon', 'fill');
   button.setAttribute('aria-label', dark ? 'เปลี่ยนเป็นโหมดสว่าง' : 'เปลี่ยนเป็นโหมดมืด');
+}
+
+function renderShare() {
+  const ics = new URL('data/calendar.ics', location.href);
+  const webcal = ics.href.replace(/^https?:/, 'webcal:');
+  const google = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcal)}`;
+  $('#share').innerHTML = `<div class="rows">
+    ${actionRow({ attrs: 'data-share-app', tone: 'blue', icon: 'share', title: 'แชร์ตารางนี้', sub: 'ส่งลิงก์และวันเก็บถัดไปให้เพื่อน' })}
+    ${actionRow({ tag: 'a', attrs: `href="${esc(webcal)}"`, tone: 'green', icon: 'calendar', title: 'Apple / Outlook', sub: 'ติดตามอัตโนมัติ · เตือน 18:00 น.' })}
+    ${actionRow({ tag: 'a', attrs: `href="${esc(google)}" target="_blank" rel="noopener"`, tone: 'blue', icon: 'calendar', title: 'Google Calendar', sub: 'ติดตามอัตโนมัติ · ไม่มีเตือน' })}
+    ${actionRow({ tag: 'a', attrs: `href="${esc(ics.href)}" download="ตารางเก็บขยะ.ics"`, tone: 'gray', icon: 'download', title: 'ดาวน์โหลดไฟล์ .ics', sub: 'นำเข้าครั้งเดียว' })}
+    ${actionRow({ attrs: 'id="btn-print"', tone: 'dark', icon: 'printer', title: 'พิมพ์ตารางทั้งปี', sub: 'A4 หน้าเดียว · บันทึกเป็น PDF ได้' })}
+  </div>`;
+}
+
+// Settings-style header: the app icon, who it is for and where.
+function renderProfile() {
+  const { config } = state;
+  const a = config.address;
+  $('#profile').innerHTML = `<div class="profile-row">
+    <img class="profile-icon" src="icons/icon-192.png" alt="" width="64" height="64">
+    <div class="row-main">
+      <p class="profile-name">${esc(config.orgName)}</p>
+      <p class="row-sub">${esc(a.strasse)} ${esc(a.hausnr)} · ${esc(a.plz)} ${esc(a.ort)}</p>
+    </div>
+  </div>`;
 }
 
 function renderAbout() {
   const { config, data } = state;
-  const a = config.address;
   const updated = data.fetchedAt
     ? new Intl.DateTimeFormat('en-CA', { timeZone: config.timezone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(data.fetchedAt))
     : null;
   const kv = (label, value) => `<li class="row kv"><span>${label}</span><span>${value}</span></li>`;
   $('#about').innerHTML = `<ul class="rows">
-    ${kv('ที่อยู่', `${esc(a.strasse)} ${esc(a.hausnr)}<br>${esc(a.plz)} ${esc(a.ort)}`)}
     ${kv('ข้อมูลจาก', awbLink('AWB Landkreis Augsburg') || 'AWB Landkreis Augsburg')}
     ${kv('ปีที่มีข้อมูล', esc(data.years.join(', ') || '–'))}
     ${updated ? kv('ตารางอัปเดตล่าสุด', shortDate(updated)) : ''}
@@ -367,21 +538,17 @@ function renderInstall() {
   }
   $('#install').innerHTML = `<h2 class="section-title">ติดตั้งเป็นแอป</h2>
     <div class="card"><div class="rows">
-      <button type="button" class="row row-link" data-install>
-        <span class="ico-tile" data-tone="green">${uiIcon('phone')}</span>
-        <span class="row-main"><span class="row-title">เพิ่มไว้ที่หน้าจอโฮม</span><span class="row-sub">เปิดได้ทันทีเหมือนแอป · ใช้งานออฟไลน์ได้</span></span>
-        <span class="chev">${uiIcon('chevronRight')}</span>
-      </button>
+      ${actionRow({ attrs: 'data-install', tone: 'green', icon: 'phone', title: 'เพิ่มไว้ที่หน้าจอโฮม', sub: 'เปิดเร็ว ใช้ออฟไลน์ได้' })}
     </div></div>`;
 
   // a one-time nudge on phones only; the row above is always there
   const nudge = (info.native || info.ios) && matchMedia('(pointer: coarse)').matches && !installDismissed();
   $('#install-banner').innerHTML = nudge
     ? `<div class="install-banner">
-        <span class="ico-tile" data-tone="green">${uiIcon('phone')}</span>
-        <span class="row-main"><span class="row-title">ติดตั้งเป็นแอป</span><span class="row-sub">เปิดเร็วขึ้น ใช้งานออฟไลน์ได้</span></span>
+        <span class="ico-tile" data-tone="green">${uiIcon('phone', 'fill')}</span>
+        <span class="row-main"><span class="row-title">ติดตั้งเป็นแอป</span><span class="row-sub">เปิดเร็ว ใช้ออฟไลน์ได้</span></span>
         <button type="button" class="pill-btn" data-install>ติดตั้ง</button>
-        <button type="button" class="icon-btn" data-dismiss-install aria-label="ปิด">${uiIcon('close')}</button>
+        <button type="button" class="icon-btn" data-dismiss-install aria-label="ปิด">${uiIcon('close', 'bold')}</button>
       </div>`
     : '';
 }
@@ -407,6 +574,7 @@ async function startInstall(trigger) {
   state.shell.sheet.open({ title: 'เพิ่มไว้ที่หน้าจอโฮม', meta: 'เปิดได้เหมือนแอป', html: steps, trigger });
 }
 
+/* ---------- print sheet ---------- */
 function renderPrintSheet() {
   const { config, data } = state;
   const year = state.view.y;
@@ -441,8 +609,10 @@ function renderPrintSheet() {
 }
 
 function renderAll() {
+  $('#greeting').textContent = greeting(state.clock.minutes);
   renderAnnouncements();
   renderHero();
+  renderWeek();
   renderUpcoming();
   renderChips();
   renderCalendar();
@@ -451,7 +621,9 @@ function renderAll() {
 }
 
 /* ---------- interaction ---------- */
-function setView(y, m) {
+// `dir` = -1 / 1: the grid slides in from that side, like paging a paper calendar.
+function setView(y, m, dir = 0) {
+  const before = state.view.y * 12 + state.view.m;
   while (m < 1) { m += 12; y--; }
   while (m > 12) { m -= 12; y++; }
   state.view = { y, m };
@@ -459,11 +631,18 @@ function setView(y, m) {
   state.selected = t.y === y && t.m === m ? state.clock.date : null;
   renderCalendar();
   renderPrintSheet();
+  const way = dir || Math.sign(y * 12 + m - before);
+  if (way) {
+    const grid = $('#grid');
+    grid.classList.remove('from-left', 'from-right');
+    void grid.offsetWidth; // restart the animation
+    grid.classList.add(way > 0 ? 'from-right' : 'from-left');
+  }
 }
 
 function bindEvents() {
-  $('#prev').addEventListener('click', () => { haptic(5); setView(state.view.y, state.view.m - 1); });
-  $('#next').addEventListener('click', () => { haptic(5); setView(state.view.y, state.view.m + 1); });
+  $('#prev').addEventListener('click', () => { haptic(5); setView(state.view.y, state.view.m - 1, -1); });
+  $('#next').addEventListener('click', () => { haptic(5); setView(state.view.y, state.view.m + 1, 1); });
   $('#goto-today').addEventListener('click', () => {
     const t = parts(state.clock.date);
     setView(t.y, t.m);
@@ -475,37 +654,6 @@ function bindEvents() {
     state.selected = cell.dataset.date;
     renderCalendar();
     openDay(state.selected, $('#grid .is-selected'));
-  });
-  $('#upcoming').addEventListener('click', (e) => {
-    const row = e.target.closest('[data-open]');
-    if (!row) return;
-    haptic(6);
-    openDay(row.dataset.open, row);
-  });
-  $('#app').addEventListener('click', (e) => {
-    if (e.target.closest('[data-install]')) startInstall(e.target.closest('[data-install]'));
-    if (e.target.closest('[data-dismiss-install]')) {
-      try { localStorage.setItem(INSTALL_DISMISSED_KEY, String(Date.now())); } catch {}
-      renderInstall();
-    }
-  });
-  onInstallChange(renderInstall);
-  $('#theme-toggle').addEventListener('click', () => {
-    haptic(8);
-    setPreference(effectiveTheme() === 'dark' ? 'light' : 'dark');
-    renderAppearance();
-  });
-  $('#appearance').addEventListener('click', (e) => {
-    const option = e.target.closest('[data-theme-opt]');
-    if (!option) return;
-    haptic(6);
-    setPreference(option.dataset.themeOpt);
-    renderAppearance();
-    $(`[data-theme-opt="${option.dataset.themeOpt}"]`)?.focus();
-  });
-  onThemeChange(() => {
-    renderThemeToggle();
-    renderAppearance();
   });
   // swipe the grid left / right to change month, like the Calendar app
   let touch = null;
@@ -532,9 +680,48 @@ function bindEvents() {
     renderCalendar();
     $(`[data-chip="${g}"]`)?.focus();
   });
+
+  // one delegated handler for the buttons that appear on several screens and in the sheet
+  document.addEventListener('click', (e) => {
+    const hit = (selector) => e.target.closest(selector);
+    if (hit('[data-open]')) {
+      haptic(6);
+      openDay(hit('[data-open]').dataset.open, hit('[data-open]'));
+    } else if (hit('[data-share-date]')) shareDay(hit('[data-share-date]').dataset.shareDate);
+    else if (hit('[data-add-date]')) addDayToCalendar(hit('[data-add-date]').dataset.addDate);
+    else if (hit('[data-share-app]')) shareApp();
+    else if (hit('[data-goto]')) state.shell.tabs.show(hit('[data-goto]').dataset.goto);
+    else if (hit('[data-install]')) startInstall(hit('[data-install]'));
+    else if (hit('[data-dismiss-install]')) {
+      try { localStorage.setItem(INSTALL_DISMISSED_KEY, String(Date.now())); } catch {}
+      renderInstall();
+    }
+  });
+  onInstallChange(renderInstall);
   $('#btn-print').addEventListener('click', () => {
     renderPrintSheet();
     window.print();
+  });
+
+  // appearance: quick toggle in the navigation bar + the pickers on the More screen
+  $('#theme-toggle').addEventListener('click', () => {
+    haptic(8);
+    setPreference(effectiveTheme() === 'dark' ? 'light' : 'dark');
+    renderAppearance();
+  });
+  $('#appearance').addEventListener('click', (e) => {
+    const theme = e.target.closest('[data-theme-opt]');
+    const size = e.target.closest('[data-size-opt]');
+    if (theme) setPreference(theme.dataset.themeOpt);
+    else if (size) setTextSize(size.dataset.sizeOpt);
+    else return;
+    haptic(6);
+    renderAppearance();
+    $(`[data-theme-opt="${theme?.dataset.themeOpt}"], [data-size-opt="${size?.dataset.sizeOpt}"]`)?.focus();
+  });
+  onThemeChange(() => {
+    renderThemeToggle();
+    renderAppearance();
   });
 
   // The page can stay open for days: re-render when the date or the "collection is over" phase changes.
@@ -542,6 +729,7 @@ function bindEvents() {
   const refresh = () => {
     const before = phase();
     state.clock = getClock(state.config.timezone);
+    $('#greeting').textContent = greeting(state.clock.minutes);
     if (phase() !== before) {
       const t = parts(state.clock.date);
       state.view = { y: t.y, m: t.m };
@@ -631,16 +819,18 @@ async function main() {
   document.title = `${config.siteTitle} · ${config.orgName}`;
   $('#title').textContent = config.siteTitle;
   $('#org').textContent = config.orgName;
-  const a = config.address;
-  $('#address').innerHTML = `${uiIcon('pin')}<span>${esc(a.strasse)} ${esc(a.hausnr)}, ${esc(a.plz)} ${esc(a.ort)}</span>`;
-  $('#prev').innerHTML = uiIcon('chevronLeft');
-  $('#next').innerHTML = uiIcon('chevronRight');
-  document.querySelectorAll('.tab').forEach((tab) => { tab.querySelector('.tab-icon').innerHTML = uiIcon(tab.dataset.icon); });
+  $('#prev').innerHTML = uiIcon('chevronLeft', 'bold');
+  $('#next').innerHTML = uiIcon('chevronRight', 'bold');
   if (state.clock.forced) {
     $('#debug').innerHTML = `<p class="debug">โหมดทดสอบ: วันที่ ${esc(state.clock.date)} เวลา ${hhmm(state.clock.minutes)} — เอา <code>?today=</code> ออกจาก URL เพื่อกลับเป็นเวลาจริง</p>`;
   }
 
+  // a short entrance (cards rise in, bins pop up) on the first paint only; see "intro" in the CSS
+  document.body.classList.add('intro');
+  setTimeout(() => document.body.classList.remove('intro'), 1600);
+
   renderThemeToggle();
+  renderProfile();
   renderAppearance();
   renderShare();
   renderInstall();

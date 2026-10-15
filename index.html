@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f5f5f7">
-  <!-- Apply the saved appearance before the first paint so the page never flashes the wrong theme.
-       Keep in sync with js/theme.js, which takes over once the app loads. -->
+  <!-- Apply the saved theme and text size before the first paint so the page never flashes.
+       Keep in sync with js/prefs.js, which takes over once the app loads. -->
   <script>
     (function () {
+      var root = document.documentElement;
       var dark = false;
       try {
         var saved = localStorage.getItem('waste.theme');
         dark = saved === 'dark' || (saved !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+        var size = localStorage.getItem('waste.textSize');
+        if (size === 'large' || size === 'xlarge') root.setAttribute('data-text-size', size);
       } catch (e) {}
-      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      root.setAttribute('data-theme', dark ? 'dark' : 'light');
       document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#000000' : '#f5f5f7');
     })();
   </script>
@@ -47,14 +50,18 @@
     <!-- วันนี้ -->
     <section class="screen" id="screen-today" aria-label="วันนี้">
       <header class="large-title wrap">
-        <p class="org" id="org">Wat Phra Dhammakaya Bavaria</p>
+        <p class="greeting" id="greeting"></p>
         <h1 id="title">ตารางเก็บขยะ</h1>
-        <p class="address" id="address"></p>
+        <p class="org" id="org">Wat Phra Dhammakaya Bavaria</p>
       </header>
       <div class="wrap">
         <div id="debug"></div>
         <div id="announcements"></div>
         <section id="hero" aria-live="polite" aria-label="การเก็บขยะครั้งถัดไป"></section>
+        <section aria-labelledby="h-week" id="week-section">
+          <h2 class="section-title" id="h-week">7 วันข้างหน้า</h2>
+          <div class="card" id="week"></div>
+        </section>
         <section aria-labelledby="h-upcoming">
           <h2 class="section-title" id="h-upcoming">หลังจากนั้น</h2>
           <div class="card" id="upcoming"></div>
@@ -73,7 +80,7 @@
           <div class="cal-head">
             <h2 class="cal-title" id="cal-title" aria-live="polite"></h2>
             <div class="cal-actions">
-              <button type="button" class="text-btn" id="goto-today">วันนี้</button>
+              <button type="button" class="text-btn" id="goto-today" hidden>วันนี้</button>
               <button type="button" class="icon-btn" id="prev" aria-label="เดือนก่อนหน้า"></button>
               <button type="button" class="icon-btn" id="next" aria-label="เดือนถัดไป"></button>
             </div>
@@ -83,9 +90,12 @@
             <span>จ.</span><span>อ.</span><span>พ.</span><span>พฤ.</span><span>ศ.</span><span>ส.</span><span>อา.</span>
           </div>
           <div class="grid" id="grid"></div>
-          <div id="chips" class="chips" role="group" aria-label="ประเภทขยะที่แสดง"></div>
-          <p class="footnote chips-hint">แตะประเภทขยะเพื่อซ่อนหรือแสดง · แตะวันที่เพื่อดูรายละเอียด · ปัดซ้าย/ขวาเพื่อเปลี่ยนเดือน</p>
+          <div id="chips" class="chips" role="group" aria-label="แตะเพื่อซ่อนหรือแสดงประเภทขยะ"></div>
         </div>
+        <section id="month-summary" aria-labelledby="h-month" hidden>
+          <h2 class="section-title" id="h-month"></h2>
+          <div class="card summary" id="month-summary-card"></div>
+        </section>
       </div>
     </section>
 
@@ -95,14 +105,16 @@
         <h1>เพิ่มเติม</h1>
       </header>
       <div class="wrap">
-        <h2 class="section-title first">รูปลักษณ์</h2>
-        <div class="card" id="appearance"></div>
-        <p class="footnote about-note">"อัตโนมัติ" จะเปลี่ยนสว่าง/มืดตามการตั้งค่าของเครื่อง</p>
+        <div class="card profile" id="profile"></div>
 
-        <h2 class="section-title">เพิ่มลงปฏิทิน / พิมพ์</h2>
+        <h2 class="section-title">การแสดงผล</h2>
+        <div class="card" id="appearance"></div>
+
+        <h2 class="section-title">แชร์และปฏิทิน</h2>
         <div class="card" id="share"></div>
         <div id="install"></div>
-        <h2 class="section-title">เกี่ยวกับตารางนี้</h2>
+
+        <h2 class="section-title">เกี่ยวกับ</h2>
         <div class="card" id="about"></div>
         <p class="footnote about-note" id="source-note"></p>
       </div>

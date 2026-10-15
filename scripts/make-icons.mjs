@@ -1,87 +1,106 @@
 #!/usr/bin/env node
-// Draws the app icon (white bin on a green gradient) and writes the PNG sizes the
-// web app manifest and iOS need. Pure Node, no dependencies:
+// Draws the app icon — a solid white bin with a soft shadow on a green gradient, the way
+// iOS home-screen icons are built — and writes the PNG sizes the web app manifest and iOS
+// need. Pure Node, no dependencies:
 //
 //   node scripts/make-icons.mjs
-//
-// The bin is the same Feather "trash-2" outline used inside the app, so the
-// home-screen icon matches the UI.
 import { deflateSync } from 'node:zlib';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { file } from './lib.mjs';
 
-/* ---------- glyph geometry on a 24x24 grid ---------- */
-const segments = [];
-const polyline = (pts) => pts.slice(1).forEach((p, i) => segments.push([...pts[i], ...p]));
-const arc = (cx, cy, r, from, to, steps = 10) =>
-  Array.from({ length: steps + 1 }, (_, i) => {
-    const a = ((from + ((to - from) * i) / steps) * Math.PI) / 180;
-    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
-  });
-
-polyline([[3, 6], [21, 6]]); // lid
-polyline([[19, 6], [18, 20], ...arc(16, 20, 2, 0, 90), [8, 22], ...arc(8, 20, 2, 90, 180), [5, 6]]); // body
-polyline([[9, 6], [9, 4], ...arc(10, 4, 1, 180, 270, 5), [14, 3], ...arc(14, 4, 1, 270, 360, 5), [15, 6]]); // handle
-polyline([[10, 11], [10, 17]]);
-polyline([[14, 11], [14, 17]]);
-
-const GLYPH_CENTER = [12, 12.5];
-const HALF_STROKE = 1;
-
-function distToSegment(px, py, [x1, y1, x2, y2]) {
-  const dx = x2 - x1;
-  const dy = y2 - y1;
-  const t = Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / (dx * dx + dy * dy || 1)));
-  return Math.hypot(px - (x1 + t * dx), py - (y1 + t * dy));
-}
-
-const inGlyph = (gx, gy) => {
-  if (gx < 1.5 || gx > 22.5 || gy < 1.5 || gy > 23.5) return false; // bounding box shortcut
-  return segments.some((s) => distToSegment(gx, gy, s) <= HALF_STROKE);
+/* ---------- shapes: signed distance fields on a 100x100 canvas (negative = inside) ---------- */
+const roundBox = (px, py, cx, cy, hx, hy, r) => {
+  const qx = Math.abs(px - cx) - hx + r;
+  const qy = Math.abs(py - cy) - hy + r;
+  return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r;
 };
 
-/* ---------- rasteriser (4x4 supersampling) ---------- */
-function render(size, { rounded, glyphScale }) {
-  const k = size * glyphScale; // pixels per glyph unit
-  const radius = rounded ? size * 0.22 : 0;
-  const top = [46, 158, 75];
-  const bottom = [22, 104, 44];
-  const out = Buffer.alloc(size * size * 4);
-  const N = 4;
+function polygon(px, py, v) {
+  let d = (px - v[0][0]) ** 2 + (py - v[0][1]) ** 2;
+  let s = 1;
+  for (let i = 0, j = v.length - 1; i < v.length; j = i++) {
+    const ex = v[j][0] - v[i][0];
+    const ey = v[j][1] - v[i][1];
+    const wx = px - v[i][0];
+    const wy = py - v[i][1];
+    const t = Math.max(0, Math.min(1, (wx * ex + wy * ey) / (ex * ex + ey * ey)));
+    d = Math.min(d, (wx - ex * t) ** 2 + (wy - ey * t) ** 2);
+    const c1 = py >= v[i][1];
+    const c2 = py < v[j][1];
+    const c3 = ex * wy > ey * wx;
+    if ((c1 && c2 && c3) || (!c1 && !c2 && !c3)) s = -s;
+  }
+  return s * Math.sqrt(d);
+}
 
-  const insideShape = (x, y) => {
-    if (!rounded) return true;
-    const cx = Math.min(Math.max(x, radius), size - radius);
-    const cy = Math.min(Math.max(y, radius), size - radius);
-    return Math.hypot(x - cx, y - cy) <= radius;
-  };
+// Body: a trapezoid that is slightly wider at the top, rounded by shrinking it and growing the distance back.
+const BODY = [[33.4, 42], [66.6, 42], [63.4, 76], [36.6, 76]];
+const BODY_ROUND = 4;
+
+// The bin: handle + lid + body, with two grooves cut out of the body.
+function bin(x, y) {
+  const handle = roundBox(x, y, 50, 20.5, 8, 3.5, 3.2);
+  const lid = roundBox(x, y, 50, 30.5, 27, 4.5, 4.5);
+  const body = polygon(x, y, BODY) - BODY_ROUND;
+  const grooves = Math.min(roundBox(x, y, 42.5, 59, 2.8, 10, 2.8), roundBox(x, y, 57.5, 59, 2.8, 10, 2.8));
+  return Math.max(Math.min(handle, lid, body), -grooves);
+}
+
+const smooth = (a, b, x) => {
+  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+};
+
+/* ---------- rasteriser (analytic anti-aliasing) ---------- */
+function render(size, { rounded, glyphScale }) {
+  const k = size / 100; // pixels per canvas unit
+  const out = Buffer.alloc(size * size * 4);
+  const cornerR = 22.37; // iOS "squircle-ish" corner radius, as a percentage of the icon
 
   for (let py = 0; py < size; py++) {
     for (let px = 0; px < size; px++) {
-      let r = 0, g = 0, b = 0, a = 0;
-      for (let sy = 0; sy < N; sy++) {
-        for (let sx = 0; sx < N; sx++) {
-          const x = px + (sx + 0.5) / N;
-          const y = py + (sy + 0.5) / N;
-          if (!insideShape(x, y)) continue;
-          a += 1;
-          if (inGlyph(GLYPH_CENTER[0] + (x - size / 2) / k, GLYPH_CENTER[1] + (y - size / 2) / k)) {
-            r += 255; g += 255; b += 255;
-          } else {
-            const t = y / size;
-            r += top[0] + (bottom[0] - top[0]) * t;
-            g += top[1] + (bottom[1] - top[1]) * t;
-            b += top[2] + (bottom[2] - top[2]) * t;
-          }
-        }
+      const x = (px + 0.5) / k;
+      const y = (py + 0.5) / k;
+
+      // background: diagonal green gradient with a soft highlight at the top left
+      const g = Math.min(1, Math.max(0, (x * 0.35 + y * 0.65) / 100));
+      let r = 62 + (18 - 62) * g;
+      let gr = 208 + (112 - 208) * g;
+      let b = 100 + (46 - 100) * g;
+      const glow = 1 - smooth(0, 70, Math.hypot(x - 18, y - 8));
+      r += (255 - r) * glow * 0.22;
+      gr += (255 - gr) * glow * 0.22;
+      b += (255 - b) * glow * 0.22;
+
+      // the glyph is sampled in its own space so it can be scaled for the maskable safe zone
+      const sx = 50 + (x - 50) / glyphScale;
+      const sy = 49 + (y - 50) / glyphScale - 1.5;
+      const inside = -bin(sx, sy) * k * glyphScale; // pixels inside the glyph edge (negative = outside)
+      const shadowDist = bin(sx, sy - 2.4) * glyphScale; // same shape pushed down; canvas units, negative = inside
+      const shadow = 0.28 * (1 - smooth(-1.5, 4.5, shadowDist)); // fades out softly beyond the edge
+
+      r *= 1 - shadow;
+      gr *= 1 - shadow;
+      b *= 1 - shadow;
+      const cover = Math.min(1, Math.max(0, inside + 0.5));
+      r += (255 - r) * cover;
+      gr += (255 - gr) * cover;
+      b += (255 - b) * cover;
+
+      // rounded outline for the transparent-corner variants
+      let alpha = 1;
+      if (rounded) {
+        const rad = (cornerR / 100) * size;
+        const cx = Math.min(Math.max(px + 0.5, rad), size - rad);
+        const cy = Math.min(Math.max(py + 0.5, rad), size - rad);
+        alpha = Math.min(1, Math.max(0, rad - Math.hypot(px + 0.5 - cx, py + 0.5 - cy) + 0.5));
       }
+
       const i = (py * size + px) * 4;
-      if (a) {
-        out[i] = Math.round(r / a);
-        out[i + 1] = Math.round(g / a);
-        out[i + 2] = Math.round(b / a);
-      }
-      out[i + 3] = Math.round((a / (N * N)) * 255);
+      out[i] = Math.round(r);
+      out[i + 1] = Math.round(gr);
+      out[i + 2] = Math.round(b);
+      out[i + 3] = Math.round(alpha * 255);
     }
   }
   return out;
@@ -129,11 +148,11 @@ function encodePng(size, rgba) {
 /* ---------- outputs ---------- */
 const ICONS = [
   // iOS applies its own rounded mask, so the Apple icon is a full-bleed square.
-  { name: 'apple-touch-icon.png', size: 180, rounded: false, glyphScale: 0.021 },
-  { name: 'icon-192.png', size: 192, rounded: true, glyphScale: 0.021 },
-  { name: 'icon-512.png', size: 512, rounded: true, glyphScale: 0.021 },
+  { name: 'apple-touch-icon.png', size: 180, rounded: false, glyphScale: 1 },
+  { name: 'icon-192.png', size: 192, rounded: true, glyphScale: 1 },
+  { name: 'icon-512.png', size: 512, rounded: true, glyphScale: 1 },
   // Maskable: full-bleed with the glyph kept inside the central safe zone.
-  { name: 'icon-maskable-512.png', size: 512, rounded: false, glyphScale: 0.018 },
+  { name: 'icon-maskable-512.png', size: 512, rounded: false, glyphScale: 0.88 },
 ];
 
 await mkdir(file('icons'), { recursive: true });
