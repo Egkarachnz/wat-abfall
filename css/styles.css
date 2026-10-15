@@ -35,7 +35,8 @@
   --r-tile: 10px;
   --gutter: 20px;
   --nav-h: 44px;
-  --tab-h: 49px;
+  --tab-h: 64px; /* the floating tab bar */
+  --bar-gap: max(14px, calc(env(safe-area-inset-bottom) - 10px)); /* space between the bar and the screen edge */
 
   --bg: #f5f5f7;
   --glow-a: rgba(52, 199, 89, 0.24);
@@ -53,6 +54,10 @@
   --cal-red: #d92d20;
   --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 28px -16px rgba(16, 24, 40, 0.18);
   --scrim: rgba(0, 0, 0, 0.35);
+  --bar-glass: rgba(255, 255, 255, 0.68);
+  --bar-rim: rgba(255, 255, 255, 0.85);
+  --lens: rgba(120, 120, 128, 0.17);
+  --lens-rim: rgba(255, 255, 255, 0.75);
   --debug-bg: rgba(255, 159, 10, 0.16);
   --debug-fg: #8a4a00;
 }
@@ -73,6 +78,10 @@
   --tint-fg: #000000;
   --shadow-card: inset 0 0 0 0.5px rgba(255, 255, 255, 0.06);
   --scrim: rgba(0, 0, 0, 0.55);
+  --bar-glass: rgba(44, 44, 48, 0.66);
+  --bar-rim: rgba(255, 255, 255, 0.28);
+  --lens: rgba(255, 255, 255, 0.14);
+  --lens-rim: rgba(255, 255, 255, 0.24);
   --debug-fg: #ffb340;
 }
 
@@ -195,7 +204,7 @@ button, .row, .day, .chip, .tab, .navbar, .hero-top, .date-icon, .sheet-grab, a.
 .org { margin-top: 2px; font-size: var(--fs-sub); color: var(--label2); }
 
 /* ---------- layout ---------- */
-main { padding-bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 28px); } /* room for the tab bar */
+main { padding-bottom: calc(var(--tab-h) + var(--bar-gap) + 32px); } /* room for the floating tab bar */
 .section-title { font-size: 1.375rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; margin: 36px 4px 12px; }
 .section-title.first { margin-top: 12px; }
 .card { background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow-card); overflow: hidden; }
@@ -429,30 +438,75 @@ button.wk:active .wk-num { transform: scale(0.9); }
 .screen.is-entering { animation: screen-in 0.22s ease-out; } /* a calm cross-fade; nothing slides when you change tabs */
 @keyframes screen-in { from { opacity: 0; } }
 
-/* ---------- tab bar: classic iOS, docked to the bottom edge ---------- */
+/* ---------- tab bar: a floating glass capsule with a sliding lens (Liquid Glass, iOS 26/27 style) ---------- */
 .tabbar {
+  --i: 0; /* index of the selected tab; moved by shell.js */
   position: fixed;
-  inset: auto 0 0 0;
   z-index: 30;
+  left: 50%;
+  bottom: var(--bar-gap);
   display: flex;
-  justify-content: center;
-  height: calc(var(--tab-h) + env(safe-area-inset-bottom));
-  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: var(--glass);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  border-top: 0.5px solid var(--sep);
-  transform: translate3d(0, 0, 0); /* own compositing layer: stays put while the page below changes or scrolls */
+  width: min(calc(100% - 32px), 400px);
+  height: var(--tab-h);
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--bar-glass);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  backdrop-filter: blur(28px) saturate(190%);
+  box-shadow: 0 12px 32px -8px rgba(16, 24, 40, 0.28), 0 2px 8px rgba(16, 24, 40, 0.1), inset 0 0.5px 0 var(--bar-rim);
+  transform: translate3d(-50%, 0, 0); /* own compositing layer: it stays put while the page below changes */
+  isolation: isolate;
 }
+/* the bright rim of the glass: a hairline that is strongest at the top-left and bottom-right edges */
+.tabbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--bar-rim), transparent 38%, transparent 62%, var(--bar-rim));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.tab-lens {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 3);
+  transform: translateX(calc(var(--i) * 100%));
+  pointer-events: none;
+}
+.tabbar.is-ready .tab-lens { transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.5, 1); } /* springs a little past, then settles */
+.tab-lens::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--lens);
+  box-shadow: inset 0 0.5px 0 var(--lens-rim), inset 0 0 0 0.5px var(--lens-rim), 0 3px 10px rgba(16, 24, 40, 0.1);
+  transition: transform 0.3s var(--ease);
+}
+.tab-lens.is-sliding::before { animation: lens-stretch 0.55s var(--ease); }
+@keyframes lens-stretch { 0% { transform: scale(1); } 30% { transform: scale(1.2, 0.9); } 100% { transform: scale(1); } }
+.tabbar:has(.tab:active) .tab-lens::before { transform: scale(1.1); } /* the lens swells under your finger */
+
 .tab {
+  position: relative;
+  z-index: 1;
   flex: 1 1 0;
-  max-width: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 2px;
   border: 0;
+  border-radius: 999px;
   background: none;
   color: var(--label2);
   font-size: 0.75rem;
@@ -461,10 +515,10 @@ button.wk:active .wk-num { transform: scale(0.9); }
   cursor: pointer;
   transition: color 0.2s;
 }
-/* outline and solid icons are stacked in a fixed 26px box; selecting only cross-fades them */
-.tab-icon { position: relative; display: block; width: 26px; height: 26px; transition: transform 0.15s var(--ease); }
+/* outline and solid icons are stacked in a fixed 24px box; selecting only cross-fades them */
+.tab-icon { position: relative; display: block; width: 24px; height: 24px; transition: transform 0.15s var(--ease); }
 .ti { position: absolute; inset: 0; transition: opacity 0.22s ease, transform 0.3s var(--ease); }
-.ti .ico { width: 26px; height: 26px; }
+.ti .ico { width: 24px; height: 24px; }
 .ti-on { opacity: 0; transform: scale(0.86); }
 .tab[aria-current="page"] { color: var(--tint); }
 .tab[aria-current="page"] .ti-on { opacity: 1; transform: none; }
@@ -515,7 +569,7 @@ button.wk:active .wk-num { transform: scale(0.9); }
   position: fixed;
   z-index: 60;
   left: 50%;
-  bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 12px);
+  bottom: calc(var(--tab-h) + var(--bar-gap) + 14px);
   max-width: min(90%, 420px);
   padding: 11px 20px;
   border-radius: 999px;

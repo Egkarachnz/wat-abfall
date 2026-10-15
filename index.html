@@ -34,6 +34,7 @@
   <title>ตารางเก็บขยะ · Wat Phra Dhammakaya Bavaria</title>
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/scene.css">
 </head>
 <body>
   <div class="navbar" id="navbar">
@@ -49,6 +50,7 @@
 
     <!-- วันนี้ -->
     <section class="screen" id="screen-today" aria-label="วันนี้">
+      <div class="sky" aria-hidden="true"></div>
       <header class="large-title wrap">
         <p class="greeting" id="greeting"></p>
         <h1 id="title">ตารางเก็บขยะ</h1>
@@ -57,7 +59,10 @@
       <div class="wrap">
         <div id="debug"></div>
         <div id="announcements"></div>
-        <section id="hero" aria-live="polite" aria-label="การเก็บขยะครั้งถัดไป"></section>
+        <div class="stage">
+          <section id="hero" aria-live="polite" aria-label="การเก็บขยะครั้งถัดไป"></section>
+          <div class="critters" id="critters-today"></div>
+        </div>
         <section aria-labelledby="h-week" id="week-section">
           <h2 class="section-title" id="h-week">7 วันข้างหน้า</h2>
           <div class="card" id="week"></div>
@@ -72,10 +77,12 @@
 
     <!-- ปฏิทิน -->
     <section class="screen" id="screen-calendar" aria-label="ปฏิทิน" hidden>
+      <div class="sky" aria-hidden="true"></div>
       <header class="large-title wrap">
         <h1>ปฏิทิน</h1>
       </header>
       <div class="wrap">
+        <div class="stage">
         <div class="card cal-card">
           <div class="cal-head">
             <h2 class="cal-title" id="cal-title" aria-live="polite"></h2>
@@ -92,6 +99,8 @@
           <div class="grid" id="grid"></div>
           <div id="chips" class="chips" role="group" aria-label="แตะเพื่อซ่อนหรือแสดงประเภทขยะ"></div>
         </div>
+          <div class="critters" id="critters-calendar"></div>
+        </div>
         <section id="month-summary" aria-labelledby="h-month" hidden>
           <h2 class="section-title" id="h-month"></h2>
           <div class="card summary" id="month-summary-card"></div>
@@ -101,11 +110,15 @@
 
     <!-- เพิ่มเติม -->
     <section class="screen" id="screen-more" aria-label="เพิ่มเติม" hidden>
+      <div class="sky" aria-hidden="true"></div>
       <header class="large-title wrap">
         <h1>เพิ่มเติม</h1>
       </header>
       <div class="wrap">
-        <div class="card profile" id="profile"></div>
+        <div class="stage">
+          <div class="card profile" id="profile"></div>
+          <div class="critters" id="critters-more"></div>
+        </div>
 
         <h2 class="section-title">การแสดงผล</h2>
         <div class="card" id="appearance"></div>
@@ -122,6 +135,7 @@
   </main>
 
   <nav class="tabbar" id="tabbar" aria-label="เมนูหลัก">
+    <span class="tab-lens" aria-hidden="true"></span>
     <button type="button" class="tab" data-tab="today" data-icon="sun"><span class="tab-icon"></span><span>วันนี้</span></button>
     <button type="button" class="tab" data-tab="calendar" data-icon="calendar"><span class="tab-icon"></span><span>ปฏิทิน</span></button>
     <button type="button" class="tab" data-tab="more" data-icon="more"><span class="tab-icon"></span><span>เพิ่มเติม</span></button>

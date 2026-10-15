@@ -32,6 +32,20 @@ export function initTabs(initial) {
   let current = null;
   let observer = null;
 
+  // The glass "lens" behind the selected tab slides between positions (--i is the tab index;
+  // the CSS turns it into a translateX of whole tab widths) with a little squish on the way.
+  const tabbar = $('#tabbar');
+  const lens = tabbar.querySelector('.tab-lens');
+  function moveLens(index, animate) {
+    tabbar.style.setProperty('--i', index);
+    if (animate) {
+      lens.classList.remove('is-sliding');
+      void lens.offsetWidth; // restart the animation
+      lens.classList.add('is-sliding');
+    }
+    requestAnimationFrame(() => tabbar.classList.add('is-ready')); // no slide-in from the first tab on load
+  }
+
   // Both versions of each icon live in the bar from the start, stacked: selecting a tab only
   // cross-fades outline -> solid in place (see .ti in the CSS), so nothing is rebuilt or resized.
   for (const button of document.querySelectorAll('[data-tab]')) {
@@ -66,6 +80,7 @@ export function initTabs(initial) {
       if (tab === name) button.setAttribute('aria-current', 'page');
       else button.removeAttribute('aria-current');
     }
+    moveLens(TABS.indexOf(name), current !== null);
     current = name;
     const screen = $(`#screen-${name}`);
     screen.classList.remove('is-entering');

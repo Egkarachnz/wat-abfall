@@ -5,6 +5,7 @@ import {
 } from './dates.js';
 import { buildDayIcs } from './ics.js';
 import { groupGlyph, groupIcon, uiIcon } from './icons.js';
+import { initScene } from './scene.js';
 import { effectiveTheme, getPreference, getTextSize, onThemeChange, setPreference, setTextSize } from './prefs.js';
 import { haptic, initPullToRefresh, initSheet, initTabs, installInfo, onInstallChange, promptInstall, toast } from './shell.js';
 
@@ -49,7 +50,7 @@ const hhmm = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String
 /* ---------- state ---------- */
 const state = {
   config: null, data: null, announcements: [], clock: null, view: null, selected: null,
-  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {},
+  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null,
 };
 
 function loadHidden() {
@@ -133,7 +134,8 @@ function binArt(group) {
     <path class="bin-shine" d="M14.6 29h6.4l2.2 41h-3.9z"/>
     <rect class="bin-lid" x="7" y="13" width="58" height="14" rx="6.5"/>
     <rect class="bin-handle" x="25" y="6" width="22" height="9" rx="4.5"/>
-    <svg class="bin-glyph" x="23" y="40" width="26" height="26" viewBox="0 0 256 256" fill="currentColor">${groupGlyph(group)}</svg>
+    <g class="bin-face"><g class="bin-eyes"><ellipse cx="28.5" cy="38.5" rx="2.4" ry="3.1"/><ellipse cx="43.5" cy="38.5" rx="2.4" ry="3.1"/></g><path d="M31.5 44.5q4.5 4.2 9 0"/><ellipse class="blush" cx="23.2" cy="44" rx="3.3" ry="2"/><ellipse class="blush" cx="48.8" cy="44" rx="3.3" ry="2"/></g>
+    <svg class="bin-glyph" x="26" y="52" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">${groupGlyph(group)}</svg>
   </svg>`;
 }
 
@@ -152,6 +154,11 @@ const greeting = (minutes) =>
     : minutes >= 11 * 60 && minutes < 16 * 60 ? 'สวัสดีตอนบ่าย'
       : minutes >= 16 * 60 && minutes < 19 * 60 ? 'สวัสดีตอนเย็น'
         : 'สวัสดีตอนค่ำ';
+
+// "Good evening · 11° · ฟ้าครึ้ม": the weather part appears once the sky knows it
+function renderGreeting() {
+  $('#greeting').textContent = [greeting(state.clock.minutes), state.scene?.label()].filter(Boolean).join(' · ');
+}
 
 /* ---------- rendering: Today ---------- */
 function heroHtml({ action, eyebrow, title, sub, date, bins, more, shareDate, detailDate }) {
@@ -609,7 +616,7 @@ function renderPrintSheet() {
 }
 
 function renderAll() {
-  $('#greeting').textContent = greeting(state.clock.minutes);
+  renderGreeting();
   renderAnnouncements();
   renderHero();
   renderWeek();
@@ -729,7 +736,8 @@ function bindEvents() {
   const refresh = () => {
     const before = phase();
     state.clock = getClock(state.config.timezone);
-    $('#greeting').textContent = greeting(state.clock.minutes);
+    renderGreeting();
+    state.scene?.update();
     if (phase() !== before) {
       const t = parts(state.clock.date);
       state.view = { y: t.y, m: t.m };
@@ -837,6 +845,8 @@ async function main() {
   renderAll();
   bindEvents();
 
+  state.scene = initScene({ config, getClock: () => state.clock, onChange: renderGreeting });
+  renderGreeting();
   state.shell.sheet = initSheet();
   state.shell.tabs = initTabs(location.hash.slice(1) || 'today');
   initPullToRefresh(() => Promise.all([refreshData(), sleep(700)]));

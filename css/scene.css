@@ -1,0 +1,346 @@
+/* ==========================================================================
+   Scenery: the live sky behind the Today header, and the critters.
+   Decoration only. Everything here stops for people who prefer reduced motion.
+   Markup comes from js/scene.js; theme colours come from the tokens in styles.css.
+   ========================================================================== */
+
+/* ---------- the sky ---------- */
+.screen { position: relative; }
+.sky {
+  --sky-a: #5fb3ff;
+  --sky-b: #cde8ff;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(env(safe-area-inset-top) + 340px);
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--sky-a), var(--sky-b));
+  -webkit-mask-image: linear-gradient(#000 52%, transparent);
+  mask-image: linear-gradient(#000 52%, transparent);
+}
+.sky-in { position: absolute; inset: 0; animation: sky-in 0.9s ease-out; }
+@keyframes sky-in { from { opacity: 0; } }
+
+/* light theme: soft pastel skies, so the dark header text stays readable on every one of them */
+.sky[data-kind="partly"] { --sky-a: #74b8f2; --sky-b: #d3e6f6; }
+.sky[data-kind="cloudy"] { --sky-a: #a2b1c2; --sky-b: #dfe5eb; }
+.sky[data-kind="fog"] { --sky-a: #bcc5ce; --sky-b: #e6eaed; }
+.sky[data-kind="drizzle"] { --sky-a: #98aabd; --sky-b: #dce3ea; }
+.sky[data-kind="rain"] { --sky-a: #889bb2; --sky-b: #d5dde7; }
+.sky[data-kind="snow"] { --sky-a: #b3c8de; --sky-b: #ecf2f8; }
+.sky[data-kind="storm"] { --sky-a: #7d8ba3; --sky-b: #ccd3de; }
+.sky[data-night="1"] { --sky-a: #aab1e9; --sky-b: #e4e6f6; }
+.sky[data-night="1"][data-kind="cloudy"] { --sky-a: #9aa2c4; --sky-b: #e1e3ef; }
+.sky[data-night="1"][data-kind="fog"] { --sky-a: #aeb3c6; --sky-b: #e7e9f0; }
+.sky[data-night="1"][data-kind="drizzle"] { --sky-a: #8f99bd; --sky-b: #dcdfec; }
+.sky[data-night="1"][data-kind="rain"] { --sky-a: #8790b5; --sky-b: #d6d9e8; }
+.sky[data-night="1"][data-kind="snow"] { --sky-a: #b9c0dc; --sky-b: #eceef8; }
+.sky[data-night="1"][data-kind="storm"] { --sky-a: #767f9e; --sky-b: #c5c9dc; }
+
+/* dark theme: the same skies, after dark */
+:root[data-theme="dark"] .sky { --sky-a: #1f5e9e; --sky-b: #0b1626; }
+:root[data-theme="dark"] .sky[data-kind="partly"] { --sky-a: #25649f; --sky-b: #0e1b2d; }
+:root[data-theme="dark"] .sky[data-kind="cloudy"] { --sky-a: #3a4452; --sky-b: #14181e; }
+:root[data-theme="dark"] .sky[data-kind="fog"] { --sky-a: #3b424a; --sky-b: #15181c; }
+:root[data-theme="dark"] .sky[data-kind="drizzle"] { --sky-a: #34404f; --sky-b: #11161d; }
+:root[data-theme="dark"] .sky[data-kind="rain"] { --sky-a: #2f3b4c; --sky-b: #10151c; }
+:root[data-theme="dark"] .sky[data-kind="snow"] { --sky-a: #44525f; --sky-b: #161b21; }
+:root[data-theme="dark"] .sky[data-kind="storm"] { --sky-a: #262d3b; --sky-b: #0d1017; }
+:root[data-theme="dark"] .sky[data-night="1"] { --sky-a: #121a3d; --sky-b: #070b1a; }
+:root[data-theme="dark"] .sky[data-night="1"][data-kind="cloudy"] { --sky-a: #1d2442; --sky-b: #0a0e1d; }
+:root[data-theme="dark"] .sky[data-night="1"][data-kind="fog"] { --sky-a: #232838; --sky-b: #0b0d14; }
+:root[data-theme="dark"] .sky[data-night="1"][data-kind="drizzle"],
+:root[data-theme="dark"] .sky[data-night="1"][data-kind="rain"] { --sky-a: #1a2237; --sky-b: #0a0d16; }
+:root[data-theme="dark"] .sky[data-night="1"][data-kind="snow"] { --sky-a: #2b3350; --sky-b: #0d101c; }
+:root[data-theme="dark"] .sky[data-night="1"][data-kind="storm"] { --sky-a: #181d2e; --sky-b: #07090f; }
+
+/* the large title sits on the sky */
+#screen-today .greeting { color: var(--label); opacity: 0.9; }
+#screen-today .org { color: color-mix(in srgb, var(--label) 88%, transparent); }
+
+/* sun and moon, each with a sleepy little face */
+.sun, .moon {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 42px);
+  right: 38px;
+  animation: float 5.5s ease-in-out infinite;
+}
+.sun { width: 84px; height: 84px; }
+.moon { width: 72px; height: 72px; right: 44px; filter: drop-shadow(0 0 14px rgba(255, 244, 190, 0.55)); }
+.sun svg, .moon svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.sun-glow { position: absolute; inset: -32%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 226, 120, 0.6), rgba(255, 226, 120, 0) 62%); animation: glow 4s ease-in-out infinite; }
+.sun-rays { transform-origin: 60px 60px; animation: spin 48s linear infinite; }
+.sun-rays rect { fill: #ffc21a; }
+.sun .face ellipse, .moon .face ellipse { fill: #7a4a00; }
+.sun .face path, .moon .face path { stroke: #7a4a00; stroke-width: 3; stroke-linecap: round; }
+.moon .face path { stroke: #9b8a52; stroke-width: 2; }
+.face .cheek { fill: #ff8a5c; opacity: 0.55; }
+.moon-body { fill: #fff3c4; }
+.star { position: absolute; width: var(--s); height: var(--s); border-radius: 50%; background: #fff; box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.85); animation: twinkle 3.2s ease-in-out var(--delay) infinite; }
+.sun .face ellipse:not(.cheek), .cloud .face ellipse:not(.cheek) { transform-box: fill-box; transform-origin: center; animation: blink 6.5s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes glow { 0%, 100% { opacity: 0.75; transform: scale(0.94); } 50% { opacity: 1; transform: scale(1.06); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.15); } }
+
+/* clouds drift across at their own pace */
+.cloud {
+  --cloud: #ffffff;
+  --cloud-lo: #cfe2f5;
+  position: absolute;
+  left: 0;
+  filter: drop-shadow(0 0 1px rgba(60, 110, 170, 0.65)) drop-shadow(0 6px 8px rgba(40, 90, 160, 0.22));
+  animation: drift var(--speed) linear var(--delay) infinite;
+}
+.cloud.grey { --cloud: #e4e9ef; --cloud-lo: #aeb9c6; }
+.cloud.rain { --cloud: #d3dae3; --cloud-lo: #9fabbb; }
+.cloud.snow { --cloud: #ffffff; --cloud-lo: #d8e4f1; }
+.cloud.storm { --cloud: #a3adbd; --cloud-lo: #66708a; }
+:root[data-theme="dark"] .cloud { --cloud: #7e8eab; --cloud-lo: #566580; filter: drop-shadow(0 0 1px rgba(170, 200, 255, 0.55)) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35)); }
+:root[data-theme="dark"] .cloud.grey { --cloud: #6e788b; --cloud-lo: #4b5467; }
+:root[data-theme="dark"] .cloud.rain { --cloud: #647085; --cloud-lo: #444e61; }
+:root[data-theme="dark"] .cloud.snow { --cloud: #94a3b9; --cloud-lo: #6b7b94; }
+:root[data-theme="dark"] .cloud.storm { --cloud: #4f596e; --cloud-lo: #373f50; }
+.cloud .face { fill: #4a4a55; }
+.cloud .face path { stroke: #4a4a55; stroke-width: 2; stroke-linecap: round; }
+/* the cloud with a face hovers where the sun would be, instead of drifting past */
+.cloud.hero { left: auto; right: 22px; top: calc(env(safe-area-inset-top) + 46px) !important; animation: float 6s ease-in-out infinite; }
+@keyframes drift { from { transform: translateX(-170px); } to { transform: translateX(calc(100vw + 40px)); } }
+
+/* rain, snow, leaves and petals */
+.particle { position: absolute; top: 0; pointer-events: none; }
+.drop { width: 2px; height: var(--h); border-radius: 2px; background: linear-gradient(rgba(70, 120, 200, 0), rgba(70, 120, 200, 0.65)); animation: rain-fall var(--d) linear var(--delay) infinite; }
+:root[data-theme="dark"] .drop { background: linear-gradient(rgba(170, 205, 255, 0), rgba(170, 205, 255, 0.7)); }
+@keyframes rain-fall { from { transform: translate3d(0, -30px, 0) rotate(10deg); } to { transform: translate3d(-34px, 340px, 0) rotate(10deg); } }
+
+.flake { width: var(--s); height: var(--s); animation: fall calc(var(--d) * 1.2) linear var(--delay) infinite; }
+.flake b { display: block; width: 100%; height: 100%; border-radius: 50%; background: #fff; box-shadow: 0 0 4px rgba(70, 100, 150, 0.45); animation: sway calc(var(--d) / 2.5) ease-in-out var(--delay) infinite alternate; }
+
+.leaf, .petal { width: var(--s); height: calc(var(--s) * 1.3); animation: fall var(--d) linear var(--delay) infinite; }
+.leaf b, .petal b { display: block; width: 100%; height: 100%; background: var(--c); animation: tumble calc(var(--d) / 3) ease-in-out var(--delay) infinite alternate; }
+.leaf b { border-radius: 0 100% 0 100%; }
+.petal b { border-radius: 50% 0 50% 50%; }
+@keyframes fall {
+  0% { opacity: 0; transform: translateY(-24px); }
+  10%, 85% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(300px); }
+}
+@keyframes sway { from { transform: translateX(calc(var(--sway) * -1)); } to { transform: translateX(var(--sway)); } }
+@keyframes tumble { from { transform: translateX(calc(var(--sway) * -1)) rotate(-55deg); } to { transform: translateX(var(--sway)) rotate(55deg); } }
+
+.fogband { position: absolute; left: -20%; width: 140%; height: 46px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent); filter: blur(10px); animation: fog-drift 18s ease-in-out infinite alternate; }
+.fogband.b { animation-duration: 25s; animation-direction: alternate-reverse; }
+:root[data-theme="dark"] .fogband { background: linear-gradient(90deg, transparent, rgba(200, 210, 225, 0.25), transparent); }
+@keyframes fog-drift { from { transform: translateX(-8%); } to { transform: translateX(8%); } }
+
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; animation: flash 7s linear infinite; }
+.bolt { position: absolute; top: 78px; left: 58%; width: 22px; fill: #ffe45c; opacity: 0; filter: drop-shadow(0 0 7px rgba(255, 230, 100, 0.95)); animation: bolt 7s linear infinite; }
+@keyframes flash { 0%, 90%, 100% { opacity: 0; } 91% { opacity: 0.55; } 92% { opacity: 0; } 93% { opacity: 0.35; } 95% { opacity: 0; } }
+@keyframes bolt { 0%, 90%, 95%, 100% { opacity: 0; } 91%, 93% { opacity: 1; } 92% { opacity: 0.2; } }
+
+/* a bird crossing the sky now and then */
+.sky-bird { position: absolute; top: 96px; left: 0; width: 40px; height: 33px; animation: fly-across 38s linear -11s infinite; }
+.sky-bird .pet-art { animation: fly-bob 1.7s ease-in-out infinite; }
+@keyframes fly-across { from { transform: translateX(-70px); } to { transform: translateX(calc(100vw + 30px)); } }
+@keyframes fly-bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-11px) rotate(3deg); } }
+
+/* ---------- the yard: a strip along the top edge of the card where the animals live ---------- */
+.stage { position: relative; margin-top: 66px; }
+:root[data-text-size] .stage { margin-top: 78px; } /* larger text: more room so nothing touches the title lines */
+.critters { position: absolute; z-index: 2; left: 0; right: 0; bottom: calc(100% - 3px); height: 64px; pointer-events: none; }
+
+/* garden: grass and flowers, a bush on the left, a tree on the right */
+.garden {
+  --blade: #5db96a; --bush: #5cbd6e; --bush-d: #46a05a; --flower: #ff8fb1;
+  --tree: #58b868; --tree-hi: #86d38f; --fruit: #ff6b6b;
+  position: absolute; inset: 0; pointer-events: none;
+}
+.garden[data-season="spring"] { --tree: #ffb3c8; --tree-hi: #ffd6e2; --fruit: #fff; --flower: #fff; }
+.garden[data-season="autumn"] { --blade: #a9a04b; --bush: #d38a3a; --bush-d: #b36f2a; --flower: #ffd23f; --tree: #f08c3a; --tree-hi: #ffb25e; --fruit: #d9472b; }
+.garden[data-season="winter"] { --blade: #8fb0a0; --bush: #8fbf9f; --bush-d: #6fa383; --flower: #fff; }
+:root[data-theme="dark"] .garden .bush-art, :root[data-theme="dark"] .garden .tree-art, :root[data-theme="dark"] .garden .tuft { filter: brightness(0.86); }
+.tuft { position: absolute; bottom: -1px; width: 14px; height: 14px; overflow: visible; transform-origin: 50% 100%; animation: grass-sway var(--sway-d) ease-in-out infinite alternate; }
+.bush { position: absolute; left: 6px; bottom: -2px; width: 50px; }
+.bush-art, .tree-art { display: block; width: 100%; height: auto; overflow: visible; }
+.tree { position: absolute; right: 8px; bottom: -2px; width: 52px; }
+.tree .canopy { transform-origin: 32px 62px; animation: tree-sway 5.5s ease-in-out infinite alternate; }
+@keyframes tree-sway { from { transform: rotate(-1.8deg); } to { transform: rotate(2.2deg); } }
+@keyframes grass-sway { from { transform: rotate(-5deg); } to { transform: rotate(6deg); } }
+/* leaves / petals letting go of the tree */
+.tleaf { position: absolute; top: 14px; width: 9px; height: 12px; opacity: 0; animation: tree-drop var(--d) ease-in var(--delay) infinite; }
+.tleaf b { display: block; width: 100%; height: 100%; background: var(--c); animation: tumble 1.8s ease-in-out infinite alternate; --sway: 7px; }
+.tleaf.leaf b { border-radius: 0 100% 0 100%; }
+.tleaf.petal b { border-radius: 50% 0 50% 50%; }
+@keyframes tree-drop { 0% { opacity: 0; transform: translateY(0); } 12% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(46px); } }
+
+/* walkers: the box slides along the yard; the page flips the art to face the way they go */
+.walker {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  transform: translateX(calc(var(--x, 190) * 1px - 50%));
+  transition-property: transform;
+  transition-timing-function: linear;
+  pointer-events: none;
+}
+.critter { position: relative; display: block; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto; transform-origin: 50% 100%; }
+.art { display: block; transform: scaleX(var(--dir, 1)); transform-origin: 50% 100%; }
+.arc { display: block; }
+.pose { display: none; }
+.walker[data-state="sit"] .pose.sit, .walker[data-state="walk"] .pose.walk, .walker[data-state="fly"] .pose.fly { display: block; }
+.pet-art { display: block; overflow: visible; }
+.pose.sit .pet-art.cat, .pose.sit .pet-art.dog { width: 60px; height: 60px; }
+.pose.walk .pet-art { width: 72px; height: 50px; }
+.pose.sit .pet-art.bird, .pose.fly .pet-art.bird { width: 56px; height: 47px; }
+.pet-art.cat, .pet-art.cat-walk { --fur: #f5a85b; --fur-d: #d9822b; --belly: #ffe6bf; --ear-in: #f7a8a8; --blush: #ff8f8f; }
+.pet-art.dog, .pet-art.dog-walk { --fur: #dba46a; --fur-d: #b9793a; --belly: #fff1dc; --ear: #a86a2f; --blush: #ff8f8f; }
+.pet-art.bird { --bird: #7ab8f5; --wing: #4f95e0; --belly: #fff; }
+
+/* tap reaction */
+.critter.is-hopping { animation: critter-hop 0.5s var(--ease); }
+@keyframes critter-hop {
+  0% { transform: none; }
+  35% { transform: translateY(-12px) scale(0.95, 1.08); }
+  62% { transform: translateY(0) scale(1.08, 0.9); }
+  100% { transform: none; }
+}
+.say {
+  position: absolute;
+  right: -6px;
+  bottom: calc(100% + 2px);
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--label);
+  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.2);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(6px) scale(0.8);
+  transform-origin: 80% 100%;
+  transition: opacity 0.18s, transform 0.25s var(--ease);
+  pointer-events: none;
+  z-index: 3;
+}
+.critter.is-saying .say { opacity: 1; transform: none; }
+
+/* idle life while sitting: tails, ears, blinking, panting, a head tilt now and then */
+.cat .tail { transform-origin: 46px 56px; animation: tail-sway 3.4s ease-in-out infinite; }
+.dog .tail { transform-origin: 47px 55px; animation: tail-wag 0.55s ease-in-out infinite alternate; }
+.pet-art.cat .head, .pet-art.dog .head { transform-origin: 32px 44px; animation: head-tilt 9s ease-in-out infinite; }
+.dog .head { animation-delay: -4s; }
+.cat .ear-l { transform-origin: 21px 24px; animation: ear-twitch 7s ease-in-out infinite; }
+.dog .ear { transform-box: fill-box; transform-origin: 50% 8%; animation: ear-swing 2.4s ease-in-out infinite alternate; }
+.dog .ear-r { animation-delay: -1.2s; }
+.dog .tongue { transform-box: fill-box; transform-origin: 50% 0; animation: pant 0.9s ease-in-out infinite; }
+.eyes-open { transform-box: fill-box; transform-origin: center; animation: blink 5.5s ease-in-out infinite; }
+.dog .eyes-open { animation-delay: -2.3s; }
+@keyframes tail-sway { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(13deg); } }
+@keyframes tail-wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }
+@keyframes head-tilt { 0%, 58%, 100% { transform: none; } 64%, 78% { transform: rotate(-5deg); } 84% { transform: none; } }
+@keyframes ear-twitch { 0%, 90%, 100% { transform: none; } 93% { transform: rotate(-10deg); } 96% { transform: none; } }
+@keyframes ear-swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+@keyframes pant { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.78); } }
+@keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.08); } }
+
+/* walking: four legs in diagonal pairs, a little bounce, a tail that keeps going */
+.leg { transform-origin: 0 0; animation: leg-swing 0.46s ease-in-out infinite alternate; }
+.leg.a { --from: -30deg; --to: 30deg; }
+.leg.b { --from: 30deg; --to: -30deg; }
+@keyframes leg-swing { from { transform: rotate(var(--from)); } to { transform: rotate(var(--to)); } }
+.pet-art.cat-walk, .pet-art.dog-walk { animation: walk-bob 0.46s ease-in-out infinite; }
+@keyframes walk-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.8px); } }
+.cat-walk .tail { transform-origin: 17px 29px; animation: tail-sway 1.5s ease-in-out infinite; }
+.dog-walk .tail { transform-origin: 17px 25px; animation: tail-wag 0.4s ease-in-out infinite alternate; }
+.head-walk { transform-origin: 56px 30px; animation: head-nod 0.46s ease-in-out infinite alternate; }
+@keyframes head-nod { from { transform: rotate(-2deg); } to { transform: rotate(3deg); } }
+.dog-walk .ear { transform-box: fill-box; transform-origin: 50% 8%; animation: ear-flop 0.46s ease-in-out infinite alternate; }
+@keyframes ear-flop { from { transform: rotate(-8deg); } to { transform: rotate(10deg); } }
+.dog-walk .tongue { transform-box: fill-box; transform-origin: 50% 0; animation: pant 0.5s ease-in-out infinite; }
+
+/* birds */
+.bird .b-wing { transform-origin: 20px 21px; }
+.bird.fly .b-wing { animation: flap 0.3s ease-in-out infinite alternate; }
+.bird.perch .bird-body { transform-origin: 24px 36px; animation: bird-hop 7s ease-in-out infinite; }
+.bird.perch .b-tail { transform-origin: 10px 22px; animation: tail-bob 2.6s ease-in-out infinite; }
+@keyframes flap { from { transform: rotate(-40deg); } to { transform: rotate(20deg); } }
+@keyframes bird-hop {
+  0%, 86%, 100% { transform: none; }
+  88% { transform: translateY(-7px) rotate(-5deg); }
+  91% { transform: none; }
+  93% { transform: translateY(-4px) rotate(4deg); }
+  96% { transform: none; }
+}
+@keyframes tail-bob { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(9deg); } }
+
+/* a butterfly drifts around the yard while the sun is out */
+.butterfly {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  bottom: 0;
+  display: none;
+  width: 22px;
+  height: 18px;
+  transform: translate(calc(var(--bx, 120) * 1px), calc(var(--by, -40) * 1px));
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+  pointer-events: none;
+}
+html[data-bfly="1"] .butterfly { display: block; }
+.flutter { animation: flutter-path 2.2s ease-in-out infinite alternate; }
+.butterfly-art { display: block; width: 100%; height: 100%; overflow: visible; }
+.butterfly-art .wing { transform-box: fill-box; animation: wing-beat 0.16s ease-in-out infinite alternate; }
+.butterfly-art .wl { transform-origin: 100% 50%; }
+.butterfly-art .wr { transform-origin: 0 50%; }
+@keyframes wing-beat { from { transform: scaleX(1); } to { transform: scaleX(0.25); } }
+@keyframes flutter-path { 0% { transform: translate(0, 0) rotate(-12deg); } 50% { transform: translate(5px, -7px) rotate(10deg); } 100% { transform: translate(-4px, 3px) rotate(-6deg); } }
+
+/* weather and time of day change what they wear and whether they are awake */
+.shades { display: none; fill: #26272b; }
+html[data-wx="clear"][data-night="0"] .shades { display: inline; }
+.scarf { display: none; fill: #e5484d; }
+html[data-wx="snow"] .scarf { display: inline; }
+
+.eyes-closed { display: none; }
+html[data-sleep="1"] .eyes-open, .critter[data-pose="sleep"] .eyes-open { display: none; }
+html[data-sleep="1"] .eyes-closed, .critter[data-pose="sleep"] .eyes-closed { display: inline; }
+html[data-sleep="1"] .pose.sit .pet-art, .critter[data-pose="sleep"] .pose.sit .pet-art { transform-origin: 50% 100%; animation: breathe 4.2s ease-in-out infinite; }
+html[data-sleep="1"] .dog .tail { animation-duration: 3.4s; animation-direction: alternate; }
+html[data-sleep="1"] .dog .tongue, .critter[data-pose="sleep"] .tongue { animation: none; }
+@keyframes breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.02, 1.035); } }
+
+.zzz { display: none; position: absolute; right: 2px; top: -4px; pointer-events: none; font-size: 1rem; font-weight: 700; color: var(--label2); }
+html[data-sleep="1"] .critter .zzz, .critter[data-pose="sleep"] .zzz { display: block; }
+.zzz i { position: absolute; right: 0; font-style: normal; opacity: 0; animation: zzz 3.2s ease-in-out infinite; }
+.zzz i:nth-child(2) { animation-delay: 1.6s; font-size: 0.8em; }
+@keyframes zzz { 0% { opacity: 0; transform: translate(-4px, 4px) scale(0.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(10px, -20px) scale(1.1); } }
+
+/* the bins: faces that blink, a nudge on collection days, a bounce when tapped */
+.bin-face { fill: var(--g-fg); }
+.bin-face path { stroke: var(--g-fg); stroke-width: 2.2; stroke-linecap: round; fill: none; }
+.bin-face .blush { fill: #ff8fa3; opacity: 0.6; }
+.bin-eyes { transform-box: fill-box; transform-origin: center; animation: blink 6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1.7s); }
+.hero-card.is-action .lineup-item .bin-art { transform-origin: 50% 100%; animation: bin-hop 5.5s ease-in-out infinite; animation-delay: calc(1.8s + var(--i, 0) * 0.45s); }
+@keyframes bin-hop {
+  0%, 12%, 100% { transform: none; }
+  3% { transform: translateY(-8px) rotate(-3deg); }
+  6% { transform: translateY(0) rotate(2deg); }
+  9% { transform: translateY(-2px) rotate(-1deg); }
+}
+.lineup-item { cursor: pointer; transform-origin: 50% 100%; }
+.lineup.is-bare .lineup-item { cursor: default; }
+.lineup-item.is-bouncing { animation: critter-hop 0.5s var(--ease); }
+
+/* ---------- reduced motion: a still picture is enough ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .particle, .sky-bird, .fogband, .flash, .bolt, .zzz i, .butterfly, .tleaf { display: none !important; }
+}
+
+@media print { .sky, .critters { display: none !important; } }
