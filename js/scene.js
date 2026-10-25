@@ -410,7 +410,7 @@ function gardenHtml({ season, kind }) {
 
 /* ---------- the animals ---------- */
 const WHO = {
-  cat: { label: 'แมว', says: ['เมี๊ยว~', 'เหมียว!', 'ขอลูบหัวหน่อย~'], poses: () => `<span class="pose sit">${catArt()}</span><span class="pose walk">${catWalkArt()}</span>` },
+  cat: { label: 'แมวมู่ทู่', says: ['เมี๊ยว~', 'มู่ทู่มาแล้ว!', 'ขอลูบหัวหน่อย~'], poses: () => `<span class="pose sit">${catArt()}</span><span class="pose walk">${catWalkArt()}</span>` },
   dog: { label: 'น้องหมา', says: ['โฮ่ง โฮ่ง!', 'โฮ่ง!', 'ดีใจจัง!'], poses: () => `<span class="pose sit">${dogArt()}</span><span class="pose walk">${dogWalkArt()}</span>` },
   bird: { label: 'นก', says: ['จิ๊บ จิ๊บ', 'จิ๊บ~', 'ติ๊ว ติ๊ว'], poses: () => `<span class="pose sit">${birdArt('perch')}</span><span class="pose fly">${birdArt('fly')}</span>` },
 };

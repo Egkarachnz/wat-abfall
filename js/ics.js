@@ -80,3 +80,33 @@ export function buildDayIcs(date, keys, config) {
   const bins = enabledBins(keys, config);
   return finish([...header, ...eventLines(date, bins, config), 'END:VCALENDAR']);
 }
+
+// One city event (from the "ข่าว" tab). Times are the city's own wall-clock times, left "floating" so they
+// show at the same hour on a phone in Bavaria; an event that runs over several days becomes whole days.
+export function buildEventIcs(event, sourceName) {
+  const day = (s) => s.slice(0, 10);
+  const stamp = (s) => `${compact(day(s))}T${s.slice(11, 13)}${s.slice(14, 16)}00`;
+  const multiDay = Boolean(event.end) && day(event.end) !== day(event.start);
+  const when = multiDay
+    ? [`DTSTART;VALUE=DATE:${compact(day(event.start))}`, `DTEND;VALUE=DATE:${compact(addDays(day(event.end), 1))}`]
+    : [`DTSTART:${stamp(event.start)}`, event.end ? `DTEND:${stamp(event.end)}` : 'DURATION:PT1H'];
+  const description = [event.summary, `Quelle: ${sourceName}`, event.url].filter(Boolean).join('\n');
+  return finish([
+    ...header,
+    'BEGIN:VEVENT',
+    `UID:${event.id.replace(/[^A-Za-z0-9]+/g, '-')}@abfall-koenigsbrunn`,
+    `DTSTAMP:${compact(day(event.start))}T000000Z`,
+    ...when,
+    `SUMMARY:${escapeText(event.title)}`,
+    ...(event.place ? [`LOCATION:${escapeText(event.place)}`] : []),
+    `DESCRIPTION:${escapeText(description)}`,
+    `URL:${event.url}`,
+    'BEGIN:VALARM',
+    'ACTION:DISPLAY',
+    `DESCRIPTION:${escapeText(event.title)}`,
+    'TRIGGER:-P1D',
+    'END:VALARM',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ]);
+}

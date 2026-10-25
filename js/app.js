@@ -6,6 +6,7 @@ import {
 } from './dates.js';
 import { buildDayIcs } from './ics.js';
 import { groupGlyph, groupIcon, uiIcon } from './icons.js';
+import { initNews } from './news.js';
 import { canvasToBlob, pathsOf, pdfFromCanvas, renderSheet } from './pdf.js';
 import { initScene } from './scene.js';
 import { effectiveTheme, getPreference, getTextSize, onThemeChange, setPreference, setTextSize } from './prefs.js';
@@ -52,7 +53,7 @@ const hhmm = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String
 /* ---------- state ---------- */
 const state = {
   config: null, data: null, announcements: [], clock: null, view: null, selected: null,
-  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null, pdf: null, guide: { os: 'android', browser: 'chrome' },
+  hidden: new Set(), dates: [], heroDates: new Set(), loadedAt: 0, shell: {}, scene: null, pdf: null, news: null, guide: { os: 'android', browser: 'chrome' },
 };
 
 function loadHidden() {
@@ -173,7 +174,7 @@ function heroHtml({ action, eyebrow, title, sub, date, bins, more, shareDate, de
       </div>
       <h2 class="hero-title">${title}</h2>
       ${sub ? `<p class="hero-sub">${sub}</p>` : ''}
-      ${date ? `<p class="hero-date">${date}</p>` : ''}
+      ${date ? `<p class="hero-date">${uiIcon('calendar', 'fill')}${date}</p>` : ''}
       ${bins ? lineupHtml(bins, { onCard: !action }) : ''}
       ${note ? `<p class="hero-note">${esc(note)} · ${awbLink()}</p>` : ''}
     </div>
@@ -969,6 +970,7 @@ async function refreshData({ silent = false } = {}) {
     const next = await fetchAll();
     const same = ['config', 'data', 'announcements'].every((k) => JSON.stringify(next[k]) === JSON.stringify(state[k]));
     state.loadedAt = Date.now();
+    state.news?.refresh();
     if (!same) {
       applyData(next);
       renderAll();
@@ -1024,6 +1026,7 @@ async function main() {
   state.scene = initScene({ config, getClock: () => state.clock, onChange: renderGreeting });
   renderGreeting();
   state.shell.sheet = initSheet();
+  state.news = initNews({ timezone: config.timezone, getToday: () => state.clock.date, sheet: state.shell.sheet });
   state.shell.tabs = initTabs(location.hash.slice(1) || 'today');
   initPullToRefresh(() => Promise.all([refreshData(), sleep(700)]));
   registerServiceWorker();

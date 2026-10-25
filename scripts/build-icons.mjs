@@ -39,8 +39,24 @@ const SPEC = {
   plusSquare: 'plus-square',
   moreVertical: 'dots-three-vertical',
   image: 'image',
+  news: 'newspaper',
+  translate: 'translate',
+  external: 'arrow-square-out',
   menuLines: 'list',
   textSize: 'text-aa',
+  // news topics (js/news.js)
+  tTraffic: 'traffic-cone',
+  tCulture: 'music-notes',
+  tSport: 'soccer-ball',
+  tHealth: 'heartbeat',
+  tLearning: 'graduation-cap',
+  tNature: 'tree',
+  tSafety: 'siren',
+  tCivic: 'bank',
+  tEconomy: 'briefcase',
+  tFestival: 'confetti',
+  tSocial: 'hand-heart',
+  tFaith: 'hands-praying',
 };
 const WEIGHTS = ['regular', 'fill', 'bold'];
 const ALLOWED = /^(?:\s*<(?:path|circle|rect|line|polyline|polygon|ellipse)\b[^<>]*\/>)+\s*$/;

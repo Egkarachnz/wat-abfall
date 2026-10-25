@@ -32,6 +32,10 @@ above; see the files in the licenses/ folder:
 The collection dates in data/ come from AWB Landkreis Augsburg. They belong to AWB and
 are not covered by this licence.
 
+The news and event texts in data/news.json are headlines and short excerpts from the
+websites of Stadt Königsbrunn and Stadt Augsburg, shown with a link and the source named.
+They belong to the respective city and are not covered by this licence.
+
 To ask for permission, contact the repository owner on GitHub: Egkarachnz.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

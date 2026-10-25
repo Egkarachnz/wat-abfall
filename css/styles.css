@@ -30,10 +30,10 @@
   --fs-body: 1.125rem; /* 18px */
   --fs-sub: 0.9375rem; /* 15px */
   --fs-cap: 0.8125rem; /* 13px — legal / footnote text only */
-  --r-card: 20px;
-  --r-hero: 24px;
-  --r-sheet: 24px;
-  --r-tile: 10px;
+  --r-card: 24px;
+  --r-hero: 28px;
+  --r-sheet: 28px;
+  --r-tile: 11px;
   --gutter: 20px;
   --nav-h: 44px;
   --tab-h: 64px; /* the floating tab bar */
@@ -52,12 +52,16 @@
   --sep: rgba(60, 60, 67, 0.16);
   --tint: #248a3d;
   --tint-fg: #ffffff;
+  --tint-soft: color-mix(in srgb, var(--tint) 12%, transparent);
+  --brand: linear-gradient(140deg, #3ccf6a 0%, #1f9d4d 52%, #14855f 100%); /* selected states: today, the chosen day, the active pill */
+  --brand-glow: 0 6px 16px -4px rgba(31, 157, 77, 0.55);
   --cal-red: #d92d20;
-  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 28px -16px rgba(16, 24, 40, 0.18);
+  /* depth in three layers: a hairline edge, a tight contact shadow, a long soft one */
+  --shadow-card: 0 0 0 0.5px rgba(16, 24, 40, 0.05), 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 26px -12px rgba(16, 24, 40, 0.16), 0 26px 44px -30px rgba(16, 24, 40, 0.2);
   --scrim: rgba(0, 0, 0, 0.35);
   --bar-glass: rgba(255, 255, 255, 0.68);
   --bar-rim: rgba(255, 255, 255, 0.85);
-  --lens: rgba(120, 120, 128, 0.17);
+  --lens: color-mix(in srgb, #248a3d 15%, rgba(120, 120, 128, 0.1));
   --lens-rim: rgba(255, 255, 255, 0.75);
   --debug-bg: rgba(255, 159, 10, 0.16);
   --debug-fg: #8a4a00;
@@ -77,11 +81,13 @@
   --sep: rgba(255, 255, 255, 0.12);
   --tint: #30d158;
   --tint-fg: #000000;
-  --shadow-card: inset 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+  --brand: linear-gradient(140deg, #4be07f 0%, #30d158 52%, #19b88a 100%);
+  --brand-glow: 0 6px 18px -4px rgba(48, 209, 88, 0.45);
+  --shadow-card: inset 0 0.5px 0 rgba(255, 255, 255, 0.12), 0 0 0 0.5px rgba(255, 255, 255, 0.06), 0 14px 30px -18px rgba(0, 0, 0, 0.9);
   --scrim: rgba(0, 0, 0, 0.55);
   --bar-glass: rgba(44, 44, 48, 0.66);
   --bar-rim: rgba(255, 255, 255, 0.28);
-  --lens: rgba(255, 255, 255, 0.14);
+  --lens: color-mix(in srgb, #30d158 20%, rgba(255, 255, 255, 0.06));
   --lens-rim: rgba(255, 255, 255, 0.24);
   --debug-fg: #ffb340;
 }
@@ -199,7 +205,7 @@ button, .row, .day, .chip, .tab, .navbar, .hero-top, .date-icon, .sheet-grab, a.
 
 /* ---------- large title ---------- */
 .large-title { padding: calc(env(safe-area-inset-top) + var(--nav-h) + 6px) 0 8px; }
-.large-title h1 { font-size: 2.125rem; line-height: 1.25; font-weight: 700; letter-spacing: -0.02em; }
+.large-title h1 { font-size: 2.25rem; line-height: 1.25; font-weight: 700; letter-spacing: -0.025em; }
 .greeting { font-size: var(--fs-sub); font-weight: 600; color: var(--tint); }
 .greeting:empty { display: none; }
 .org { margin-top: 2px; font-size: var(--fs-sub); color: var(--label2); }
@@ -260,18 +266,21 @@ main { padding-bottom: calc(var(--tab-h) + var(--bar-gap) + 32px); } /* room for
 .hero-share .ico { width: 20px; height: 20px; }
 .hero-share::after { content: ""; position: absolute; inset: -4px; }
 .hero-share:active { transform: scale(0.92); opacity: 0.75; }
-.hero-title { font-size: 2.125rem; line-height: 1.25; font-weight: 700; letter-spacing: -0.02em; margin: 2px 0 6px; }
+.hero-title { font-size: 2.5rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.03em; margin: 2px 0 6px; text-wrap: balance; }
 .hero-sub { font-size: 1rem; line-height: 1.5; color: var(--label2); }
 .hero-sub a { color: var(--tint); font-weight: 600; }
-.hero-date { display: inline-block; margin-top: 14px; padding: 5px 14px; border-radius: 999px; background: var(--fill); font-size: var(--fs-sub); font-weight: 600; }
+.hero-date { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 6px 14px 6px 11px; border-radius: 999px; background: var(--tint-soft); color: var(--tint); font-size: var(--fs-sub); font-weight: 700; }
+.hero-date .ico { width: 18px; height: 18px; }
 .hero-note { margin-top: 16px; font-size: var(--fs-sub); color: var(--label2); text-align: center; }
 .hero-note a { color: var(--tint); font-weight: 600; }
 
 /* a day to act: deep green with soft light blobs behind the bins */
+.hero-card.is-action { box-shadow: 0 22px 40px -18px rgba(14, 104, 48, 0.6), 0 2px 6px rgba(14, 104, 48, 0.18); }
 .hero-card.is-action .hero-top {
   background:
-    radial-gradient(110% 80% at 100% 0%, rgba(255, 255, 255, 0.2), transparent 60%),
-    linear-gradient(158deg, #1d9142 0%, #137233 52%, #0c5426 100%);
+    radial-gradient(120% 70% at 100% 0%, rgba(255, 255, 255, 0.26), transparent 62%),
+    radial-gradient(80% 60% at 0% 100%, rgba(120, 255, 170, 0.18), transparent 70%),
+    linear-gradient(158deg, #26a855 0%, #15823d 50%, #0b5c2b 100%);
   color: #fff;
 }
 .hero-card.is-action .hero-top::before,
@@ -283,9 +292,10 @@ main { padding-bottom: calc(var(--tab-h) + var(--bar-gap) + 32px); } /* room for
 .hero-card.is-action .hero-sub { color: rgba(255, 255, 255, 0.95); }
 .hero-card.is-action .hero-sub a, .hero-card.is-action .hero-note a { color: #fff; text-decoration: underline; }
 .hero-card.is-action .hero-note { color: rgba(255, 255, 255, 0.95); }
-.hero-card.is-action .hero-date { background: rgba(255, 255, 255, 0.2); }
-/* otherwise: a quiet card with a green wash at the top */
-.hero-card:not(.is-action) .hero-top { background: linear-gradient(180deg, color-mix(in srgb, var(--tint) 12%, var(--card)), var(--card) 75%); }
+.hero-card.is-action .hero-date { background: rgba(255, 255, 255, 0.22); color: #fff; }
+/* otherwise: a quiet card with a green wash at the top and one soft light blob */
+.hero-card:not(.is-action) .hero-top { background: linear-gradient(180deg, color-mix(in srgb, var(--tint) 13%, var(--card)), var(--card) 78%); }
+.hero-card:not(.is-action) .hero-top::before { content: ""; position: absolute; z-index: -1; right: -70px; top: -90px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--tint) 20%, transparent), transparent 68%); }
 
 .hero-detail { border-top: 0.5px solid var(--sep); }
 .hero-more { padding: 16px var(--gutter) 22px; border-top: 0.5px solid var(--sep); }
@@ -295,8 +305,12 @@ main { padding-bottom: calc(var(--tab-h) + var(--bar-gap) + 32px); } /* room for
 
 /* ---------- the bins, drawn: a lineup of wheelie bins in each waste group's colour ---------- */
 .lineup { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 6px; }
-.lineup-item { flex: 1 1 84px; max-width: 132px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.bin-art { display: block; width: 74px; height: auto; overflow: visible; }
+.lineup-item { position: relative; isolation: isolate; flex: 1 1 84px; max-width: 132px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* each bin stands in a soft pool of its own colour (white on the green card) */
+.lineup-item::before { content: ""; position: absolute; z-index: -1; top: -6px; left: 50%; width: min(100%, 104px); aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--g) 20%, transparent), transparent 68%); pointer-events: none; }
+.hero-card.is-action .lineup-item::before { background: radial-gradient(circle, rgba(255, 255, 255, 0.24), transparent 68%); }
+.lineup.is-bare .lineup-item::before { display: none; }
+.bin-art { display: block; width: 74px; height: auto; overflow: visible; filter: drop-shadow(0 6px 8px color-mix(in srgb, var(--g) 30%, transparent)); }
 .bin-body { fill: var(--g); }
 .bin-lid, .bin-handle { fill: color-mix(in srgb, var(--g) 76%, #000); }
 .bin-shine { fill: #fff; opacity: 0.18; }
@@ -326,13 +340,13 @@ main { padding-bottom: calc(var(--tab-h) + var(--bar-gap) + 32px); } /* room for
   flex-direction: column;
   width: 46px;
   height: 52px;
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--card);
-  border: 0.5px solid var(--sep);
+  box-shadow: 0 0 0 0.5px var(--sep), 0 2px 6px -1px rgba(16, 24, 40, 0.14);
   overflow: hidden;
   line-height: 1.1;
 }
-.date-icon .wd { display: block; padding: 2px 0; background: var(--cal-red); color: #fff; font-size: 0.75rem; font-weight: 700; text-align: center; }
+.date-icon .wd { display: block; padding: 2px 0; background: linear-gradient(180deg, #ff5a4d, var(--cal-red)); color: #fff; font-size: 0.75rem; font-weight: 700; text-align: center; }
 .date-icon .dn { flex: 1; display: grid; place-items: center; font-size: 1.375rem; font-weight: 700; }
 .up-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .up-when { font-weight: 600; line-height: 1.35; }
@@ -346,13 +360,16 @@ main { padding-bottom: calc(var(--tab-h) + var(--bar-gap) + 32px); } /* room for
 .empty { padding: 18px var(--gutter); color: var(--label2); }
 
 /* ---------- the next seven days ---------- */
-.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); padding: 14px 6px 16px; }
-.wk { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0; border: 0; background: none; color: inherit; font: inherit; }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; padding: 10px 8px 12px; }
+.wk { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 0 6px; border: 0; border-radius: 20px; background: none; color: inherit; font: inherit; }
 button.wk { cursor: pointer; }
 .wk-name { font-size: var(--fs-cap); font-weight: 600; color: var(--label2); }
 .wk-num { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; font-size: 1.0625rem; font-weight: 500; color: var(--label2); transition: transform 0.15s; }
 .wk.has .wk-num { color: var(--label); font-weight: 700; }
-.wk.is-today .wk-num { background: var(--tint); color: var(--tint-fg); font-weight: 700; }
+/* today is a tinted capsule with a glowing number, so it can be found at a glance */
+.wk.is-today { background: var(--tint-soft); }
+.wk.is-today .wk-name { color: var(--tint); }
+.wk.is-today .wk-num { background: var(--brand); color: #fff; font-weight: 700; box-shadow: var(--brand-glow); }
 button.wk:active .wk-num { transform: scale(0.9); }
 .wk-dots { display: flex; justify-content: center; gap: 3px; height: 7px; }
 .wk-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--g); }
@@ -369,10 +386,12 @@ button.wk:active .wk-num { transform: scale(0.9); }
 .debug { margin-top: 16px; padding: 8px 14px; border-radius: 12px; background: var(--debug-bg); color: var(--debug-fg); font-size: var(--fs-cap); }
 
 /* ---------- calendar ---------- */
-.cal-card { padding: 12px 12px 18px; }
-.cal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 4px 6px 8px; }
-.cal-title { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.01em; }
-.cal-actions { display: flex; align-items: center; }
+.cal-card { padding: 14px 12px 20px; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 4px 8px 8px; }
+.cal-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+.cal-actions { display: flex; align-items: center; gap: 8px; }
+/* month arrows are round glass buttons, like the controls in iOS's own apps */
+.cal-actions .icon-btn { width: 38px; height: 38px; background: var(--fill); }
 .text-btn { position: relative; min-height: 36px; padding: 0 8px; border: 0; background: none; color: var(--tint); font-size: 1.0625rem; font-weight: 600; cursor: pointer; transition: opacity 0.12s; }
 .icon-btn { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: var(--tint); cursor: pointer; transition: opacity 0.12s, transform 0.12s; }
 .icon-btn .ico { width: 20px; height: 20px; }
@@ -398,7 +417,9 @@ button.wk:active .wk-num { transform: scale(0.9); }
 .day .num { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; font-size: 1.0625rem; transition: background-color 0.15s, transform 0.15s; }
 .day.has .num { font-weight: 700; }
 .day.is-today .num { color: var(--tint); font-weight: 700; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--tint) 55%, transparent); }
-.day.is-selected .num { background: var(--tint); color: var(--tint-fg); font-weight: 700; box-shadow: none; }
+.day.is-selected .num { background: var(--brand); color: #fff; font-weight: 700; box-shadow: var(--brand-glow); }
+:root[data-theme="dark"] .day.is-selected .num { color: #000; }
+:root[data-theme="dark"] .wk.is-today .wk-num { color: #000; }
 .day:active .num { transform: scale(0.9); }
 @media (hover: hover) { .day:not(.blank):not(.is-selected):hover .num { background: var(--fill); } }
 .dots { display: flex; justify-content: center; gap: 3px; height: 7px; }
@@ -409,7 +430,7 @@ button.wk:active .wk-num { transform: scale(0.9); }
 @keyframes slide-from-right { from { opacity: 0; transform: translateX(18px); } }
 @keyframes slide-from-left { from { opacity: 0; transform: translateX(-18px); } }
 
-.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 8px 0; padding-top: 18px; border-top: 0.5px solid var(--sep); }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 8px 0; padding-top: 20px; border-top: 0.5px solid var(--sep); }
 .chip {
   display: inline-flex;
   align-items: center;
@@ -442,6 +463,7 @@ button.wk:active .wk-num { transform: scale(0.9); }
 /* ---------- tab bar: a floating glass capsule with a sliding lens (Liquid Glass, iOS 26/27 style) ---------- */
 .tabbar {
   --i: 0; /* index of the selected tab; moved by shell.js */
+  --tabs: 4; /* how many tabs the bar has */
   position: fixed;
   z-index: 30;
   left: 50%;
@@ -479,7 +501,7 @@ button.wk:active .wk-num { transform: scale(0.9); }
   top: 4px;
   bottom: 4px;
   left: 4px;
-  width: calc((100% - 8px) / 3);
+  width: calc((100% - 8px) / var(--tabs));
   transform: translateX(calc(var(--i) * 100%));
   pointer-events: none;
 }
@@ -613,7 +635,8 @@ button.wk:active .wk-num { transform: scale(0.9); }
 .install-banner { display: flex; align-items: center; gap: 14px; margin-top: 36px; padding: 14px 8px 14px var(--gutter); border-radius: var(--r-card); background: var(--card); box-shadow: var(--shadow-card); }
 .install-banner .row-main { flex: 1; }
 .install-banner .row-title, .install-banner .row-sub { display: block; }
-.pill-btn { flex: none; min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--tint); color: var(--tint-fg); font-weight: 700; font-size: var(--fs-sub); cursor: pointer; transition: transform 0.12s, opacity 0.12s; }
+.pill-btn { flex: none; min-height: 44px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 700; font-size: var(--fs-sub); box-shadow: var(--brand-glow); cursor: pointer; transition: transform 0.12s, opacity 0.12s; }
+:root[data-theme="dark"] .pill-btn { color: #000; }
 .pill-btn:active { transform: scale(0.95); opacity: 0.8; }
 .install-banner .icon-btn { color: var(--label2); }
 
@@ -626,7 +649,8 @@ button.wk:active .wk-num { transform: scale(0.9); }
 
 .steps { list-style: none; margin: 0; padding: 4px 0 0; counter-reset: step; }
 .steps li { display: flex; gap: 14px; align-items: flex-start; padding: 12px 4px; }
-.steps li::before { counter-increment: step; content: counter(step); flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--tint); color: var(--tint-fg); font-weight: 700; font-size: var(--fs-sub); }
+.steps li::before { counter-increment: step; content: counter(step); flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; font-size: var(--fs-sub); }
+:root[data-theme="dark"] .steps li::before { color: #000; }
 .pdf-preview { display: block; width: 100%; height: auto; margin-bottom: 12px; border-radius: 12px; background: #fff; box-shadow: 0 0 0 0.5px var(--sep), var(--shadow-card); -webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto; }
 .guide-seg { margin-top: 4px; }
 .guide-seg + .guide-seg { margin-top: 10px; }
@@ -666,9 +690,9 @@ button.wk:active .wk-num { transform: scale(0.9); }
 :root[data-theme="dark"] .seg button[aria-checked="true"] { background: #636366; box-shadow: none; }
 
 /* ---------- profile header (More tab) ---------- */
-.profile { margin-top: 12px; }
-.profile-row { display: flex; align-items: center; gap: 16px; padding: 18px var(--gutter); }
-.profile-icon { flex: none; display: block; width: 64px; height: 64px; border-radius: 14px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16); }
+.profile { margin-top: 12px; background: linear-gradient(135deg, color-mix(in srgb, var(--tint) 14%, var(--card)), var(--card) 70%); }
+.profile-row { display: flex; align-items: center; gap: 16px; padding: 20px var(--gutter); }
+.profile-icon { flex: none; display: block; width: 72px; height: 72px; border-radius: 17px; box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 8px 18px -6px rgba(16, 24, 40, 0.35); }
 .profile-name { font-size: 1.1875rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
 
 /* ---------- first-paint entrance: cards rise in, bins pop up (once per visit) ---------- */
@@ -679,6 +703,88 @@ body.intro #screen-today .hero-card { animation: rise 0.55s var(--ease) 0.05s ba
 body.intro #week-section { animation: rise 0.55s var(--ease) 0.16s backwards; }
 body.intro #screen-today section[aria-labelledby="h-upcoming"] { animation: rise 0.55s var(--ease) 0.26s backwards; }
 body.intro .lineup-item { animation: pop 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards; animation-delay: calc(0.22s + var(--i, 0) * 0.09s); }
+
+/* ---------- news and events ---------- */
+.news-controls { display: grid; gap: 12px; margin: 10px 0 4px; }
+.news-seg button { min-height: 42px; font-size: var(--fs-body); }
+/* filter pills scroll sideways instead of wrapping; they bleed to the screen edge like in Apple's apps */
+.src-chips { display: flex; gap: 8px; margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.src-chips::-webkit-scrollbar { display: none; }
+.src-chip { flex: none; min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: var(--fill); color: var(--label); font-size: var(--fs-sub); font-weight: 600; cursor: pointer; transition: background-color 0.2s, color 0.2s, transform 0.12s; }
+.src-chip:active { transform: scale(0.95); }
+.src-chip[aria-checked="true"] { background: var(--brand); color: #fff; box-shadow: var(--brand-glow); }
+:root[data-theme="dark"] .src-chip[aria-checked="true"] { color: #000; }
+.news-seg button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.news-seg .ico { width: 19px; height: 19px; }
+.news-seg button[aria-checked="true"] .ico { color: var(--tint); }
+
+/* topic colours (the topic itself is guessed in js/news.js) */
+[data-topic] { --c: #7c8591; }
+[data-topic="safety"] { --c: #e8402f; }
+[data-topic="health"] { --c: #ff2d78; }
+[data-topic="traffic"] { --c: #ff8a00; }
+[data-topic="faith"] { --c: #c4931a; }
+[data-topic="culture"] { --c: #9b5de5; }
+[data-topic="sport"] { --c: #10a5c0; }
+[data-topic="festival"] { --c: #e55dd0; }
+[data-topic="learning"] { --c: #5856d6; }
+[data-topic="nature"] { --c: #2f9e44; }
+[data-topic="economy"] { --c: #9a7650; }
+[data-topic="social"] { --c: #ff6f61; }
+[data-topic="civic"] { --c: #1c7ed6; }
+.topic-tile { flex: none; align-self: flex-start; display: grid; place-items: center; width: 44px; height: 44px; margin-top: 2px; border-radius: 13px; background: linear-gradient(150deg, color-mix(in srgb, var(--c) 72%, #fff), var(--c)); color: #fff; box-shadow: 0 6px 12px -6px color-mix(in srgb, var(--c) 70%, transparent); }
+.topic-tile .ico { width: 24px; height: 24px; }
+@supports (corner-shape: squircle) { .topic-tile, .news-cover { corner-shape: squircle; } }
+
+/* the newest story: a colour cover with its topic, like the top story in a news app */
+.news-item.is-lead .news-row { flex-wrap: wrap; padding-top: 14px; }
+.news-item.is-lead .chev { display: none; }
+.news-cover {
+  position: relative;
+  flex: 1 0 100%;
+  height: 124px;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    radial-gradient(90% 120% at 100% 0%, rgba(255, 255, 255, 0.32), transparent 60%),
+    linear-gradient(140deg, color-mix(in srgb, var(--c) 78%, #fff), var(--c) 55%, color-mix(in srgb, var(--c) 78%, #000));
+  color: #fff;
+}
+.news-cover::before { content: ""; position: absolute; left: -40px; bottom: -70px; width: 160px; height: 160px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); }
+.news-cover-ico { position: absolute; right: -6px; top: 50%; transform: translateY(-50%) rotate(-12deg); opacity: 0.32; }
+.news-cover-ico .ico { width: 116px; height: 116px; }
+.news-cover-label { position: absolute; left: 14px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px 5px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.24); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: var(--fs-sub); font-weight: 700; line-height: 1.3; }
+.news-cover-label .ico { width: 17px; height: 17px; }
+.news-cover-badge { position: absolute; left: 14px; top: 12px; padding: 2px 10px; border-radius: 999px; background: #fff; color: color-mix(in srgb, var(--c) 80%, #000); font-size: 0.8125rem; font-weight: 800; line-height: 1.5; }
+.news-topic-chip { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px; padding: 3px 12px 3px 9px; border-radius: 999px; background: color-mix(in srgb, var(--c) 14%, transparent); color: color-mix(in srgb, var(--c) 82%, var(--label)); font-size: var(--fs-sub); font-weight: 700; }
+.news-topic-chip .ico { width: 17px; height: 17px; }
+.news-group .section-title { margin-top: 28px; }
+.news-item + .news-item { border-top: 0.5px solid var(--sep); }
+.news-row { align-items: center; gap: 14px; padding-top: 16px; padding-bottom: 16px; }
+.news-row .row-main { min-width: 0; }
+.news-meta { display: block; font-size: var(--fs-sub); font-weight: 600; line-height: 1.35; color: var(--tint); }
+/* each city has its own colour, so a glance at the pill says where the story comes from */
+.news-src { --c: var(--tint); display: inline-block; margin-right: 8px; padding: 1px 10px; border-radius: 999px; background: color-mix(in srgb, var(--c) 13%, transparent); color: var(--c); font-size: 0.8125rem; font-weight: 700; line-height: 1.5; vertical-align: 1px; }
+.news-src[data-src="augsburg"] { --c: #0a64d6; }
+:root[data-theme="dark"] .news-src[data-src="augsburg"] { --c: #64a8ff; }
+.news-meta:has(.news-src) { color: var(--label2); font-weight: 500; }
+.news-when { white-space: nowrap; } /* "23 ต.ค. · สุขภาพ" moves to the next line whole instead of splitting a Thai word */
+.news-title, .news-sum { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.news-title { margin-top: 3px; -webkit-line-clamp: 3; font-size: 1.125rem; font-weight: 700; line-height: 1.35; }
+.news-sum { margin-top: 5px; -webkit-line-clamp: 2; font-size: var(--fs-sub); line-height: 1.5; color: var(--label2); }
+.news-item.is-event .news-title { margin-top: 0; -webkit-line-clamp: 2; }
+.news-item.is-event .news-meta { margin-top: 3px; }
+.news-item.is-event .news-sum { margin-top: 2px; -webkit-line-clamp: 1; }
+.news-item.is-lead .news-title { -webkit-line-clamp: 4; font-size: 1.375rem; line-height: 1.3; }
+.news-item.is-lead .news-sum { -webkit-line-clamp: 3; }
+.news-item.is-lead .news-row { padding-top: 20px; padding-bottom: 20px; }
+.news-note { margin: 14px 8px 0; }
+#news .empty { padding: 18px var(--gutter); }
+/* the detail sheet reads like an article */
+.news-read { padding: 20px var(--gutter) 22px; }
+.news-headline { margin: 0; font-size: 1.375rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+.news-body { margin: 12px 0 0; font-size: 1.0625rem; line-height: 1.65; overflow-wrap: anywhere; }
+.sheet-body > .footnote { margin: 14px 8px 0; }
 
 /* ---------- motion ---------- */
 @media (prefers-reduced-motion: reduce) {

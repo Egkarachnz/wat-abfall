@@ -23,7 +23,7 @@ export function toast(message) {
 }
 
 /* ---------- tabs ---------- */
-const TABS = ['today', 'calendar', 'more'];
+const TABS = ['today', 'calendar', 'news', 'more'];
 
 export function initTabs(initial) {
   const scrolls = {};

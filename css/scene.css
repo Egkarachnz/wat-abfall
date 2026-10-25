@@ -25,6 +25,10 @@
 .sky-in { position: absolute; inset: 0; animation: sky-in 0.9s ease-out; }
 @keyframes sky-in { from { opacity: 0; } }
 
+/* the news tab is for reading: a short sky behind the title only, so clouds and leaves never drift behind the list */
+#screen-news .sky { height: calc(env(safe-area-inset-top) + 130px); }
+#screen-news .particle { display: none; }
+
 /* light theme: soft pastel skies, so the dark header text stays readable on every one of them */
 .sky[data-kind="partly"] { --sky-a: #74b8f2; --sky-b: #d3e6f6; }
 .sky[data-kind="cloudy"] { --sky-a: #a2b1c2; --sky-b: #dfe5eb; }
@@ -197,7 +201,8 @@
 .pose.sit .pet-art.cat, .pose.sit .pet-art.dog { width: 60px; height: 60px; }
 .pose.walk .pet-art { width: 72px; height: 50px; }
 .pose.sit .pet-art.bird, .pose.fly .pet-art.bird { width: 56px; height: 47px; }
-.pet-art.cat, .pet-art.cat-walk { --fur: #f5a85b; --fur-d: #d9822b; --belly: #ffe6bf; --ear-in: #f7a8a8; --blush: #ff8f8f; }
+/* มู่ทู่, the grey cat */
+.pet-art.cat, .pet-art.cat-walk { --fur: #a3abb6; --fur-d: #747d89; --belly: #eef0f4; --ear-in: #f4b3be; --blush: #ff8f9f; }
 .pet-art.dog, .pet-art.dog-walk { --fur: #dba46a; --fur-d: #b9793a; --belly: #fff1dc; --ear: #a86a2f; --blush: #ff8f8f; }
 .pet-art.bird { --bird: #7ab8f5; --wing: #4f95e0; --belly: #fff; }
 
