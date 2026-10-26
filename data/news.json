@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T08:58:35.568Z",
+  "fetchedAt": "2026-10-26T16:09:36.850Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -17,20 +17,52 @@
   "stale": [],
   "news": [
     {
+      "id": "augsburg:news-18876",
+      "source": "augsburg",
+      "title": "Die neue Logi-Fox ist da",
+      "summary": "Die 27. Ausgabe der Kinderzeitung Logi-Fox ist erschienen. Auf 40 Seiten gibt es viele spannende Themen – vom Plastikfrei-Camp und der Schreibwerkstatt bis zum Comic-Camp. Herzstück ist aber ein Interview mit Oberbürgermeister Dr. Florian Freund.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/die-neue-logi-fox-ist-da-1",
+      "published": "2026-10-26T13:11:49.000Z"
+    },
+    {
+      "id": "augsburg:news-18875",
+      "source": "augsburg",
+      "title": "Männerwochen: Gesundheit im Fokus",
+      "summary": "„Mehr als Bart und Bizeps“ – unter diesem Motto stehen die Augsburger Männerwochen 2026. Vom 29. Oktober bis 22. November gibt es Vorträge, Diskussionen, Theater und viele Mitmach-Aktionen. Im Mittelpunkt steht die Männergesundheit.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/maennerwochen-gesundheit-im-fokus",
+      "published": "2026-10-26T12:56:56.000Z"
+    },
+    {
+      "id": "augsburg:news-18870",
+      "source": "augsburg",
+      "title": "30 Jahre Behindertenbeirat der Stadt Augsburg",
+      "summary": "Am vergangenen Freitag, 23. Oktober, hat der Behindertenbeirat der Stadt Augsburg sein 30-jähriges Jubiläum gefeiert. Im Goldenen Saal gab es Musik, prominente Gäste und eine lebendige Diskussion. Oberbürgermeister Dr. Florian Freund, 2.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/30-jahre-behindertenbeirat-der-stadt-augsburg",
+      "published": "2026-10-26T09:51:29.000Z"
+    },
+    {
+      "id": "augsburg:news-18869",
+      "source": "augsburg",
+      "title": "Sprechstunde mit 3. Bürgermeister Bernd Zitzelsberger am 31. Oktober",
+      "summary": "Am Samstag, 31. Oktober, lädt 3. Bürgermeister Bernd Zitzelsberger von 10 bis 12 Uhr zum persönlichen Austausch in den Mehr-Generationen-Treffpunkt, Sozialzentrum Firnhaberau (Schillstraße 208) ein. Eine Anmeldung ist nicht erforderlich.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/sprechstunde-mit-3-buergermeister-bernd-zitzelsberger-am-31-oktober",
+      "published": "2026-10-26T09:25:26.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/stadtbuecherei-heute-26-oktober-2026-geschlossen",
+      "source": "koenigsbrunn",
+      "title": "Stadtbücherei heute, 26. Oktober 2026, geschlossen",
+      "summary": "Krankheitsbedingt kann leider nicht geöffnet werden. Heute Nachmittag, Montag, 26. Oktober 2026, bleibt unsere Stadtbücherei in der Schwabenstraße leider geschlossen – die Erkältungswelle hat vor unseren Mitarbeiterinnen leider nicht haltgemacht.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/stadtbuecherei-heute-26-oktober-2026-geschlossen",
+      "published": "2026-10-26T08:00:00.000Z"
+    },
+    {
       "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
       "source": "koenigsbrunn",
       "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
       "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
       "published": "2026-10-23T19:39:00.000Z"
-    },
-    {
-      "id": "augsburg:news-18858",
-      "source": "augsburg",
-      "title": "Online-Vorträge zu Männergesundheit",
-      "summary": "Am 19. November ist internationaler Männertag. In diesem Rahmen lädt die Stadt Augsburg zu einer Online-Vortragsreihe über Männergesundheit ein. Die Vortragsreihe beginnt bereits am 29. Oktober. Die vier Vorträge finden jeweils von 19:00 bis 20:30 Uhr über Microsoft Teams statt.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/online-vortraege-zu-maennergesundheit",
-      "published": "2026-10-23T10:12:29.000Z"
     },
     {
       "id": "augsburg:news-18861",
@@ -105,6 +137,14 @@
       "published": "2026-10-20T11:08:00.000Z"
     },
     {
+      "id": "augsburg:news-18858",
+      "source": "augsburg",
+      "title": "Online-Vorträge zu Männergesundheit",
+      "summary": "Am 19. November ist internationaler Männertag. In diesem Rahmen lädt die Stadt Augsburg zu einer Online-Vortragsreihe über Männergesundheit ein. Die Vortragsreihe beginnt bereits am 29. Oktober. Die vier Vorträge finden jeweils von 19:00 bis 20:30 Uhr über Microsoft Teams statt.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/online-vortraege-zu-maennergesundheit",
+      "published": "2026-10-20T10:12:00.000Z"
+    },
+    {
       "id": "augsburg:news-18844",
       "source": "augsburg",
       "title": "Kindergarten-Zuschuss des Freistaats fällt weg",
@@ -137,22 +177,6 @@
       "published": "2026-10-19T17:02:00.000Z"
     },
     {
-      "id": "augsburg:news-18839",
-      "source": "augsburg",
-      "title": "Vorerst kein ÖPNV-Sozialticket mehr",
-      "summary": "Seit einigen Jahren hat die Stadt Augsburg das Deutschland-Ticket für Leistungsberechtigte Bürgerinnen und Bürger bezuschusst. Am 24. September hat Oberbürgermeister Dr. Florian Freund eine Haushaltssperre erlassen. Daher wird das ÖPNV-Sozialticket vorübergehend ausgesetzt. Anträge, die ab dem 24.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/das-oepnv-sozialticket-wird-voruebergehend-ausgesetzt",
-      "published": "2026-10-19T13:36:40.000Z"
-    },
-    {
-      "id": "augsburg:news-18833",
-      "source": "augsburg",
-      "title": "Workshops zur Jugendbeteiligung starten",
-      "summary": "Du bist zwischen 12 und 20 Jahre alt? Du willst Augsburg aktiv mitgestalten? Dann ist das Jugendforum am 4. Dezember der richtige Ort für dich. Vorher gibt es eine Reihe von Workshops in vielen Stadtteilen. Mach mit! In den Workshops geht es um Fragen wie: Was soll in Augsburg verändert werden?",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/workshops-zur-jugendbeteiligung-starten",
-      "published": "2026-10-19T13:12:52.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/personalausweis-pin-ruecksetz-und-aktivierungsdienst-prsd",
       "source": "koenigsbrunn",
       "title": "Personalausweis: PIN-Rücksetz- und Aktivierungsdienst (PRSD)",
@@ -175,22 +199,6 @@
       "summary": "Die Königsbrunner Stadtwerke weisen auf notwendige Spül- und Reinigungsarbeiten von Hausanschlüssen und Abwasserleitungen im Straßenbereich hin. Wo? westlich der Haunstetter Straße / Bürgermeister-Wohlfarth-Straße / Landsberger Straße ab der Augsburger Straße bis zum südlichen Stadtrand Wann?",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/stadtwerke-spuel-und-reinigungsarbeiten-im-strassenbereich",
       "published": "2026-10-19T05:10:00.000Z"
-    },
-    {
-      "id": "augsburg:news-18830",
-      "source": "augsburg",
-      "title": "Lechhauser Kirchweih beginnt am Samstag",
-      "summary": "Mit einem Festumzug beginnt am Samstag, 17. Oktober, die diesjährige Lechhauser Kirchweih. Der Umzug führt ab 13:30 Uhr vom Marienplatz über die Stätzlinger, Blücher- und Brunnenstraße zum Festzelt an der Klausstraße. Die Traditionsveranstaltung mit kleinem Vergnügungspark dauert bis 25. Oktober.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/lechhauser-kirchweih-startet-am-samstag",
-      "published": "2026-10-16T09:29:29.000Z"
-    },
-    {
-      "id": "augsburg:news-18825",
-      "source": "augsburg",
-      "title": "Freiwillige Feuerwehr Lechhausen bekommt neue Fahrzeughalle",
-      "summary": "Die Freiwillige Feuerwehr (FFW) Lechhausen erhält in der Stätzlinger Straße 109 ihren festen Platz. Am Donnerstag, 15. Oktober, erfolgte dort die feierliche Grundsteinlegung für eine neue Fahrzeughalle.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/freiwillige-feuerwehr-lechhausen-bekommt-neue-fahrzeughalle",
-      "published": "2026-10-16T07:20:56.000Z"
     },
     {
       "id": "koenigsbrunn:leben-erleben/sport/oeffentliches-schwimmen-im-gymnasium-koenigsbrunn",
@@ -247,14 +255,6 @@
       "summary": "Die gelbe Telefonzelle in der Gartenanlage beim Mercateum im Alten Postweg 1 ist eine Mini-Bücherei zum Verweilen und Schmökern! \"Schmökern – Tauschen – Mitnehmen\": Unter diesem Motto lädt die Stadtbücherei in Kooperation mit dem Kulturbüro jedes Jahr in den Königsbrunner Lesepark.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/lesestoff-in-der-gelbe-telefonzelle",
       "published": "2026-09-24T08:00:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/bundesweiter-warntag-am-donnerstag-10-september-2026",
-      "source": "koenigsbrunn",
-      "title": "Bundesweiter Warntag am Donnerstag, 10. September 2026 um 11:00 Uhr auch in Königsbrunn! Sirenen, Cell Broadcast und NINA werden getestet – Warninfrastruktur im Landkreis weiter ausgebaut",
-      "summary": "Überprüfen der Katastrophenschutz-Warnkanäle Bundesweit werden am Donnerstag, 10. September 2026, um 11:00 Uhr verschiedene Warnsystem für den Bevölkerungsschutz getestet – auch in Königsbrunn.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bundesweiter-warntag-am-donnerstag-10-september-2026",
-      "published": "2026-09-02T17:58:00.000Z"
     }
   ],
   "events": [
