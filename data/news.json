@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T16:07:11.565Z",
+  "fetchedAt": "2026-10-26T08:58:35.568Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -268,6 +268,17 @@
       "summary": "Fotoausstellung von Ran Fuchs „Mushin (無心) – das Herz des traditionellen Japans“",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-talente-2"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/death-cafe",
+      "source": "koenigsbrunn",
+      "title": "Death-Café",
+      "start": "2026-10-28T16:00",
+      "end": null,
+      "place": "Stadtbücherei Königsbrunn, Schwabenstr. 43, 86343 Königsbrunn",
+      "summary": "Das Death-Café lädt alle ein, in entspannter Atmosphäre über das Leben, das Sterben und den Tod zu sprechen.",
+      "category": "Freizeit",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/death-cafe"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/buergerversammlung-2026",
