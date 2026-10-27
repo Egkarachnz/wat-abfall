@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-27T09:02:38.990Z",
+  "fetchedAt": "2026-10-27T15:23:13.504Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,30 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18862",
+      "source": "augsburg",
+      "title": "Heckenschnitt: Diese Regeln gelten",
+      "summary": "Damit Geh- und Radwege sowie Straßen sicher und uneingeschränkt genutzt werden können, müssen Hecken, Bäume und Sträucher an Grundstücksgrenzen regelmäßig zurückgeschnitten werden. Die beste Zeit dafür liegt außerhalb der Vogelbrutzeit, zwischen Oktober und Februar.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/heckenschnitt-diese-regeln-gelten",
+      "published": "2026-10-27T13:21:59.000Z"
+    },
+    {
+      "id": "augsburg:news-17568",
+      "source": "augsburg",
+      "title": "Kräutergarten und Hofgarten gehen in die Winterpause",
+      "summary": "Der Kräutergarten in der Rote-Torwall-Anlage und auch der Hofgarten am Fronhof werden ab Sonntag, 1. November, über die Winterzeit geschlossen. Die Beete und empfindliche Pflanzen sowie die Brunnen in den beiden beliebten Grünanlagen werden eingewintert.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kraeutergarten-und-hofgarten-gehen-in-die-winterpause",
+      "published": "2026-10-27T13:15:13.000Z"
+    },
+    {
+      "id": "augsburg:news-17551",
+      "source": "augsburg",
+      "title": "Friedhöfe: Winteröffnungszeiten und Verkehrskonzept an Allerheiligen",
+      "summary": "Rund um Allerheiligen (Sonntag, 1. November) werden die Friedhöfe stark besucht. Deshalb gibt es besondere Parkmöglichkeiten. Stellenweise wird auch die Verkehrsführung geändert. Ab Dienstag, 3. November, beginnen dann die verkürzten Winteröffnungszeiten auf den Augsburger Friedhöfen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/friedhoefe-winteroeffnungszeiten-und-verkehrskonzept-an-allerheiligen-1",
+      "published": "2026-10-27T12:58:05.000Z"
+    },
     {
       "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
       "source": "koenigsbrunn",
@@ -137,36 +161,12 @@
       "published": "2026-10-20T11:08:00.000Z"
     },
     {
-      "id": "augsburg:news-18858",
-      "source": "augsburg",
-      "title": "Online-Vorträge zu Männergesundheit",
-      "summary": "Am 19. November ist internationaler Männertag. In diesem Rahmen lädt die Stadt Augsburg zu einer Online-Vortragsreihe über Männergesundheit ein. Die Vortragsreihe beginnt bereits am 29. Oktober. Die vier Vorträge finden jeweils von 19:00 bis 20:30 Uhr über Microsoft Teams statt.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/online-vortraege-zu-maennergesundheit",
-      "published": "2026-10-20T10:12:00.000Z"
-    },
-    {
-      "id": "augsburg:news-18844",
-      "source": "augsburg",
-      "title": "Kindergarten-Zuschuss des Freistaats fällt weg",
-      "summary": "Bisher hat der Freistaat Bayern jeden Kindergarten-Platz mit 100 Euro pro Monat bezuschusst. Diese Förderung fällt ab Januar 2027 weg. Damit steigen die Gebühren für die Eltern.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kindergarten-zuschuss-des-freistaats-faellt-weg",
-      "published": "2026-10-20T09:11:56.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/kulturpreis-der-stadt-koenigsbrunn-fuer-das-jahr-2026",
       "source": "koenigsbrunn",
       "title": "Kulturpreis der Stadt Königsbrunn für das Jahr 2026",
       "summary": "Vorschläge gesucht | Einsendeschluss: Freitag, 30. Oktober 2026 Seit 1995 zeichnet die Stadt Königsbrunn alle zwei Jahre Bürgerinnen und Bürger für ihr herausragendes kulturelles Engagement mit dem “Kulturpreis” oder dem “Anerkennungspreis zum Kulturpreis” aus.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/kulturpreis-der-stadt-koenigsbrunn-fuer-das-jahr-2026",
       "published": "2026-10-20T08:52:00.000Z"
-    },
-    {
-      "id": "augsburg:news-18843",
-      "source": "augsburg",
-      "title": "Die Stadt in Zahlen: Der Strukturatlas 2026 ist erschienen",
-      "summary": "Welcher Stadtbezirk ist der größte? Wo ist das Durchschnittsalter am höchsten? In welchem haben die meisten Personen bei der Kommunalwahl ihre Stimme abgegeben? Antworten auf diese und mehr Fragen gibt der Strukturatlas.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/die-stadt-in-zahlen-der-strukturatlas-2026-ist-erschienen",
-      "published": "2026-10-20T08:49:37.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/besser-heizen-mit-dem-ofenfuehrerschein-kostenloser-online-kurs",
