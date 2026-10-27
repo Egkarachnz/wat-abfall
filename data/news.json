@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T16:09:36.850Z",
+  "fetchedAt": "2026-10-27T09:02:38.990Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,30 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
+      "source": "koenigsbrunn",
+      "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
+      "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
+      "published": "2026-10-27T06:40:54.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-niklausstiefel-aktion-2026",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Niklausstiefel-Aktion 2026",
+      "summary": "Anmeldefrist: 4. bis 12. November 2026 | Für Kinder von drei bis zwölf Jahren Auch dieses Jahr heißt es wieder: An die Stiefel, fertig, los …! Macht mit bei der zweiten Königsbrunner Niklausstiefel-Aktion: Eine spannende Entdeckungstour durch die weihnachtliche Königsbrunner Innenstadt und ein…",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/koenigsbrunner-niklausstiefel-aktion-2026",
+      "published": "2026-10-27T05:58:12.000Z"
+    },
+    {
+      "id": "augsburg:news-18878",
+      "source": "augsburg",
+      "title": "Lange Nacht der Kurzgeschichte am Freitag",
+      "summary": "Am Freitag, 30. Oktober, findet die vierte „Lange Nacht der Kurzgeschichte“ in der Stadtbücherei statt. Ab 19 Uhr präsentieren neue und etablierte Autorinnen und Autoren ihre ihre Kurzgeschichten, Gedichte und Romanfragmente. Sie haben jeweils 15 Minuten Zeit.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/lange-nacht-der-kurzgeschichte-am-freitag",
+      "published": "2026-10-27T05:26:06.000Z"
+    },
     {
       "id": "augsburg:news-18876",
       "source": "augsburg",
@@ -47,22 +71,6 @@
       "summary": "Am Samstag, 31. Oktober, lädt 3. Bürgermeister Bernd Zitzelsberger von 10 bis 12 Uhr zum persönlichen Austausch in den Mehr-Generationen-Treffpunkt, Sozialzentrum Firnhaberau (Schillstraße 208) ein. Eine Anmeldung ist nicht erforderlich.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/sprechstunde-mit-3-buergermeister-bernd-zitzelsberger-am-31-oktober",
       "published": "2026-10-26T09:25:26.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/stadtbuecherei-heute-26-oktober-2026-geschlossen",
-      "source": "koenigsbrunn",
-      "title": "Stadtbücherei heute, 26. Oktober 2026, geschlossen",
-      "summary": "Krankheitsbedingt kann leider nicht geöffnet werden. Heute Nachmittag, Montag, 26. Oktober 2026, bleibt unsere Stadtbücherei in der Schwabenstraße leider geschlossen – die Erkältungswelle hat vor unseren Mitarbeiterinnen leider nicht haltgemacht.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/stadtbuecherei-heute-26-oktober-2026-geschlossen",
-      "published": "2026-10-26T08:00:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
-      "source": "koenigsbrunn",
-      "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
-      "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
-      "published": "2026-10-23T19:39:00.000Z"
     },
     {
       "id": "augsburg:news-18861",
@@ -103,14 +111,6 @@
       "summary": "In den Herbstferien wird es nicht langweilig, denn: Tschamp startet wieder. Ab Donnerstag, 22. Oktober, beginnt die Anmeldung für das Ferienprogramm der Stadt Augsburg – online oder im Tschamp-Büro. Damit alle Kinder mitmachen können, gibt es für Familien mit weniger Geld unbürokratisch Zuschüsse.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/tschamp-jetzt-fuer-die-herbstferien-anmelden",
       "published": "2026-10-22T09:24:51.000Z"
-    },
-    {
-      "id": "augsburg:news-18854",
-      "source": "augsburg",
-      "title": "Einige Formulare weiterhin nicht erreichbar",
-      "summary": "Am gestrigen Mittwoch war augsburg.de von etwa 16 bis 20 Uhr nicht erreichbar. Grund war eine weltweite Sicherheitslücke in der Programmiersprache PHP. Als die Lücke geschlossen werden konnte, ging die Webseite wieder online.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/einige-formulare-weiterhin-nicht-erreichbar",
-      "published": "2026-10-22T07:08:52.000Z"
     },
     {
       "id": "augsburg:news-15922",
