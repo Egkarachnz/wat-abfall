@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-28T09:42:07.944Z",
+  "fetchedAt": "2026-10-28T20:17:05.516Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,22 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18886",
+      "source": "augsburg",
+      "title": "MAX59: Zwischennutzung mit Kreativ- und Kulturangeboten",
+      "summary": "In der Maximilianstraße 59 kehrt wieder Leben ein. Von November 2026 bis voraussichtlich Mai 2027 gibt es in MAX59 eine Zwischennutzung. Dabei entsteht im Erdgeschoss ein Ort für Begegnung, Kreativität, Kultur, Bildung und gemeinsames Gestalten.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/max59-zwischennutzung-mit-kreativ-und-kulturangeboten",
+      "published": "2026-10-28T14:08:03.000Z"
+    },
+    {
+      "id": "augsburg:news-18883",
+      "source": "augsburg",
+      "title": "B17-Sperrung: 1. bis 6. November zweite Bauphase",
+      "summary": "In den Herbstferien muss die B17 auf der Fabrikkanalbrücke wieder teilweise gesperrt werden. Richtung Landsberg gibt es in den Nächten 1./2. und 5./6. November eine Totalsperre. Vom 2. bis 5. November steht in jede Richtung eine Spur zur Verfügung. Die B17-Brücke über den Fabrikkanal wird saniert.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/b17-sperrung-vom-1-bis-6-november-zweit-bauphase",
+      "published": "2026-10-28T14:04:24.000Z"
+    },
     {
       "id": "augsburg:news-18884",
       "source": "augsburg",
@@ -68,7 +84,7 @@
       "id": "augsburg:news-18878",
       "source": "augsburg",
       "title": "Lange Nacht der Kurzgeschichte am Freitag",
-      "summary": "Am Freitag, 30. Oktober, findet die vierte „Lange Nacht der Kurzgeschichte“ in der Stadtbücherei statt. Ab 19 Uhr präsentieren neue und etablierte Autorinnen und Autoren ihre ihre Kurzgeschichten, Gedichte und Romanfragmente. Sie haben jeweils 15 Minuten Zeit.",
+      "summary": "Am Freitag, 30. Oktober, findet die vierte „Lange Nacht der Kurzgeschichte“ in der Stadtbücherei statt. Ab 19 Uhr präsentieren neue und etablierte Autorinnen und Autoren ihre Kurzgeschichten, Gedichte und Romanfragmente. Sie haben jeweils 15 Minuten Zeit.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/lange-nacht-der-kurzgeschichte-am-freitag",
       "published": "2026-10-27T05:26:06.000Z"
     },
@@ -137,14 +153,6 @@
       "published": "2026-10-22T12:02:16.000Z"
     },
     {
-      "id": "augsburg:news-15913",
-      "source": "augsburg",
-      "title": "Tschamp: Jetzt für die Herbstferien anmelden",
-      "summary": "In den Herbstferien wird es nicht langweilig, denn: Tschamp startet wieder. Ab Donnerstag, 22. Oktober, beginnt die Anmeldung für das Ferienprogramm der Stadt Augsburg – online oder im Tschamp-Büro. Damit alle Kinder mitmachen können, gibt es für Familien mit weniger Geld unbürokratisch Zuschüsse.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/tschamp-jetzt-fuer-die-herbstferien-anmelden",
-      "published": "2026-10-22T09:24:51.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
       "source": "koenigsbrunn",
       "title": "Dreikönigskonzert 2027: \"Drei Facetten – eine Leidenschaft\"",
@@ -153,12 +161,12 @@
       "published": "2026-10-22T07:55:44.000Z"
     },
     {
-      "id": "augsburg:news-15922",
-      "source": "augsburg",
-      "title": "Wohin mit Laub und Heckenschnitt?",
-      "summary": "Jetzt fallen die Blätter und letzte Gartenarbeiten stehen an. Laub und Grüngut können entweder über die Braune Tonne entsorgt oder in den Wertstoff- & Servicepunkten angeliefert werden.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/der-herbst-kommt-wohin-mit-laub-und-heckenschnitt",
-      "published": "2026-10-21T12:44:50.000Z"
+      "id": "koenigsbrunn:nachrichten/artikel/schliesstage-der-stadtverwaltung-und-ihrer-aussenstellen",
+      "source": "koenigsbrunn",
+      "title": "Schließtage der Stadtverwaltung und ihrer Außenstellen",
+      "summary": "Von Mittwoch, 23. Dezember 2026, bis einschließlich Sonntag, 3. Januar 2027 Zusätzlich zu Heiligabend und Silvester weisen wir auf drei Schließtage der Stadtverwaltung nach den Weihnachtstagen hin: Montag, 28. Dezember 2026 Dienstag, 29. Dezember 2026 Mittwoch, 30.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/schliesstage-der-stadtverwaltung-und-ihrer-aussenstellen",
+      "published": "2026-10-21T09:42:46.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
@@ -247,14 +255,6 @@
       "summary": "Seit 14. September 2026 bis voraussichtlich Ende November wird die Kreuzung Augsburger Straße / Donauwörther Straße umgebaut. Grund: Die Stadtverwaltung schafft hier eine zusätzliche Querungsmöglichkeit für Fußgänger und Radfahrer und verbessert gleichzeitig die Straßenentwässerung im…",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
       "published": "2026-10-12T06:05:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/kaffee-und-kuchen-konzert-am-14-oktober-2026",
-      "source": "koenigsbrunn",
-      "title": "Kaffee- und Kuchen-Konzert am 14. Oktober 2026",
-      "summary": "Adrian Marko sorgt für die musikalische Unterhaltung. Das Kulturbüro Königsbrunn veranstaltet in Kooperation mit der Seniorenwohnanlage Ludwigspark am Mittwoch, 14. Oktober 2026, wieder das beliebte Kaffee- und Kuchen-Konzert – eine Veranstaltung, die seit vielen Jahren Tradition hat.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/kaffee-und-kuchen-konzert-am-14-oktober-2026",
-      "published": "2026-10-07T07:36:00.000Z"
     }
   ],
   "events": [
@@ -268,17 +268,6 @@
       "summary": "Fotoausstellung von Ran Fuchs „Mushin (無心) – das Herz des traditionellen Japans“",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-talente-2"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/death-cafe",
-      "source": "koenigsbrunn",
-      "title": "Death-Café",
-      "start": "2026-10-28T16:00",
-      "end": null,
-      "place": "Stadtbücherei Königsbrunn, Schwabenstr. 43, 86343 Königsbrunn",
-      "summary": "Das Death-Café lädt alle ein, in entspannter Atmosphäre über das Leben, das Sterben und den Tod zu sprechen.",
-      "category": "Freizeit",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/death-cafe"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/buergerversammlung-2026",
@@ -389,6 +378,17 @@
       "summary": "In der Stadtbücherei wird weihnachtlich gebastelt!",
       "category": "Freizeit",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/adventsbasteln-fuer-alle"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/dreikoenigskonzert-2027",
+      "source": "koenigsbrunn",
+      "title": "Dreikönigskonzert 2027",
+      "start": "2027-01-06T18:00",
+      "end": null,
+      "place": "Willi-Oppenländer-Halle: Karwendelstraße 14, 86343 Königsbrunn",
+      "summary": "\"Drei Facetten – eine Leidenschaft\" Blasorchester Königsbrunn, Benedikt Linus Bader und TSC Dancepoint",
+      "category": "Konzerte",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/dreikoenigskonzert-2027"
     }
   ]
 }
