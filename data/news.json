@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-28T20:17:05.516Z",
+  "fetchedAt": "2026-10-29T10:00:20.857Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -17,6 +17,30 @@
   "stale": [],
   "news": [
     {
+      "id": "augsburg:news-18889",
+      "source": "augsburg",
+      "title": "Eislaufen und Schwimmen in den Herbstferien",
+      "summary": "Was tun in den Herbstferien? Schlittschuhlaufen! Vom 31. Oktober bis 8. November hat die Eishalle Haunstetten täglich zum Publikumslauf geöffnet. Wer an Allerheiligen, 1. November, lieber schwimmen geht, kann im Alten Stadtbad seine Bahnen ziehen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/eislaufen-und-schwimmen-in-den-herbstferien",
+      "published": "2026-10-29T09:18:43.000Z"
+    },
+    {
+      "id": "augsburg:news-18884",
+      "source": "augsburg",
+      "title": "Live-Stream aus dem Stadtrat",
+      "summary": "Am heutigen Donnerstag, 29. Oktober, kommt der Stadtrat im Rathaus zusammen. Die öffentliche Sitzung beginnt um 14:30 Uhr. Wir übertragen wie immer live. Es ist die zweite Sitzung nach der Rathaus-Sanierung. Sie findet im Großen Sitzungssaal im Oberen Fletz statt.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/live-stream-aus-dem-stadtrat",
+      "published": "2026-10-29T08:40:44.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Jungbürgerversammlung der Stadt Königsbrunn am Donnerstag, 29. Oktober 2026, in der MatriX",
+      "summary": "Die Stadt Königsbrunn und die Jugendfreizeitstätte MatriX laden alle Jugendlichen und jungen Erwachsenen im Alter von 14 bis 21 Jahren herzlich zur Jungbürgerversammlung ein. An diesem Abend stehen die Themen der jungen Mitbürgerinnen und Mitbürger im Mittelpunkt.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
+      "published": "2026-10-29T08:10:06.000Z"
+    },
+    {
       "id": "augsburg:news-18886",
       "source": "augsburg",
       "title": "MAX59: Zwischennutzung mit Kreativ- und Kulturangeboten",
@@ -31,14 +55,6 @@
       "summary": "In den Herbstferien muss die B17 auf der Fabrikkanalbrücke wieder teilweise gesperrt werden. Richtung Landsberg gibt es in den Nächten 1./2. und 5./6. November eine Totalsperre. Vom 2. bis 5. November steht in jede Richtung eine Spur zur Verfügung. Die B17-Brücke über den Fabrikkanal wird saniert.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/b17-sperrung-vom-1-bis-6-november-zweit-bauphase",
       "published": "2026-10-28T14:04:24.000Z"
-    },
-    {
-      "id": "augsburg:news-18884",
-      "source": "augsburg",
-      "title": "Live-Stream aus dem Stadtrat",
-      "summary": "Am Donnerstag, 29. Oktober, kommt der Stadtrat im Rathaus zusammen. Die öffentliche Sitzung beginnt um 14:30 Uhr. Wir übertragen wie immer live. Es ist die zweite Sitzung nach der Rathaus-Sanierung. Sie findet im Großen Sitzungssaal im Oberen Fletz statt.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/live-stream-aus-dem-stadtrat",
-      "published": "2026-10-28T09:24:11.000Z"
     },
     {
       "id": "augsburg:news-18862",
@@ -63,14 +79,6 @@
       "summary": "Rund um Allerheiligen (Sonntag, 1. November) werden die Friedhöfe stark besucht. Deshalb gibt es besondere Parkmöglichkeiten. Stellenweise wird auch die Verkehrsführung geändert. Ab Dienstag, 3. November, beginnen dann die verkürzten Winteröffnungszeiten auf den Augsburger Friedhöfen.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/friedhoefe-winteroeffnungszeiten-und-verkehrskonzept-an-allerheiligen-1",
       "published": "2026-10-27T12:58:05.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
-      "source": "koenigsbrunn",
-      "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
-      "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
-      "published": "2026-10-27T06:40:54.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-niklausstiefel-aktion-2026",
@@ -145,36 +153,12 @@
       "published": "2026-10-22T12:17:18.000Z"
     },
     {
-      "id": "augsburg:news-18855",
-      "source": "augsburg",
-      "title": "3. „Augusta – Wirtschaftspreis für Frauen“ vergeben",
-      "summary": "Die Stadt Augsburg hat zum dritten Mal den „Augusta – Wirtschaftspreis für Frauen“ verliehen. Beim Festakt im Oberen Fletz des Rathauses am Mittwoch, 21. Oktober, wurden vier Unternehmerinnen für ihre innovativen Ideen und ihr besonderes Engagement für die Augsburger Wirtschaft geehrt.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/3-augusta-wirtschaftspreis-fuer-frauen-vergeben",
-      "published": "2026-10-22T12:02:16.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
       "source": "koenigsbrunn",
       "title": "Dreikönigskonzert 2027: \"Drei Facetten – eine Leidenschaft\"",
       "summary": "Vorverkauf ab Montag, 16. November 2026 Im Kulturbüro Königsbrunn beginnt am Montag, 16. November 2026, der Kartenvorverkauf für das Dreikönigskonzert 2026. Am Mittwoch, 6. Januar 2027 präsentiert das Kulturbüro Königsbrunn ein außergewöhnliches Konzerthighlight.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
       "published": "2026-10-22T07:55:44.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/schliesstage-der-stadtverwaltung-und-ihrer-aussenstellen",
-      "source": "koenigsbrunn",
-      "title": "Schließtage der Stadtverwaltung und ihrer Außenstellen",
-      "summary": "Von Mittwoch, 23. Dezember 2026, bis einschließlich Sonntag, 3. Januar 2027 Zusätzlich zu Heiligabend und Silvester weisen wir auf drei Schließtage der Stadtverwaltung nach den Weihnachtstagen hin: Montag, 28. Dezember 2026 Dienstag, 29. Dezember 2026 Mittwoch, 30.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/schliesstage-der-stadtverwaltung-und-ihrer-aussenstellen",
-      "published": "2026-10-21T09:42:46.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
-      "source": "koenigsbrunn",
-      "title": "Jungbürgerversammlung der Stadt Königsbrunn am Donnerstag, 29. Oktober 2026, in der MatriX",
-      "summary": "Die Stadt Königsbrunn und die Jugendfreizeitstätte MatriX laden alle Jugendlichen und jungen Erwachsenen im Alter von 14 bis 21 Jahren herzlich zur Jungbürgerversammlung ein. An diesem Abend stehen die Themen der jungen Mitbürgerinnen und Mitbürger im Mittelpunkt.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
-      "published": "2026-10-20T11:08:00.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/kulturpreis-der-stadt-koenigsbrunn-fuer-das-jahr-2026",
@@ -199,6 +183,14 @@
       "summary": "Online-Dienst wieder verfügbar Wer die Online-Ausweisfunktion des elektronischen Personalausweises nachträglich aktivieren möchte oder die PIN verloren oder vergessen hat, kann nun den Code kostenlos per Brief zurücksetzen lassen. Das erspart Betroffenen den Gang zum Amt.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/personalausweis-pin-ruecksetz-und-aktivierungsdienst-prsd",
       "published": "2026-10-19T06:07:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
+      "source": "koenigsbrunn",
+      "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
+      "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
+      "published": "2026-10-19T05:40:00.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/schulbus-linien-fahrplaene-fuer-das-schuljahr-2026-2027",
@@ -255,6 +247,14 @@
       "summary": "Seit 14. September 2026 bis voraussichtlich Ende November wird die Kreuzung Augsburger Straße / Donauwörther Straße umgebaut. Grund: Die Stadtverwaltung schafft hier eine zusätzliche Querungsmöglichkeit für Fußgänger und Radfahrer und verbessert gleichzeitig die Straßenentwässerung im…",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
       "published": "2026-10-12T06:05:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/kaffee-und-kuchen-konzert-am-14-oktober-2026",
+      "source": "koenigsbrunn",
+      "title": "Kaffee- und Kuchen-Konzert am 14. Oktober 2026",
+      "summary": "Adrian Marko sorgt für die musikalische Unterhaltung. Das Kulturbüro Königsbrunn veranstaltet in Kooperation mit der Seniorenwohnanlage Ludwigspark am Mittwoch, 14. Oktober 2026, wieder das beliebte Kaffee- und Kuchen-Konzert – eine Veranstaltung, die seit vielen Jahren Tradition hat.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/kaffee-und-kuchen-konzert-am-14-oktober-2026",
+      "published": "2026-10-07T07:36:00.000Z"
     }
   ],
   "events": [
@@ -268,17 +268,6 @@
       "summary": "Fotoausstellung von Ran Fuchs „Mushin (無心) – das Herz des traditionellen Japans“",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-talente-2"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/buergerversammlung-2026",
-      "source": "koenigsbrunn",
-      "title": "Bürgerversammlung 2026",
-      "start": "2026-10-28T19:00",
-      "end": "2026-10-28T22:00",
-      "place": "Gaststätte \"Königswirt\": Donauwörther Straße 46, 86343 Königsbrunn",
-      "summary": "Die Stadtverwaltung lädt zur jährlichen Bürgerversammlung ein.",
-      "category": "Vortrag",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/buergerversammlung-2026"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/taschenlampenaktion-101",
