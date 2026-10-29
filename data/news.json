@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T10:00:20.857Z",
+  "fetchedAt": "2026-10-29T20:20:09.801Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -17,6 +17,30 @@
   "stale": [],
   "news": [
     {
+      "id": "koenigsbrunn:nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Jungbürgerversammlung der Stadt Königsbrunn am Donnerstag, 29. Oktober 2026, in der MatriX",
+      "summary": "Die Stadt Königsbrunn und die Jugendfreizeitstätte MatriX laden alle Jugendlichen und jungen Erwachsenen im Alter von 14 bis 21 Jahren herzlich zur Jungbürgerversammlung ein. An diesem Abend stehen die Themen der jungen Mitbürgerinnen und Mitbürger im Mittelpunkt.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
+      "published": "2026-10-29T16:10:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/das-war-die-buergerversammlung-2026",
+      "source": "koenigsbrunn",
+      "title": "Das war die Bürgerversammlung 2026",
+      "summary": "Gut besucht, vielfältige Themen und ein beruhigender Polizeibericht Rund 160 Königsbrunnerinnen und Königsbrunner sowie Mitglieder des Stadtrates und der Stadtverwaltung nahmen am Mittwoch, 28. Oktober 2026, an der diesjährigen Bürgerversammlung im Königswirt in der Donauwörther Straße teil.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/das-war-die-buergerversammlung-2026",
+      "published": "2026-10-29T10:46:12.000Z"
+    },
+    {
+      "id": "augsburg:news-18890",
+      "source": "augsburg",
+      "title": "Augsburg gewinnt Bayerischen Stadtmarketingpreis",
+      "summary": "Große Freude bei Augsburg Marketing: Das Projekt „Altstadt neu erleben“ ist mit dem Bayerischen Stadtmarketingpreis 2026 ausgezeichnet worden. In der Kategorie der Städte ab 45.000 Einwohner überzeugte Augsburg die Jury mit der langfristigen Entwicklung der Altstadt und dem starken Miteinander von…",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/augsburg-gewinnt-bayerischen-stadtmarketingpreis",
+      "published": "2026-10-29T09:56:36.000Z"
+    },
+    {
       "id": "augsburg:news-18889",
       "source": "augsburg",
       "title": "Eislaufen und Schwimmen in den Herbstferien",
@@ -31,14 +55,6 @@
       "summary": "Am heutigen Donnerstag, 29. Oktober, kommt der Stadtrat im Rathaus zusammen. Die öffentliche Sitzung beginnt um 14:30 Uhr. Wir übertragen wie immer live. Es ist die zweite Sitzung nach der Rathaus-Sanierung. Sie findet im Großen Sitzungssaal im Oberen Fletz statt.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/live-stream-aus-dem-stadtrat",
       "published": "2026-10-29T08:40:44.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
-      "source": "koenigsbrunn",
-      "title": "Jungbürgerversammlung der Stadt Königsbrunn am Donnerstag, 29. Oktober 2026, in der MatriX",
-      "summary": "Die Stadt Königsbrunn und die Jugendfreizeitstätte MatriX laden alle Jugendlichen und jungen Erwachsenen im Alter von 14 bis 21 Jahren herzlich zur Jungbürgerversammlung ein. An diesem Abend stehen die Themen der jungen Mitbürgerinnen und Mitbürger im Mittelpunkt.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
-      "published": "2026-10-29T08:10:06.000Z"
     },
     {
       "id": "augsburg:news-18886",
@@ -131,9 +147,9 @@
     {
       "id": "augsburg:news-18861",
       "source": "augsburg",
-      "title": "Neue Smiley-Ampeln in Augsburg",
-      "summary": "Wer sich an die Geschwindigkeit hält, wird von einem grünen Gesicht angelächelt – so funktionieren die so genannten Smiley-Ampeln. Jetzt hat die Stadt Augsburg an drei weiteren Standorten die digitalen Geschwindigkeitsanzeigen installiert.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/neue-smiley-ampeln-in-augsburg",
+      "title": "Neue Smiley-Anzeigen in Augsburg",
+      "summary": "Wer sich an die Geschwindigkeit hält, wird von einem grünen Gesicht angelächelt – so funktionieren die so genannten Smiley-Anzeigen. Jetzt hat die Stadt Augsburg an drei weiteren Standorten die digitalen Geschwindigkeitsanzeigen installiert.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/neue-smiley-anzeigen-in-augsburg",
       "published": "2026-10-23T06:36:51.000Z"
     },
     {
@@ -143,14 +159,6 @@
       "summary": "Am Mittwoch, 28. Oktober, findet im Rahmen der Augsburger Friedensgespräche ein Impulsvortrag mit anschließender Podiumsdiskussion statt. Die Veranstaltung beginnt um 19 Uhr und findet im Goldenen Saal statt. Das Thema lautet „Zwischen Angst und Hoffnung.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/friedensgespraech-zum-tag-der-religionen-am-28-oktober",
       "published": "2026-10-22T14:28:37.000Z"
-    },
-    {
-      "id": "augsburg:news-18860",
-      "source": "augsburg",
-      "title": "Geh- und Radweg am Oberen Graben wird erneuert",
-      "summary": "Ab Montag, 26. Oktober, saniert die Stadt Augsburg den Geh- und Radweg am Oberen Graben zwischen Hausnummer 8 (Jakobsstift) und dem Neuen Gang. Auf rund 270 Meter wird die Asphaltfläche instandgesetzt. Dabei bleibt die bestehende Asphaltdecke erhalten.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/geh-und-radweg-am-oberen-graben-wird-erneuert",
-      "published": "2026-10-22T12:17:18.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
@@ -247,14 +255,6 @@
       "summary": "Seit 14. September 2026 bis voraussichtlich Ende November wird die Kreuzung Augsburger Straße / Donauwörther Straße umgebaut. Grund: Die Stadtverwaltung schafft hier eine zusätzliche Querungsmöglichkeit für Fußgänger und Radfahrer und verbessert gleichzeitig die Straßenentwässerung im…",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
       "published": "2026-10-12T06:05:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/kaffee-und-kuchen-konzert-am-14-oktober-2026",
-      "source": "koenigsbrunn",
-      "title": "Kaffee- und Kuchen-Konzert am 14. Oktober 2026",
-      "summary": "Adrian Marko sorgt für die musikalische Unterhaltung. Das Kulturbüro Königsbrunn veranstaltet in Kooperation mit der Seniorenwohnanlage Ludwigspark am Mittwoch, 14. Oktober 2026, wieder das beliebte Kaffee- und Kuchen-Konzert – eine Veranstaltung, die seit vielen Jahren Tradition hat.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/kaffee-und-kuchen-konzert-am-14-oktober-2026",
-      "published": "2026-10-07T07:36:00.000Z"
     }
   ],
   "events": [
