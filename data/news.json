@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T20:20:09.801Z",
+  "fetchedAt": "2026-10-30T10:04:02.234Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,22 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-17549",
+      "source": "augsburg",
+      "title": "Alltagsheldinnen und -helden gesucht!",
+      "summary": "Das Büro für Bürgerschaftliches Engagement veranstaltet zum 6. Mal die Anerkennungsaktion „Füreinander!“, mit der die Stadt Augsburg besonders engagierte Menschen ehrt. Den ganzen November über können Personen nominiert werden, die sich in besonderem Maße für andere einsetzen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/alltagsheldinnen-und-helden-gesucht",
+      "published": "2026-10-30T07:22:30.000Z"
+    },
+    {
+      "id": "augsburg:news-18896",
+      "source": "augsburg",
+      "title": "Bio-regionaler Einkaufsführer wächst",
+      "summary": "Wo kann ich bio-regional einkaufen? Diese Frage beantwortet der bio-regionale Einkaufsführer. Dieser verzeichnet jetzt zahlreiche neue Einträge, davon viele im Landkreis Aichach-Friedberg und im Paartal. Den Einkaufsführer finden Sie unter bio-regional-augsburg.de.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/bio-regionaler-einkaufsfuehrer-waechst-1",
+      "published": "2026-10-30T06:26:02.000Z"
+    },
     {
       "id": "koenigsbrunn:nachrichten/artikel/jungbuergerversammlung-der-stadt-koenigsbrunn",
       "source": "koenigsbrunn",
@@ -47,14 +63,6 @@
       "summary": "Was tun in den Herbstferien? Schlittschuhlaufen! Vom 31. Oktober bis 8. November hat die Eishalle Haunstetten täglich zum Publikumslauf geöffnet. Wer an Allerheiligen, 1. November, lieber schwimmen geht, kann im Alten Stadtbad seine Bahnen ziehen.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/eislaufen-und-schwimmen-in-den-herbstferien",
       "published": "2026-10-29T09:18:43.000Z"
-    },
-    {
-      "id": "augsburg:news-18884",
-      "source": "augsburg",
-      "title": "Live-Stream aus dem Stadtrat",
-      "summary": "Am heutigen Donnerstag, 29. Oktober, kommt der Stadtrat im Rathaus zusammen. Die öffentliche Sitzung beginnt um 14:30 Uhr. Wir übertragen wie immer live. Es ist die zweite Sitzung nach der Rathaus-Sanierung. Sie findet im Großen Sitzungssaal im Oberen Fletz statt.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/live-stream-aus-dem-stadtrat",
-      "published": "2026-10-29T08:40:44.000Z"
     },
     {
       "id": "augsburg:news-18886",
@@ -151,14 +159,6 @@
       "summary": "Wer sich an die Geschwindigkeit hält, wird von einem grünen Gesicht angelächelt – so funktionieren die so genannten Smiley-Anzeigen. Jetzt hat die Stadt Augsburg an drei weiteren Standorten die digitalen Geschwindigkeitsanzeigen installiert.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/neue-smiley-anzeigen-in-augsburg",
       "published": "2026-10-23T06:36:51.000Z"
-    },
-    {
-      "id": "augsburg:news-18852",
-      "source": "augsburg",
-      "title": "Friedensgespräch zum Tag der Religionen am 28. Oktober",
-      "summary": "Am Mittwoch, 28. Oktober, findet im Rahmen der Augsburger Friedensgespräche ein Impulsvortrag mit anschließender Podiumsdiskussion statt. Die Veranstaltung beginnt um 19 Uhr und findet im Goldenen Saal statt. Das Thema lautet „Zwischen Angst und Hoffnung.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/friedensgespraech-zum-tag-der-religionen-am-28-oktober",
-      "published": "2026-10-22T14:28:37.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
