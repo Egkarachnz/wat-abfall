@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-30T10:04:02.234Z",
+  "fetchedAt": "2026-10-30T19:56:33.363Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,22 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
+      "source": "koenigsbrunn",
+      "title": "Volkstrauertag am Sonntag, 15. November 2026: Friedensgedenkfeier",
+      "summary": "Einladung zum gemeinsamen feierlichen Gedenken Anlässlich des Volkstrauertages lädt die Stadt Königsbrunn ihre Bürgerinnen und Bürger zu einer Friedensgedenkfeier ein: Um 8:30 Uhr findet der Evangelisch-Lutherischen St. Johanneskirche ein Gottesdienst statt.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
+      "published": "2026-10-30T11:13:34.000Z"
+    },
+    {
+      "id": "augsburg:news-17611",
+      "source": "augsburg",
+      "title": "Hilfe für Obdachlose bei Kälte",
+      "summary": "Noch ist das Wetter moderat. Aber der Winter kommt, und mit ihm eisige Temperaturen. Wer obdachlos ist, lebt dann in Gefahr. Die Stadt Augsburg bündelt daher eine Vielzahl von Hilfen, die Menschen ohne Wohnung Schutz vor der Kälte bieten.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/hilfe-fuer-obdachlose-bei-kaelte-1",
+      "published": "2026-10-30T09:04:24.000Z"
+    },
     {
       "id": "augsburg:news-17549",
       "source": "augsburg",
@@ -153,14 +169,6 @@
       "published": "2026-10-26T09:25:26.000Z"
     },
     {
-      "id": "augsburg:news-18861",
-      "source": "augsburg",
-      "title": "Neue Smiley-Anzeigen in Augsburg",
-      "summary": "Wer sich an die Geschwindigkeit hält, wird von einem grünen Gesicht angelächelt – so funktionieren die so genannten Smiley-Anzeigen. Jetzt hat die Stadt Augsburg an drei weiteren Standorten die digitalen Geschwindigkeitsanzeigen installiert.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/neue-smiley-anzeigen-in-augsburg",
-      "published": "2026-10-23T06:36:51.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
       "source": "koenigsbrunn",
       "title": "Dreikönigskonzert 2027: \"Drei Facetten – eine Leidenschaft\"",
@@ -247,14 +255,6 @@
       "summary": "Noch bis 16. Oktober 2026 zu besichtigen Von der Hauptstraße zur neugestalteten Bürgermeister-Wohlfarth-Straße: Vieles hat sich die letzten 100 Jahre in Königsbrunn verändert – Bauernhöfe und Siedlerhäuser wurden abgerissen oder umgebaut, große Geschäftshäuser und Parkplätze entstanden, manches…",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
       "published": "2026-10-14T07:33:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
-      "source": "koenigsbrunn",
-      "title": "Bauarbeiten: Kreuzung Augsburger Straße / Donauwörther Straße seit 14. September 2026 | Verkehrseinschränkungen",
-      "summary": "Seit 14. September 2026 bis voraussichtlich Ende November wird die Kreuzung Augsburger Straße / Donauwörther Straße umgebaut. Grund: Die Stadtverwaltung schafft hier eine zusätzliche Querungsmöglichkeit für Fußgänger und Radfahrer und verbessert gleichzeitig die Straßenentwässerung im…",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
-      "published": "2026-10-12T06:05:00.000Z"
     }
   ],
   "events": [
