@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T11:13:05.224Z",
+  "fetchedAt": "2026-11-02T23:07:33.854Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18905",
+      "source": "augsburg",
+      "title": "Christkindlesmarkt: Die Vorbereitungen laufen",
+      "summary": "Am Montag, 23. November, wird um 18 Uhr der Christkindlesmarkt eröffnet. Bis dahin laufen die Vorbereitungen auf Hochtouren: Die Buden werden aufgebaut, der Christbaum für alle geliefert und geschmückt und Sicherheitsbarrieren aufgestellt. Die ersten Buden stehen bereits auf dem Rathausplatz.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/christkindlesmarkt-die-vorbereitungen-laufen",
+      "published": "2026-11-02T11:20:18.000Z"
+    },
     {
       "id": "koenigsbrunn:nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
       "source": "koenigsbrunn",
@@ -167,14 +175,6 @@
       "summary": "Am vergangenen Freitag, 23. Oktober, hat der Behindertenbeirat der Stadt Augsburg sein 30-jähriges Jubiläum gefeiert. Im Goldenen Saal gab es Musik, prominente Gäste und eine lebendige Diskussion. Oberbürgermeister Dr. Florian Freund, 2.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/30-jahre-behindertenbeirat-der-stadt-augsburg",
       "published": "2026-10-26T09:51:29.000Z"
-    },
-    {
-      "id": "augsburg:news-18869",
-      "source": "augsburg",
-      "title": "Sprechstunde mit 3. Bürgermeister Bernd Zitzelsberger am 31. Oktober",
-      "summary": "Am Samstag, 31. Oktober, lädt 3. Bürgermeister Bernd Zitzelsberger von 10 bis 12 Uhr zum persönlichen Austausch in den Mehr-Generationen-Treffpunkt, Sozialzentrum Firnhaberau (Schillstraße 208) ein. Eine Anmeldung ist nicht erforderlich.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/sprechstunde-mit-3-buergermeister-bernd-zitzelsberger-am-31-oktober",
-      "published": "2026-10-26T09:25:26.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
