@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-30T19:56:33.363Z",
+  "fetchedAt": "2026-11-02T11:13:05.224Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -95,6 +95,14 @@
       "summary": "In den Herbstferien muss die B17 auf der Fabrikkanalbrücke wieder teilweise gesperrt werden. Richtung Landsberg gibt es in den Nächten 1./2. und 5./6. November eine Totalsperre. Vom 2. bis 5. November steht in jede Richtung eine Spur zur Verfügung. Die B17-Brücke über den Fabrikkanal wird saniert.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/b17-sperrung-vom-1-bis-6-november-zweit-bauphase",
       "published": "2026-10-28T14:04:24.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
+      "source": "koenigsbrunn",
+      "title": "Wasserzählerstand: ablesen und melden bis 18. Dezember 2026: per Rückmelde-Karte oder Online-Formular",
+      "summary": "Die Stände der Wasserzähler werden wie auch in den vergangen Jahren nicht durch die Mitarbeitenden der Stadtwerke Königsbrunn vor Ort abgelesen. Grundstückseigentümer bzw. Gebührenpflichtige müssen den Wasserzählerstand auch im Jahr 2026 selbst ablesen.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
+      "published": "2026-10-28T08:01:06.000Z"
     },
     {
       "id": "augsburg:news-18862",
@@ -247,14 +255,6 @@
       "summary": "Es heißt wieder: Schauen, bummeln und genießen! Herzlich willkommen beim Königsmarkt! Statt wie sonst am zweiten Oktober-Sonntag findet der Königsbrunner Marktsonntag im Herbst dieses Mal erst am Sonntag, 18.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
       "published": "2026-10-15T12:12:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
-      "source": "koenigsbrunn",
-      "title": "Außenausstellung \"Königsbrunn im Wandel\"",
-      "summary": "Noch bis 16. Oktober 2026 zu besichtigen Von der Hauptstraße zur neugestalteten Bürgermeister-Wohlfarth-Straße: Vieles hat sich die letzten 100 Jahre in Königsbrunn verändert – Bauernhöfe und Siedlerhäuser wurden abgerissen oder umgebaut, große Geschäftshäuser und Parkplätze entstanden, manches…",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
-      "published": "2026-10-14T07:33:00.000Z"
     }
   ],
   "events": [
