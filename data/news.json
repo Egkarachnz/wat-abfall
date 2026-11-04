@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-03T10:55:06.414Z",
+  "fetchedAt": "2026-11-04T21:21:05.152Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,38 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Problemmüll-Sammelaktion in Königsbrunn am Samstag, 7. November 2026",
+      "summary": "Die nächste Problemmüllsammlung in Königsbrunn findet statt am Samstag, 7. November 2026, 08:00 – 12:30 Uhr üblicher Standort: Karwendelstraße 16 /18 (Parkplatz am Stadion). Was ist Problemabfall? Problemabfall ist Abfall, der wegen seines Schadstoffgehalts getrennt vom Hausmüll zu entsorgen ist.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
+      "published": "2026-11-04T14:58:00.000Z"
+    },
+    {
+      "id": "augsburg:news-18909",
+      "source": "augsburg",
+      "title": "Eislaufsaison im Curt-Frenzel-Stadion beginnt",
+      "summary": "Ab Samstag, 14. November, können Eislauffans wieder ihre Runden auf der Bahn 2 des Curt-Frenzel-Stadions drehen. Möglich macht das die aktuelle Wetterlage. Die Eishalle Haunstetten ist bereits seit Mitte September geöffnet. Hier wie dort ist die Zahlung am Kassenautomat nur bargeldlos möglich.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/eislaufsaison-im-curt-frenzel-stadion-beginnt",
+      "published": "2026-11-04T13:32:08.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
+      "source": "koenigsbrunn",
+      "title": "Dreikönigskonzert 2027: \"Drei Facetten – eine Leidenschaft\"",
+      "summary": "Vorverkauf ab Montag, 16. November 2026 Im Kulturbüro Königsbrunn beginnt am Montag, 16. November 2026, der Kartenvorverkauf für das Dreikönigskonzert 2026. Am Mittwoch, 6. Januar 2027 präsentiert das Kulturbüro Königsbrunn ein außergewöhnliches Konzerthighlight.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
+      "published": "2026-11-04T09:57:00.000Z"
+    },
+    {
+      "id": "augsburg:news-18912",
+      "source": "augsburg",
+      "title": "Sachgebiet Migration und Aufenthalt zieht um",
+      "summary": "Bisher war es An der Blauen Kappe, nun zieht das zum Bürgeramt gehörende Sachgebiet Migration und Aufenthalt um nach Haunstetten. Ab Montag, 16. November, startet im neuen Dienstgebäude in der Schafweidstraße 37 der reguläre Dienstbetrieb.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/sachgebiet-migration-und-aufenthalt-zieht-um",
+      "published": "2026-11-03T09:12:57.000Z"
+    },
     {
       "id": "augsburg:news-18908",
       "source": "augsburg",
@@ -76,7 +108,7 @@
       "id": "koenigsbrunn:nachrichten/artikel/das-war-die-buergerversammlung-2026",
       "source": "koenigsbrunn",
       "title": "Das war die Bürgerversammlung 2026",
-      "summary": "Gut besucht, vielfältige Themen und ein beruhigender Polizeibericht Rund 160 Königsbrunnerinnen und Königsbrunner sowie Mitglieder des Stadtrates und der Stadtverwaltung nahmen am Mittwoch, 28. Oktober 2026, an der diesjährigen Bürgerversammlung im Königswirt in der Donauwörther Straße teil.",
+      "summary": "Gut besucht, vielfältige Themen und ein umfangreicher Polizeibericht Rund 160 Königsbrunnerinnen und Königsbrunner sowie Mitglieder des Stadtrates und der Stadtverwaltung nahmen am Mittwoch, 28. Oktober 2026, an der diesjährigen Bürgerversammlung im Königswirt in der Donauwörther Straße teil.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/das-war-die-buergerversammlung-2026",
       "published": "2026-10-29T10:46:12.000Z"
     },
@@ -95,14 +127,6 @@
       "summary": "Was tun in den Herbstferien? Schlittschuhlaufen! Vom 31. Oktober bis 8. November hat die Eishalle Haunstetten täglich zum Publikumslauf geöffnet. Wer an Allerheiligen, 1. November, lieber schwimmen geht, kann im Alten Stadtbad seine Bahnen ziehen.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/eislaufen-und-schwimmen-in-den-herbstferien",
       "published": "2026-10-29T09:18:43.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
-      "source": "koenigsbrunn",
-      "title": "Problemmüll-Sammelaktion in Königsbrunn am Samstag, 7. November 2026",
-      "summary": "Die nächste Problemmüllsammlung in Königsbrunn findet statt am Samstag, 7. November 2026, 08:00 – 12:30 Uhr üblicher Standort: Karwendelstraße 16 /18 (Parkplatz am Stadion). Was ist Problemabfall? Problemabfall ist Abfall, der wegen seines Schadstoffgehalts getrennt vom Hausmüll zu entsorgen ist.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
-      "published": "2026-10-29T06:53:00.000Z"
     },
     {
       "id": "augsburg:news-18886",
@@ -161,30 +185,6 @@
       "published": "2026-10-27T05:58:12.000Z"
     },
     {
-      "id": "augsburg:news-18878",
-      "source": "augsburg",
-      "title": "Lange Nacht der Kurzgeschichte am Freitag",
-      "summary": "Am Freitag, 30. Oktober, findet die vierte „Lange Nacht der Kurzgeschichte“ in der Stadtbücherei statt. Ab 19 Uhr präsentieren neue und etablierte Autorinnen und Autoren ihre Kurzgeschichten, Gedichte und Romanfragmente. Sie haben jeweils 15 Minuten Zeit.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/lange-nacht-der-kurzgeschichte-am-freitag",
-      "published": "2026-10-27T05:26:06.000Z"
-    },
-    {
-      "id": "augsburg:news-18876",
-      "source": "augsburg",
-      "title": "Die neue Logi-Fox ist da",
-      "summary": "Die 27. Ausgabe der Kinderzeitung Logi-Fox ist erschienen. Auf 40 Seiten gibt es viele spannende Themen – vom Plastikfrei-Camp und der Schreibwerkstatt bis zum Comic-Camp. Herzstück ist aber ein Interview mit Oberbürgermeister Dr. Florian Freund.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/die-neue-logi-fox-ist-da-1",
-      "published": "2026-10-26T13:11:49.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
-      "source": "koenigsbrunn",
-      "title": "Dreikönigskonzert 2027: \"Drei Facetten – eine Leidenschaft\"",
-      "summary": "Vorverkauf ab Montag, 16. November 2026 Im Kulturbüro Königsbrunn beginnt am Montag, 16. November 2026, der Kartenvorverkauf für das Dreikönigskonzert 2026. Am Mittwoch, 6. Januar 2027 präsentiert das Kulturbüro Königsbrunn ein außergewöhnliches Konzerthighlight.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
-      "published": "2026-10-22T07:55:44.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/besser-heizen-mit-dem-ofenfuehrerschein-kostenloser-online-kurs",
       "source": "koenigsbrunn",
       "title": "Besser heizen mit dem \"Ofenführerschein“: kostenloser Online-Kurs",
@@ -199,6 +199,14 @@
       "summary": "Online-Dienst wieder verfügbar Wer die Online-Ausweisfunktion des elektronischen Personalausweises nachträglich aktivieren möchte oder die PIN verloren oder vergessen hat, kann nun den Code kostenlos per Brief zurücksetzen lassen. Das erspart Betroffenen den Gang zum Amt.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/personalausweis-pin-ruecksetz-und-aktivierungsdienst-prsd",
       "published": "2026-10-19T06:07:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
+      "source": "koenigsbrunn",
+      "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
+      "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
+      "published": "2026-10-19T05:40:00.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/schulbus-linien-fahrplaene-fuer-das-schuljahr-2026-2027",
@@ -247,14 +255,6 @@
       "summary": "Noch bis 16. Oktober 2026 zu besichtigen Von der Hauptstraße zur neugestalteten Bürgermeister-Wohlfarth-Straße: Vieles hat sich die letzten 100 Jahre in Königsbrunn verändert – Bauernhöfe und Siedlerhäuser wurden abgerissen oder umgebaut, große Geschäftshäuser und Parkplätze entstanden, manches…",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
       "published": "2026-10-14T07:33:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
-      "source": "koenigsbrunn",
-      "title": "Bauarbeiten: Kreuzung Augsburger Straße / Donauwörther Straße seit 14. September 2026 | Verkehrseinschränkungen",
-      "summary": "Seit 14. September 2026 bis voraussichtlich Ende November wird die Kreuzung Augsburger Straße / Donauwörther Straße umgebaut. Grund: Die Stadtverwaltung schafft hier eine zusätzliche Querungsmöglichkeit für Fußgänger und Radfahrer und verbessert gleichzeitig die Straßenentwässerung im…",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bauarbeiten-kreuzung-augsburger-strasse-donauwoerther-strasse",
-      "published": "2026-10-12T06:05:00.000Z"
     }
   ],
   "events": [
@@ -268,17 +268,6 @@
       "summary": "Fotoausstellung von Ran Fuchs „Mushin (無心) – das Herz des traditionellen Japans“",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-talente-2"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/taschenlampenaktion-101",
-      "source": "koenigsbrunn",
-      "title": "Stadtbücherei: Taschenlampenaktion",
-      "start": "2026-11-04T18:30",
-      "end": "2026-11-04T19:30",
-      "place": "Stadtbücherei Königsbrunn, Schwabenstr. 43, 86343 Königsbrunn",
-      "summary": "Für wagemutige Kinder ab sechs Jahren.",
-      "category": "Kinder",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/taschenlampenaktion-101"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-campus",
