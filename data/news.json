@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T21:21:05.152Z",
+  "fetchedAt": "2026-11-05T10:58:48.389Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18921",
+      "source": "augsburg",
+      "title": "Bürgerversammlung in Göggingen am 10. November",
+      "summary": "Am kommenden Dienstag, 10. November, lädt die Stadt zu einer Bürgerversammlung für den Stadtteil Göggingen ein. Sie findet im Roncallihaus am Klausenberg 7 statt. Ab 18 Uhr können Teilnehmende mit OB Dr. Florian Freund und dem Referententeam ins Gespräch kommen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/buergerversammlung-in-goeggingen-am-10-november",
+      "published": "2026-11-05T07:31:46.000Z"
+    },
     {
       "id": "koenigsbrunn:nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
       "source": "koenigsbrunn",
@@ -167,14 +175,6 @@
       "summary": "Der Kräutergarten in der Rote-Torwall-Anlage und auch der Hofgarten am Fronhof werden ab Sonntag, 1. November, über die Winterzeit geschlossen. Die Beete und empfindliche Pflanzen sowie die Brunnen in den beiden beliebten Grünanlagen werden eingewintert.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kraeutergarten-und-hofgarten-gehen-in-die-winterpause",
       "published": "2026-10-27T13:15:13.000Z"
-    },
-    {
-      "id": "augsburg:news-17551",
-      "source": "augsburg",
-      "title": "Friedhöfe: Winteröffnungszeiten und Verkehrskonzept an Allerheiligen",
-      "summary": "Rund um Allerheiligen (Sonntag, 1. November) werden die Friedhöfe stark besucht. Deshalb gibt es besondere Parkmöglichkeiten. Stellenweise wird auch die Verkehrsführung geändert. Ab Dienstag, 3. November, beginnen dann die verkürzten Winteröffnungszeiten auf den Augsburger Friedhöfen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/friedhoefe-winteroeffnungszeiten-und-verkehrskonzept-an-allerheiligen-1",
-      "published": "2026-10-27T12:58:05.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-niklausstiefel-aktion-2026",
