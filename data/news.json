@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T10:55:55.942Z",
+  "fetchedAt": "2026-11-06T20:55:07.534Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -23,6 +23,14 @@
       "summary": "Die nächste Problemmüllsammlung in Königsbrunn findet statt am Samstag, 7. November 2026, 08:00 – 12:30 Uhr üblicher Standort: Karwendelstraße 16 /18 (Parkplatz am Stadion). Was ist Problemabfall? Problemabfall ist Abfall, der wegen seines Schadstoffgehalts getrennt vom Hausmüll zu entsorgen ist.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
       "published": "2026-11-06T16:25:00.000Z"
+    },
+    {
+      "id": "augsburg:news-17628",
+      "source": "augsburg",
+      "title": "Splitt, Salz und Spezialfahrzeuge: Der Winter kann kommen",
+      "summary": "Es wird nochmal warm. Doch schon bald kann der erste Schnee dieses Winters fallen. Kein Problem für den Abfallwirtschafts- und Straßenreinigungsbetrieb der Stadt Augsburg (AWS): Die Salzlager sind voll, die Fahrzeuge und Einsatzkräfte stehen bereit.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/splitt-salz-und-spezialfahrzeuge-der-winter-kann-kommen",
+      "published": "2026-11-06T11:27:05.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
@@ -183,14 +191,6 @@
       "summary": "Damit Geh- und Radwege sowie Straßen sicher und uneingeschränkt genutzt werden können, müssen Hecken, Bäume und Sträucher an Grundstücksgrenzen regelmäßig zurückgeschnitten werden. Die beste Zeit dafür liegt außerhalb der Vogelbrutzeit, zwischen Oktober und Februar.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/heckenschnitt-diese-regeln-gelten",
       "published": "2026-10-27T13:21:59.000Z"
-    },
-    {
-      "id": "augsburg:news-17568",
-      "source": "augsburg",
-      "title": "Kräutergarten und Hofgarten gehen in die Winterpause",
-      "summary": "Der Kräutergarten in der Rote-Torwall-Anlage und auch der Hofgarten am Fronhof werden ab Sonntag, 1. November, über die Winterzeit geschlossen. Die Beete und empfindliche Pflanzen sowie die Brunnen in den beiden beliebten Grünanlagen werden eingewintert.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kraeutergarten-und-hofgarten-gehen-in-die-winterpause",
-      "published": "2026-10-27T13:15:13.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-niklausstiefel-aktion-2026",
