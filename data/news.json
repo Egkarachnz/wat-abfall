@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T20:55:07.534Z",
+  "fetchedAt": "2026-11-07T19:26:52.695Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,14 +16,6 @@
   },
   "stale": [],
   "news": [
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
-      "source": "koenigsbrunn",
-      "title": "Problemmüll-Sammelaktion in Königsbrunn am Samstag, 7. November 2026",
-      "summary": "Die nächste Problemmüllsammlung in Königsbrunn findet statt am Samstag, 7. November 2026, 08:00 – 12:30 Uhr üblicher Standort: Karwendelstraße 16 /18 (Parkplatz am Stadion). Was ist Problemabfall? Problemabfall ist Abfall, der wegen seines Schadstoffgehalts getrennt vom Hausmüll zu entsorgen ist.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/problemmuell-sammelaktion-in-koenigsbrunn",
-      "published": "2026-11-06T16:25:00.000Z"
-    },
     {
       "id": "augsburg:news-17628",
       "source": "augsburg",
@@ -255,6 +247,14 @@
       "summary": "Es heißt wieder: Schauen, bummeln und genießen! Herzlich willkommen beim Königsmarkt! Statt wie sonst am zweiten Oktober-Sonntag findet der Königsbrunner Marktsonntag im Herbst dieses Mal erst am Sonntag, 18.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
       "published": "2026-10-15T12:12:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
+      "source": "koenigsbrunn",
+      "title": "Außenausstellung \"Königsbrunn im Wandel\"",
+      "summary": "Noch bis 16. Oktober 2026 zu besichtigen Von der Hauptstraße zur neugestalteten Bürgermeister-Wohlfarth-Straße: Vieles hat sich die letzten 100 Jahre in Königsbrunn verändert – Bauernhöfe und Siedlerhäuser wurden abgerissen oder umgebaut, große Geschäftshäuser und Parkplätze entstanden, manches…",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
+      "published": "2026-10-14T07:33:00.000Z"
     }
   ],
   "events": [
