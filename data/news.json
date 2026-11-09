@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T11:36:07.868Z",
+  "fetchedAt": "2026-11-09T23:47:52.006Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,22 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18935",
+      "source": "augsburg",
+      "title": "Mach mit, Augsburg: Zukunftsleitlinien werden aktualisiert",
+      "summary": "Die „Zukunftsleitlinien für Augsburg“ beschreiben, wie sich die Stadt in Zukunft entwickeln soll. Jetzt werden sie aktualisiert. Alle Interessierten können sich ab sofort auf machmit.augsburg.de beteiligen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/mach-mit-augsburg-zukunftsleitlinien-werden-aktualisiert",
+      "published": "2026-11-09T14:30:29.000Z"
+    },
+    {
+      "id": "augsburg:news-18911",
+      "source": "augsburg",
+      "title": "Informationen zu Selbstschutz und Notfallfürsorge auf augsburg.de",
+      "summary": "Wie kann ich mich auf Krisen und Notfälle vorbereiten? Antworten gibt es ab sofort auf augsburg.de/krisenvorsorge. Informationen und Tipps zur Vorbereitung auf Krisenlagen wie andauernde Stromausfälle und Unwetterlagen stehen in 17 Sprachen zur Verfügung.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/informationen-zu-selbstschutz-und-notfallfuersorge-auf-augsburgde",
+      "published": "2026-11-09T14:04:34.000Z"
+    },
     {
       "id": "augsburg:news-18921",
       "source": "augsburg",
@@ -161,28 +177,12 @@
       "published": "2026-10-28T14:08:03.000Z"
     },
     {
-      "id": "augsburg:news-18883",
-      "source": "augsburg",
-      "title": "B17-Sperrung: 1. bis 6. November zweite Bauphase",
-      "summary": "In den Herbstferien muss die B17 auf der Fabrikkanalbrücke wieder teilweise gesperrt werden. Richtung Landsberg gibt es in den Nächten 1./2. und 5./6. November eine Totalsperre. Vom 2. bis 5. November steht in jede Richtung eine Spur zur Verfügung. Die B17-Brücke über den Fabrikkanal wird saniert.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/b17-sperrung-vom-1-bis-6-november-zweit-bauphase",
-      "published": "2026-10-28T14:04:24.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
       "source": "koenigsbrunn",
       "title": "Wasserzählerstand: ablesen und melden bis 18. Dezember 2026: per Rückmelde-Karte oder Online-Formular",
       "summary": "Die Stände der Wasserzähler werden wie auch in den vergangen Jahren nicht durch die Mitarbeitenden der Stadtwerke Königsbrunn vor Ort abgelesen. Grundstückseigentümer bzw. Gebührenpflichtige müssen den Wasserzählerstand auch im Jahr 2026 selbst ablesen.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
       "published": "2026-10-28T08:01:06.000Z"
-    },
-    {
-      "id": "augsburg:news-18862",
-      "source": "augsburg",
-      "title": "Heckenschnitt: Diese Regeln gelten",
-      "summary": "Damit Geh- und Radwege sowie Straßen sicher und uneingeschränkt genutzt werden können, müssen Hecken, Bäume und Sträucher an Grundstücksgrenzen regelmäßig zurückgeschnitten werden. Die beste Zeit dafür liegt außerhalb der Vogelbrutzeit, zwischen Oktober und Februar.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/heckenschnitt-diese-regeln-gelten",
-      "published": "2026-10-27T13:21:59.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-niklausstiefel-aktion-2026",
