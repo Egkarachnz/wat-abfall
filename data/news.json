@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-10T11:15:21.510Z",
+  "fetchedAt": "2026-11-10T21:19:15.252Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18939",
+      "source": "augsburg",
+      "title": "Der „Christbaum für alle“ steht",
+      "summary": "Am heutigen Dienstagmittag traf er auf dem Rathausplatz ein: der „Christbaum für alle“, das Wahrzeichen des Christkindlesmarktes. Er wurde direkt aufgestellt und bekommt jetzt seinen Weihnachtsschmuck. Die 17 Meter hohe Tanne ist eine Spende aus der Gögginger Schafweidsiedlung.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/der-christbaum-fuer-alle-steht",
+      "published": "2026-11-10T15:11:26.000Z"
+    },
     {
       "id": "augsburg:news-18802",
       "source": "augsburg",
@@ -169,14 +177,6 @@
       "published": "2026-10-29T10:46:12.000Z"
     },
     {
-      "id": "augsburg:news-18890",
-      "source": "augsburg",
-      "title": "Augsburg gewinnt Bayerischen Stadtmarketingpreis",
-      "summary": "Große Freude bei Augsburg Marketing: Das Projekt „Altstadt neu erleben“ ist mit dem Bayerischen Stadtmarketingpreis 2026 ausgezeichnet worden. In der Kategorie der Städte ab 45.000 Einwohner überzeugte Augsburg die Jury mit der langfristigen Entwicklung der Altstadt und dem starken Miteinander von…",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/augsburg-gewinnt-bayerischen-stadtmarketingpreis",
-      "published": "2026-10-29T09:56:36.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
       "source": "koenigsbrunn",
       "title": "Wasserzählerstand: ablesen und melden bis 18. Dezember 2026: per Rückmelde-Karte oder Online-Formular",
@@ -258,17 +258,6 @@
     }
   ],
   "events": [
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-talente-2",
-      "source": "koenigsbrunn",
-      "title": "Königsbrunner Talente",
-      "start": "2026-10-01T08:00",
-      "end": "2026-11-10T15:30",
-      "place": "Bürgerservicezentrum: Marktstraße 3 a, 86343 Königsbrunn",
-      "summary": "Fotoausstellung von Ran Fuchs „Mushin (無心) – das Herz des traditionellen Japans“",
-      "category": "Ausstellung",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-talente-2"
-    },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-campus",
       "source": "koenigsbrunn",
