@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T23:47:52.006Z",
+  "fetchedAt": "2026-11-10T11:15:21.510Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -17,6 +17,30 @@
   "stale": [],
   "news": [
     {
+      "id": "augsburg:news-18802",
+      "source": "augsburg",
+      "title": "Führerscheine 2002 bis 2004 jetzt umtauschen",
+      "summary": "Wer seinen Führerschein zwischen 2002 und 2004 erhalten hat, muss diesen bis 19. Januar 2027 in einen EU-Führerschein umtauschen. Ausgenommen sind Personen, die vor 1953 geboren sind. Diese müssen ihren Führerschein bis 2033 umtauschen. Der Umtausch kostet rund 25 bis 30 Euro.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/fuehrerscheine-von-2002-bis-2004-jetzt-umtauschen",
+      "published": "2026-11-10T09:06:15.000Z"
+    },
+    {
+      "id": "augsburg:news-18921",
+      "source": "augsburg",
+      "title": "Bürgerversammlung in Göggingen am 10. November",
+      "summary": "Heute am 10. November lädt die Stadt zu einer Bürgerversammlung für den Stadtteil Göggingen ein. Sie findet im Roncallihaus am Klausenberg 7 statt. Ab 18 Uhr können Teilnehmende mit OB Dr. Florian Freund und dem Referententeam ins Gespräch kommen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/buergerversammlung-in-goeggingen-am-10-november",
+      "published": "2026-11-10T08:47:16.000Z"
+    },
+    {
+      "id": "augsburg:news-17629",
+      "source": "augsburg",
+      "title": "Volkstrauertag am 15. November",
+      "summary": "Die Stadt Augsburg gestaltet zusammen mit dem Volksbund Deutsche Kriegsgräberfürsorge am Sonntag, 15. November, wieder die zentrale Gedenkfeier zum Volkstrauertag. Sie beginnt um 11 Uhr direkt am Mahnmal „An der Blauen Kappe“. Im Anschluss erfolgen dort die Kranzniederlegungen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/volkstrauertag-am-15-november",
+      "published": "2026-11-10T06:55:15.000Z"
+    },
+    {
       "id": "augsburg:news-18935",
       "source": "augsburg",
       "title": "Mach mit, Augsburg: Zukunftsleitlinien werden aktualisiert",
@@ -33,18 +57,10 @@
       "published": "2026-11-09T14:04:34.000Z"
     },
     {
-      "id": "augsburg:news-18921",
-      "source": "augsburg",
-      "title": "Bürgerversammlung in Göggingen am 10. November",
-      "summary": "Am Dienstag, 10. November, lädt die Stadt zu einer Bürgerversammlung für den Stadtteil Göggingen ein. Sie findet im Roncallihaus am Klausenberg 7 statt. Ab 18 Uhr können Teilnehmende mit OB Dr. Florian Freund und dem Referententeam ins Gespräch kommen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/buergerversammlung-in-goeggingen-am-10-november",
-      "published": "2026-11-09T09:12:45.000Z"
-    },
-    {
       "id": "augsburg:news-17628",
       "source": "augsburg",
       "title": "Splitt, Salz und Spezialfahrzeuge: Der Winter kann kommen",
-      "summary": "Es wird nochmal warm. Doch schon bald kann der erste Schnee dieses Winters fallen. Kein Problem für den Abfallwirtschafts- und Straßenreinigungsbetrieb der Stadt Augsburg (AWS): Die Salzlager sind voll, die Fahrzeuge und Einsatzkräfte stehen bereit.",
+      "summary": "Es wird nochmal warm. Doch schon bald kann der erste Schnee dieses Winters fallen. Kein Problem für den Abfallwirtschafts- und Stadtreinigungsbetrieb der Stadt Augsburg (AWS): Die Salzlager sind voll, die Fahrzeuge und Einsatzkräfte stehen bereit.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/splitt-salz-und-spezialfahrzeuge-der-winter-kann-kommen",
       "published": "2026-11-06T11:27:05.000Z"
     },
@@ -159,22 +175,6 @@
       "summary": "Große Freude bei Augsburg Marketing: Das Projekt „Altstadt neu erleben“ ist mit dem Bayerischen Stadtmarketingpreis 2026 ausgezeichnet worden. In der Kategorie der Städte ab 45.000 Einwohner überzeugte Augsburg die Jury mit der langfristigen Entwicklung der Altstadt und dem starken Miteinander von…",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/augsburg-gewinnt-bayerischen-stadtmarketingpreis",
       "published": "2026-10-29T09:56:36.000Z"
-    },
-    {
-      "id": "augsburg:news-18889",
-      "source": "augsburg",
-      "title": "Eislaufen und Schwimmen in den Herbstferien",
-      "summary": "Was tun in den Herbstferien? Schlittschuhlaufen! Vom 31. Oktober bis 8. November hat die Eishalle Haunstetten täglich zum Publikumslauf geöffnet. Wer an Allerheiligen, 1. November, lieber schwimmen geht, kann im Alten Stadtbad seine Bahnen ziehen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/eislaufen-und-schwimmen-in-den-herbstferien",
-      "published": "2026-10-29T09:18:43.000Z"
-    },
-    {
-      "id": "augsburg:news-18886",
-      "source": "augsburg",
-      "title": "MAX59: Zwischennutzung mit Kreativ- und Kulturangeboten",
-      "summary": "In der Maximilianstraße 59 kehrt wieder Leben ein. Von November 2026 bis voraussichtlich Mai 2027 gibt es in MAX59 eine Zwischennutzung. Dabei entsteht im Erdgeschoss ein Ort für Begegnung, Kreativität, Kultur, Bildung und gemeinsames Gestalten.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/max59-zwischennutzung-mit-kreativ-und-kulturangeboten",
-      "published": "2026-10-28T14:08:03.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
