@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-11T11:00:23.093Z",
+  "fetchedAt": "2026-11-11T21:58:52.121Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -17,6 +17,14 @@
   "stale": [],
   "news": [
     {
+      "id": "augsburg:news-18944",
+      "source": "augsburg",
+      "title": "Wettbewerb „pflanz mit!“: Preisverleihung am 30. November",
+      "summary": "Ideen von Bürgerinnen und Bürgern für mehr Grün und Biodiversität in der Stadt werden am Montag, 30. November, um 18 Uhr in der Stadtbücherei vorgestellt und prämiert.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/wettbewerb-pflanz-mit-preisverleihung-am-30-november",
+      "published": "2026-11-11T11:32:53.000Z"
+    },
+    {
       "id": "augsburg:news-17589",
       "source": "augsburg",
       "title": "Kunst unterm Hammer – Benefizauktion zugunsten der Kunstsammlungen & Museen",
@@ -31,6 +39,14 @@
       "summary": "Am heutigen Dienstagmittag traf er auf dem Rathausplatz ein: der „Christbaum für alle“, das Wahrzeichen des Christkindlesmarktes. Er wurde direkt aufgestellt und bekommt jetzt seinen Weihnachtsschmuck. Die 17 Meter hohe Tanne ist eine Spende aus der Gögginger Schafweidsiedlung.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/der-christbaum-fuer-alle-steht",
       "published": "2026-11-10T15:11:26.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-archivherbst-ausstellung-alte-heimat-neue-heimat-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Archivherbst: Ausstellung \"Alte Heimat – neue Heimat Königsbrunn”",
+      "summary": "Vernissage am 12. November 2026. Ausstellungszeitraum: 13. November bis 15. Dezember 2026. Die diesjährige Ausstellung widmet sich dem Thema “Heimat” und blickt auf Königsbrunn als neue und sich immer wandelnde Heimat. Was macht Heimat aus?",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/koenigsbrunner-archivherbst-ausstellung-alte-heimat-neue-heimat-koenigsbrunn",
+      "published": "2026-11-10T14:55:00.000Z"
     },
     {
       "id": "augsburg:news-18802",
@@ -97,14 +113,6 @@
       "published": "2026-11-04T13:32:08.000Z"
     },
     {
-      "id": "koenigsbrunn:nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
-      "source": "koenigsbrunn",
-      "title": "Volkstrauertag am Sonntag, 15. November 2026: Friedensgedenkfeier",
-      "summary": "Einladung zum gemeinsamen feierlichen Gedenken Anlässlich des Volkstrauertages lädt die Stadt Königsbrunn ihre Bürgerinnen und Bürger zu einer Friedensgedenkfeier ein: Um 10:00 Uhr findet in der Evangelisch-Lutherischen St. Johanneskirche ein Gottesdienst statt.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
-      "published": "2026-11-04T11:13:00.000Z"
-    },
-    {
       "id": "augsburg:news-18912",
       "source": "augsburg",
       "title": "Sachgebiet Migration und Aufenthalt zieht um",
@@ -153,20 +161,20 @@
       "published": "2026-11-02T09:53:00.000Z"
     },
     {
+      "id": "koenigsbrunn:nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
+      "source": "koenigsbrunn",
+      "title": "Volkstrauertag am Sonntag, 15. November 2026: Friedensgedenkfeier",
+      "summary": "Einladung zum gemeinsamen feierlichen Gedenken Anlässlich des Volkstrauertages lädt die Stadt Königsbrunn ihre Bürgerinnen und Bürger zu einer Friedensgedenkfeier ein: Um 10:00 Uhr findet in der Evangelisch-Lutherischen St. Johanneskirche ein Gottesdienst statt.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
+      "published": "2026-10-30T11:13:00.000Z"
+    },
+    {
       "id": "augsburg:news-17611",
       "source": "augsburg",
       "title": "Hilfe für Obdachlose bei Kälte",
       "summary": "Noch ist das Wetter moderat. Aber der Winter kommt, und mit ihm eisige Temperaturen. Wer obdachlos ist, lebt dann in Gefahr. Die Stadt Augsburg bündelt daher eine Vielzahl von Hilfen, die Menschen ohne Wohnung Schutz vor der Kälte bieten.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/hilfe-fuer-obdachlose-bei-kaelte-1",
       "published": "2026-10-30T09:04:24.000Z"
-    },
-    {
-      "id": "augsburg:news-17549",
-      "source": "augsburg",
-      "title": "Alltagsheldinnen und -helden gesucht!",
-      "summary": "Das Büro für Bürgerschaftliches Engagement veranstaltet zum 6. Mal die Anerkennungsaktion „Füreinander!“, mit der die Stadt Augsburg besonders engagierte Menschen ehrt. Den ganzen November über können Personen nominiert werden, die sich in besonderem Maße für andere einsetzen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/alltagsheldinnen-und-helden-gesucht",
-      "published": "2026-10-30T07:22:30.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/das-war-die-buergerversammlung-2026",
@@ -247,28 +255,9 @@
       "summary": "Es heißt wieder: Schauen, bummeln und genießen! Herzlich willkommen beim Königsmarkt! Statt wie sonst am zweiten Oktober-Sonntag findet der Königsbrunner Marktsonntag im Herbst dieses Mal erst am Sonntag, 18.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
       "published": "2026-10-15T12:12:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
-      "source": "koenigsbrunn",
-      "title": "Außenausstellung \"Königsbrunn im Wandel\"",
-      "summary": "Noch bis 16. Oktober 2026 zu besichtigen Von der Hauptstraße zur neugestalteten Bürgermeister-Wohlfarth-Straße: Vieles hat sich die letzten 100 Jahre in Königsbrunn verändert – Bauernhöfe und Siedlerhäuser wurden abgerissen oder umgebaut, große Geschäftshäuser und Parkplätze entstanden, manches…",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/aussenausstellung-koenigsbrunn-im-wandel",
-      "published": "2026-10-14T07:33:00.000Z"
     }
   ],
   "events": [
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-campus",
-      "source": "koenigsbrunn",
-      "title": "Königsbrunner Campus",
-      "start": "2026-11-11T19:00",
-      "end": null,
-      "place": "Infopavillon 955: Alter Postweg 1, 86343 Königsbrunn",
-      "summary": "Populärwissenschaftliche Ringvorlesung mit Dr. Ina Hagen-Jeske, Lehrstuhl für Europäische Ethnologie/Volkskunde",
-      "category": "Vortrag",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-campus"
-    },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-archivherbst",
       "source": "koenigsbrunn",
