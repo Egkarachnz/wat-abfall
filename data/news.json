@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-10T21:19:15.252Z",
+  "fetchedAt": "2026-11-11T11:00:23.093Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-17589",
+      "source": "augsburg",
+      "title": "Kunst unterm Hammer – Benefizauktion zugunsten der Kunstsammlungen & Museen",
+      "summary": "Rund 100 originale Kunstobjekte, gestiftet aus Privatsammlungen, kommen in der Benefizauktion „Kunst für die Kunst“ am Freitag, 27. November, ab 15 Uhr in der Neuen Galerie im Höhmannhaus unter den Hammer. Viele Anfangsgebote starten schon bei 10 Euro.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kunst-unterm-hammer-benefizauktion-zugunsten-der-kunstsammlungen-museen-augsburg",
+      "published": "2026-11-11T07:52:10.000Z"
+    },
     {
       "id": "augsburg:news-18939",
       "source": "augsburg",
@@ -159,14 +167,6 @@
       "summary": "Das Büro für Bürgerschaftliches Engagement veranstaltet zum 6. Mal die Anerkennungsaktion „Füreinander!“, mit der die Stadt Augsburg besonders engagierte Menschen ehrt. Den ganzen November über können Personen nominiert werden, die sich in besonderem Maße für andere einsetzen.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/alltagsheldinnen-und-helden-gesucht",
       "published": "2026-10-30T07:22:30.000Z"
-    },
-    {
-      "id": "augsburg:news-18896",
-      "source": "augsburg",
-      "title": "Bio-regionaler Einkaufsführer wächst",
-      "summary": "Wo kann ich bio-regional einkaufen? Diese Frage beantwortet der bio-regionale Einkaufsführer. Dieser verzeichnet jetzt zahlreiche neue Einträge, davon viele im Landkreis Aichach-Friedberg und im Paartal. Den Einkaufsführer finden Sie unter bio-regional-augsburg.de.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/bio-regionaler-einkaufsfuehrer-waechst-1",
-      "published": "2026-10-30T06:26:02.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/das-war-die-buergerversammlung-2026",
