@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-12T11:16:43.497Z",
+  "fetchedAt": "2026-11-12T21:51:15.112Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18938",
+      "source": "augsburg",
+      "title": "Vielfältige Lebensgeschichten in der „Living Library“",
+      "summary": "Beim interaktiven Format „Living Library – Vielfalt erzählen“ geben Menschen mit unterschiedlichen Lebenswegen und Erfahrungen Einblick in ihre persönliche Geschichte. Am Donnerstag, 19.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/vielfaeltige-lebensgeschichten-in-der-living-library",
+      "published": "2026-11-12T12:07:20.000Z"
+    },
     {
       "id": "koenigsbrunn:nachrichten/artikel/bayer-bereitschaftspolizei-informiert-einsatzkraefte-trainieren-in-koenigsbrunn",
       "source": "koenigsbrunn",
@@ -177,14 +185,6 @@
       "published": "2026-10-30T11:13:00.000Z"
     },
     {
-      "id": "augsburg:news-17611",
-      "source": "augsburg",
-      "title": "Hilfe für Obdachlose bei Kälte",
-      "summary": "Noch ist das Wetter moderat. Aber der Winter kommt, und mit ihm eisige Temperaturen. Wer obdachlos ist, lebt dann in Gefahr. Die Stadt Augsburg bündelt daher eine Vielzahl von Hilfen, die Menschen ohne Wohnung Schutz vor der Kälte bieten.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/hilfe-fuer-obdachlose-bei-kaelte-1",
-      "published": "2026-10-30T09:04:24.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/das-war-die-buergerversammlung-2026",
       "source": "koenigsbrunn",
       "title": "Das war die Bürgerversammlung 2026",
@@ -258,17 +258,6 @@
     }
   ],
   "events": [
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-archivherbst",
-      "source": "koenigsbrunn",
-      "title": "Königsbrunner Archivherbst",
-      "start": "2026-11-12T19:00",
-      "end": null,
-      "place": "Bürgerservicezentrum: Marktstraße 3 a, 86343 Königsbrunn",
-      "summary": "Ausstellungs-Eröffnung mit begleitenden Vorträgen der Museumsleiterin Rebecca Ribarek und der Archivleiterin Dr. Diana Egermann-Krebs",
-      "category": "Ausstellung",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-archivherbst"
-    },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-archivherbst-ausstellung",
       "source": "koenigsbrunn",
