@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-11T21:58:52.121Z",
+  "fetchedAt": "2026-11-12T11:16:43.497Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/bayer-bereitschaftspolizei-informiert-einsatzkraefte-trainieren-in-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Bayer. Bereitschaftspolizei informiert: Einsatzkräfte trainieren in Königsbrunn im Zeitraum 16. November bis 04. Dezember 2026",
+      "summary": "Jeweils tagsüber, trainieren Einsatzhundertschaften der Bayerischen Bereitschaftspolizei im Stadtbereich verschiedene Einsatzszenarien, die sich im täglichen Einsatzgeschehen ergeben könnten.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bayer-bereitschaftspolizei-informiert-einsatzkraefte-trainieren-in-koenigsbrunn",
+      "published": "2026-11-12T08:20:25.000Z"
+    },
     {
       "id": "augsburg:news-18944",
       "source": "augsburg",
@@ -57,14 +65,6 @@
       "published": "2026-11-10T09:06:15.000Z"
     },
     {
-      "id": "augsburg:news-18921",
-      "source": "augsburg",
-      "title": "Bürgerversammlung in Göggingen am 10. November",
-      "summary": "Heute am 10. November lädt die Stadt zu einer Bürgerversammlung für den Stadtteil Göggingen ein. Sie findet im Roncallihaus am Klausenberg 7 statt. Ab 18 Uhr können Teilnehmende mit OB Dr. Florian Freund und dem Referententeam ins Gespräch kommen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/buergerversammlung-in-goeggingen-am-10-november",
-      "published": "2026-11-10T08:47:16.000Z"
-    },
-    {
       "id": "augsburg:news-17629",
       "source": "augsburg",
       "title": "Volkstrauertag am 15. November",
@@ -95,6 +95,14 @@
       "summary": "Es wird nochmal warm. Doch schon bald kann der erste Schnee dieses Winters fallen. Kein Problem für den Abfallwirtschafts- und Stadtreinigungsbetrieb der Stadt Augsburg (AWS): Die Salzlager sind voll, die Fahrzeuge und Einsatzkräfte stehen bereit.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/splitt-salz-und-spezialfahrzeuge-der-winter-kann-kommen",
       "published": "2026-11-06T11:27:05.000Z"
+    },
+    {
+      "id": "augsburg:news-18921",
+      "source": "augsburg",
+      "title": "Bürgerversammlung in Göggingen am 10. November",
+      "summary": "Heute am 10. November lädt die Stadt zu einer Bürgerversammlung für den Stadtteil Göggingen ein. Sie findet im Roncallihaus am Klausenberg 7 statt. Ab 18 Uhr können Teilnehmende mit OB Dr. Florian Freund und dem Referententeam ins Gespräch kommen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/buergerversammlung-in-goeggingen-am-10-november",
+      "published": "2026-11-06T08:47:00.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
@@ -247,14 +255,6 @@
       "summary": "Empfang im Rathausfoyer: Freitag, 16. Oktober 2026, 13:00 Uhr | Anmeldung bis Montag, 12. Oktober 2026 Die Brunnenstadt feiert ein besonderes Jubiläum: Seit nunmehr 30 Jahren verbindet uns eine enge und lebendige Freundschaft mit der kroatischen Stadt Rab.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
       "published": "2026-10-15T17:05:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
-      "source": "koenigsbrunn",
-      "title": "Traditioneller Marktsonntag: 18. Oktober 2026",
-      "summary": "Es heißt wieder: Schauen, bummeln und genießen! Herzlich willkommen beim Königsmarkt! Statt wie sonst am zweiten Oktober-Sonntag findet der Königsbrunner Marktsonntag im Herbst dieses Mal erst am Sonntag, 18.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
-      "published": "2026-10-15T12:12:00.000Z"
     }
   ],
   "events": [
