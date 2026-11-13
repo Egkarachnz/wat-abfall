@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-12T21:51:15.112Z",
+  "fetchedAt": "2026-11-13T11:01:50.411Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,14 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18948",
+      "source": "augsburg",
+      "title": "Der Christkindlesmarkt beginnt am 23. November",
+      "summary": "Noch zehn Tage, dann gehen auf dem Rathausplatz die Lichter an: Der Christkindlesmarkt wird am Montag, 23. November, eröffnet. Um 18 Uhr wird Oberbürgermeister Dr. Florian Freund zum ersten Mal die Eröffnungsrede halten, umrahmt von den Domsingknaben und dem Engelesspiel.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/christkindlesmarkt-beginnt-am-23-november",
+      "published": "2026-11-13T10:36:47.000Z"
+    },
     {
       "id": "augsburg:news-18938",
       "source": "augsburg",
@@ -159,14 +167,6 @@
       "summary": "Das neue Schuljahr hat begonnen. Königsbrunner Schülerinnen und Schüler, die mit dem Bus ihren Schul- und ihren Heimweg zurücklegen, informieren wir über die aktuellen Fahrpläne der Schulbus-Linien.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/schulbus-linien-fahrplaene-fuer-das-schuljahr-2026-2027",
       "published": "2026-11-03T06:35:00.000Z"
-    },
-    {
-      "id": "augsburg:news-18905",
-      "source": "augsburg",
-      "title": "Christkindlesmarkt: Die Vorbereitungen laufen",
-      "summary": "Am Montag, 23. November, wird um 18 Uhr der Christkindlesmarkt eröffnet. Bis dahin laufen die Vorbereitungen auf Hochtouren: Die Buden werden aufgebaut, der Christbaum für alle geliefert und geschmückt und Sicherheitsbarrieren aufgestellt. Die ersten Buden stehen bereits auf dem Rathausplatz.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/christkindlesmarkt-die-vorbereitungen-laufen",
-      "published": "2026-11-02T11:20:18.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/grundsteuer-wichtige-information-zu-grundsteueraenderungsanzeige-baygrst-5",
