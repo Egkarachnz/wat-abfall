@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-13T21:26:29.521Z",
+  "fetchedAt": "2026-11-15T20:24:28.663Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -268,17 +268,6 @@
       "summary": "",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-archivherbst-ausstellung"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/volkstrauertag-einladung-der-stadt-1",
-      "source": "koenigsbrunn",
-      "title": "Volkstrauertag: Einladung der Stadt zum gemeinsamen feierlichen Gedenken",
-      "start": "2026-11-15T10:00",
-      "end": "2026-11-15T12:00",
-      "place": "Evangelisch-Lutherischen St. Johanneskirche und Kriegerdenkmal in der Bgm.-Wohlfarth-Straße",
-      "summary": "",
-      "category": "Open Air-Veranstaltung",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/volkstrauertag-einladung-der-stadt-1"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-mithrastag",
