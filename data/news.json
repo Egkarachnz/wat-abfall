@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-16T11:23:58.246Z",
+  "fetchedAt": "2026-11-16T23:44:52.393Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -14,8 +14,18 @@
       "events": "https://www.augsburg.de/veranstaltungen"
     }
   },
-  "stale": [],
+  "stale": [
+    "koenigsbrunn.news"
+  ],
   "news": [
+    {
+      "id": "augsburg:news-18818",
+      "source": "augsburg",
+      "title": "Bürgerbüro und Bücherei Göggingen öffnen am Dienstag",
+      "summary": "Am morgigen Dienstag, 17. November, eröffnet in Göggingen das sechste Bürgerbüro der Stadt Augsburg. Auch die Stadtteilbücherei ist künftig in den frisch renovierten Räumen am Klausenberg 8a zu finden. Göggingen bekommt ein neues Servicezentrum: Am Dienstag, 17.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/goeggingen-buergerbuero-und-buecherei-oeffnen",
+      "published": "2026-11-16T13:58:06.000Z"
+    },
     {
       "id": "augsburg:news-18948",
       "source": "augsburg",
@@ -143,14 +153,6 @@
       "summary": "Der Stadtrat entschied in seiner Oktober-Sitzung vergangene Woche, den Weg für zusätzliche Realschulplätze freizumachen. Die Stadt unterstützt die Erweiterung an der Bischof-Ulrich-Realschule des Schulwerks der Diözese Augsburg mit einem einmaligen Zuschuss in Höhe von maximal 2,375 Millionen Euro.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/rund-100-zusaetzliche-realschulplaetze-fuer-augsburg",
       "published": "2026-11-03T07:15:18.000Z"
-    },
-    {
-      "id": "augsburg:news-18306",
-      "source": "augsburg",
-      "title": "Nicht abgeholte Fundsachen werden online versteigert",
-      "summary": "Rund 100 Fahrräder sowie zahlreiche weitere Fundsachen, die im städtischen Fundbüro nicht abgeholt wurden, kommen ab 3. Dezember unter den Hammer. Dafür wird ein Online-Portal genutzt. Bereits ab Donnerstag, 5. November, ist das Angebot dort einsehbar.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/nicht-abgeholte-fundsachen-werden-online-versteigert",
-      "published": "2026-11-03T07:01:14.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/schulbus-linien-fahrplaene-fuer-das-schuljahr-2026-2027",
