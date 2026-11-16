@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-15T20:24:28.663Z",
+  "fetchedAt": "2026-11-16T11:23:58.246Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -63,14 +63,6 @@
       "summary": "Am heutigen Dienstagmittag traf er auf dem Rathausplatz ein: der „Christbaum für alle“, das Wahrzeichen des Christkindlesmarktes. Er wurde direkt aufgestellt und bekommt jetzt seinen Weihnachtsschmuck. Die 17 Meter hohe Tanne ist eine Spende aus der Gögginger Schafweidsiedlung.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/der-christbaum-fuer-alle-steht",
       "published": "2026-11-10T15:11:26.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-archivherbst-ausstellung-alte-heimat-neue-heimat-koenigsbrunn",
-      "source": "koenigsbrunn",
-      "title": "Königsbrunner Archivherbst: Ausstellung \"Alte Heimat – neue Heimat Königsbrunn”",
-      "summary": "Vernissage am 12. November 2026. Ausstellungszeitraum: 13. November bis 15. Dezember 2026. Die diesjährige Ausstellung widmet sich dem Thema “Heimat” und blickt auf Königsbrunn als neue und sich immer wandelnde Heimat. Was macht Heimat aus?",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/koenigsbrunner-archivherbst-ausstellung-alte-heimat-neue-heimat-koenigsbrunn",
-      "published": "2026-11-10T14:55:00.000Z"
     },
     {
       "id": "augsburg:news-18802",
@@ -209,6 +201,22 @@
       "published": "2026-10-27T05:58:12.000Z"
     },
     {
+      "id": "koenigsbrunn:nachrichten/artikel/schliesstage-der-stadtverwaltung-und-ihrer-aussenstellen",
+      "source": "koenigsbrunn",
+      "title": "Schließtage der Stadtverwaltung und ihrer Außenstellen",
+      "summary": "Von Mittwoch, 23. Dezember 2026, bis einschließlich Sonntag, 3. Januar 2027 Zusätzlich zu Heiligabend und Silvester weisen wir auf drei Schließtage der Stadtverwaltung nach den Weihnachtstagen hin: Montag, 28. Dezember 2026 Dienstag, 29. Dezember 2026 Mittwoch, 30.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/schliesstage-der-stadtverwaltung-und-ihrer-aussenstellen",
+      "published": "2026-10-21T09:42:46.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-archivherbst-ausstellung-alte-heimat-neue-heimat-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Archivherbst: Ausstellung \"Alte Heimat – neue Heimat Königsbrunn”",
+      "summary": "Vernissage am 12. November 2026. Ausstellungszeitraum: 13. November bis 15. Dezember 2026. Die diesjährige Ausstellung widmet sich dem Thema “Heimat” und blickt auf Königsbrunn als neue und sich immer wandelnde Heimat. Was macht Heimat aus?",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/koenigsbrunner-archivherbst-ausstellung-alte-heimat-neue-heimat-koenigsbrunn",
+      "published": "2026-10-20T13:55:00.000Z"
+    },
+    {
       "id": "koenigsbrunn:nachrichten/artikel/besser-heizen-mit-dem-ofenfuehrerschein-kostenloser-online-kurs",
       "source": "koenigsbrunn",
       "title": "Besser heizen mit dem \"Ofenführerschein“: kostenloser Online-Kurs",
@@ -247,14 +255,6 @@
       "summary": "Dann auch wieder am Wochenende geöffnet! Für alle Schwimmfreunde: Im Gymnasium-Hallenbad (Alter Postweg 3, 86343 Königsbrunn) darf auch die Königsbrunner Öffentlichkeit schwimmen. Am 1. Mai 2024 hat im Hallenbad in die Sommersaison begonnen.",
       "url": "https://www.koenigsbrunn.de/leben-erleben/sport/oeffentliches-schwimmen-im-gymnasium-koenigsbrunn",
       "published": "2026-10-16T06:12:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
-      "source": "koenigsbrunn",
-      "title": "30 Jahre Städtepartnerschaft mit Rab",
-      "summary": "Empfang im Rathausfoyer: Freitag, 16. Oktober 2026, 13:00 Uhr | Anmeldung bis Montag, 12. Oktober 2026 Die Brunnenstadt feiert ein besonderes Jubiläum: Seit nunmehr 30 Jahren verbindet uns eine enge und lebendige Freundschaft mit der kroatischen Stadt Rab.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
-      "published": "2026-10-15T17:05:00.000Z"
     }
   ],
   "events": [
@@ -279,17 +279,6 @@
       "summary": "Von Reiterkriegern und Saaljubel Grabfunde des frühen Mittelalters aus dem Lechtal Vortrag von Volker Babucke M. A., Frühmittelalterarchäologe",
       "category": "",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-mithrastag"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/geschichten-zur-guten-nacht",
-      "source": "koenigsbrunn",
-      "title": "Geschichten zur guten Nacht",
-      "start": "2026-11-20T19:00",
-      "end": null,
-      "place": "Stadtbücherei Königsbrunn, Schwabenstr. 43, 86343 Königsbrunn",
-      "summary": "Selbst vorlesen oder einfach zuhören.",
-      "category": "Literatur",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/geschichten-zur-guten-nacht"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/weihnachtsdeko-tauschboerse",
