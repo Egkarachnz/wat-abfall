@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-16T23:44:52.393Z",
+  "fetchedAt": "2026-11-17T11:55:26.582Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -14,9 +14,7 @@
       "events": "https://www.augsburg.de/veranstaltungen"
     }
   },
-  "stale": [
-    "koenigsbrunn.news"
-  ],
+  "stale": [],
   "news": [
     {
       "id": "augsburg:news-18818",
@@ -171,14 +169,6 @@
       "published": "2026-11-02T09:53:00.000Z"
     },
     {
-      "id": "koenigsbrunn:nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
-      "source": "koenigsbrunn",
-      "title": "Volkstrauertag am Sonntag, 15. November 2026: Friedensgedenkfeier",
-      "summary": "Einladung zum gemeinsamen feierlichen Gedenken Anlässlich des Volkstrauertages lädt die Stadt Königsbrunn ihre Bürgerinnen und Bürger zu einer Friedensgedenkfeier ein: Um 10:00 Uhr findet in der Evangelisch-Lutherischen St. Johanneskirche ein Gottesdienst statt.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/volkstrauertag-am-sonntag-15-november-2026-friedensgedenkfeier",
-      "published": "2026-10-30T11:13:00.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/das-war-die-buergerversammlung-2026",
       "source": "koenigsbrunn",
       "title": "Das war die Bürgerversammlung 2026",
@@ -235,14 +225,6 @@
       "published": "2026-10-19T06:07:00.000Z"
     },
     {
-      "id": "koenigsbrunn:nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
-      "source": "koenigsbrunn",
-      "title": "Bürgerversammlung: Mittwoch, 28. Oktober 2026 um 19:00 Uhr | Einladung der Stadt",
-      "summary": "Wie jedes Jahr informiert 1. Bürgermeister Franz Feigl bei diesem Termin wieder über wichtige Themen aus der Stadtverwaltung und beantwortet Fragen der Anwesenden. Auch ein Vertreter der Polizeiinspektion Bobingen ist anwesend und gibt Einblicke in die Sicherheitslage in Königsbrunn.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/buergerversammlung-mittwoch-28-oktober-2026",
-      "published": "2026-10-19T05:40:00.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/stadtwerke-spuel-und-reinigungsarbeiten-im-strassenbereich",
       "source": "koenigsbrunn",
       "title": "Stadtwerke: Spül- und Reinigungsarbeiten im Straßenbereich seit Ende September 2026 bis Ende 2026",
@@ -257,6 +239,22 @@
       "summary": "Dann auch wieder am Wochenende geöffnet! Für alle Schwimmfreunde: Im Gymnasium-Hallenbad (Alter Postweg 3, 86343 Königsbrunn) darf auch die Königsbrunner Öffentlichkeit schwimmen. Am 1. Mai 2024 hat im Hallenbad in die Sommersaison begonnen.",
       "url": "https://www.koenigsbrunn.de/leben-erleben/sport/oeffentliches-schwimmen-im-gymnasium-koenigsbrunn",
       "published": "2026-10-16T06:12:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
+      "source": "koenigsbrunn",
+      "title": "30 Jahre Städtepartnerschaft mit Rab",
+      "summary": "Empfang im Rathausfoyer: Freitag, 16. Oktober 2026, 13:00 Uhr | Anmeldung bis Montag, 12. Oktober 2026 Die Brunnenstadt feiert ein besonderes Jubiläum: Seit nunmehr 30 Jahren verbindet uns eine enge und lebendige Freundschaft mit der kroatischen Stadt Rab.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
+      "published": "2026-10-15T17:05:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
+      "source": "koenigsbrunn",
+      "title": "Traditioneller Marktsonntag: 18. Oktober 2026",
+      "summary": "Es heißt wieder: Schauen, bummeln und genießen! Herzlich willkommen beim Königsmarkt! Statt wie sonst am zweiten Oktober-Sonntag findet der Königsbrunner Marktsonntag im Herbst dieses Mal erst am Sonntag, 18.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/traditioneller-marktsonntag-18-oktober-2026",
+      "published": "2026-10-15T12:12:00.000Z"
     }
   ],
   "events": [
