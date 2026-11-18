@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T22:53:55.708Z",
+  "fetchedAt": "2026-11-18T11:45:46.344Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,14 +16,6 @@
   },
   "stale": [],
   "news": [
-    {
-      "id": "augsburg:news-18961",
-      "source": "augsburg",
-      "title": "Botanischer Garten und Friedhöfe geschlossen",
-      "summary": "Aktuell weht ein Sturm über Augsburg. Darum sind der Botanische Garten und die städtischen Friedhöfe ab sofort geschlossen. In der Nähe von Bäumen besteht bei starkem Wind besondere Gefahr. Herabfallende Äste können lebensgefährlich werden.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/botanischer-garten-und-friedhoefe-geschlossen",
-      "published": "2026-11-17T14:38:12.000Z"
-    },
     {
       "id": "augsburg:news-18960",
       "source": "augsburg",
@@ -47,6 +39,14 @@
       "summary": "Wieder vier Tage lang zauberhafte Adventsstimmung Wenn der Duft von frischer Tanne, Glühwein, Lebkuchen, Bratwürstchen und anderen Leckereien in der Luft liegt, dann ist es wieder Zeit für unseren Königsbrunner Niklausmarkt – dieses Jahr von Donnerstag, 3. Dezember, bis Sonntag, 6. Dezember 2026.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/koenigsbrunner-niklausmarkt-3-bis-6-dezember-2026",
       "published": "2026-11-17T12:10:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:nachrichten/artikel/wohnsitzanmeldung-jetzt-bequem-online",
+      "source": "koenigsbrunn",
+      "title": "Wohnsitzanmeldung jetzt bequem online",
+      "summary": "... als Haupt- oder Nebenwohnung anmelden. Wer nach Königsbrunn zieht oder innerhalb der Stadt umzieht, kann seine neue Adresse nun bequem von zu Hause aus anmelden – ganz ohne Termin im Einwohnermeldeamt.",
+      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/wohnsitzanmeldung-jetzt-bequem-online",
+      "published": "2026-11-17T09:11:00.000Z"
     },
     {
       "id": "augsburg:news-18818",
@@ -161,6 +161,14 @@
       "published": "2026-11-05T09:57:00.000Z"
     },
     {
+      "id": "augsburg:news-18909",
+      "source": "augsburg",
+      "title": "Eislaufsaison im Curt-Frenzel-Stadion beginnt",
+      "summary": "Ab Samstag, 14. November, können Eislauffans wieder ihre Runden auf der Bahn 2 des Curt-Frenzel-Stadions drehen. Möglich macht das die aktuelle Wetterlage. Die Eishalle Haunstetten ist bereits seit Mitte September geöffnet. Hier wie dort ist die Zahlung am Kassenautomat nur bargeldlos möglich.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/eislaufsaison-im-curt-frenzel-stadion-beginnt",
+      "published": "2026-11-04T13:32:08.000Z"
+    },
+    {
       "id": "koenigsbrunn:nachrichten/artikel/schulbus-linien-fahrplaene-fuer-das-schuljahr-2026-2027",
       "source": "koenigsbrunn",
       "title": "Schulbus-Linien: Fahrpläne für das Schuljahr 2026 / 2027 und Infos zu den Busfahrkarten: Verkauf und Mitführungs-Pflicht ab dem 9. November 2026",
@@ -247,14 +255,6 @@
       "summary": "Dann auch wieder am Wochenende geöffnet! Für alle Schwimmfreunde: Im Gymnasium-Hallenbad (Alter Postweg 3, 86343 Königsbrunn) darf auch die Königsbrunner Öffentlichkeit schwimmen. Am 1. Mai 2024 hat im Hallenbad in die Sommersaison begonnen.",
       "url": "https://www.koenigsbrunn.de/leben-erleben/sport/oeffentliches-schwimmen-im-gymnasium-koenigsbrunn",
       "published": "2026-10-16T06:12:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
-      "source": "koenigsbrunn",
-      "title": "30 Jahre Städtepartnerschaft mit Rab",
-      "summary": "Empfang im Rathausfoyer: Freitag, 16. Oktober 2026, 13:00 Uhr | Anmeldung bis Montag, 12. Oktober 2026 Die Brunnenstadt feiert ein besonderes Jubiläum: Seit nunmehr 30 Jahren verbindet uns eine enge und lebendige Freundschaft mit der kroatischen Stadt Rab.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/30-jahre-staedtepartnerschaft-mit-rab",
-      "published": "2026-10-15T17:05:00.000Z"
     }
   ],
   "events": [
@@ -279,6 +279,28 @@
       "summary": "Von Reiterkriegern und Saaljubel Grabfunde des frühen Mittelalters aus dem Lechtal Vortrag von Volker Babucke M. A., Frühmittelalterarchäologe",
       "category": "",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-mithrastag"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/bundesweiter-vorlesetag-der-regenbogenfisch-von-marcus-pfister",
+      "source": "koenigsbrunn",
+      "title": "Bundesweiter Vorlesetag: \"Der Regenbogenfisch\" von Marcus Pfister",
+      "start": "2026-11-20T15:00",
+      "end": null,
+      "place": "Cineplex Königsbrunn, Bürgermeister-Wohlfarth-Str. 81",
+      "summary": "Die Stadtbücherei ist mit dem Cineplex beim bundesweiten Vorlesetag dabei.",
+      "category": "Kinder",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/bundesweiter-vorlesetag-der-regenbogenfisch-von-marcus-pfister"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/geschichten-zur-guten-nacht",
+      "source": "koenigsbrunn",
+      "title": "Geschichten zur guten Nacht.",
+      "start": "2026-11-20T19:00",
+      "end": null,
+      "place": "Stadtbücherei Königsbrunn, Schwabenstr. 43, 86343 Königsbrunn",
+      "summary": "Vorlesen oder einfach zuhören.",
+      "category": "Literatur",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/geschichten-zur-guten-nacht"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/weihnachtsdeko-tauschboerse",
@@ -312,6 +334,50 @@
       "summary": "In der Stadtbücherei wird weihnachtlich gebastelt!",
       "category": "Freizeit",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/adventsbasteln-fuer-alle"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-erster-von-vier-tagen",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Niklausmarkt 2026: Erster von vier Tagen",
+      "start": "2026-12-03T17:00",
+      "end": "2026-12-03T21:00",
+      "place": "Zwischen Pharmpur EISARENA (Königsallee 1, 86343 Königsbrunn) und Infopavillon 955 (Alter Postweg 1, 86343 Königsbrunn)",
+      "summary": "Zauberhafte Adventsstimmung in unserer schönen Stadt!",
+      "category": "Kinder",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-erster-von-vier-tagen"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-zweiter-von-vier-tagen",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Niklausmarkt 2026: Zweiter von vier Tagen",
+      "start": "2026-12-04T17:00",
+      "end": "2026-12-04T21:00",
+      "place": "Zwischen Pharmpur EISARENA (Königsallee 1, 86343 Königsbrunn) und Infopavillon 955 (Alter Postweg 1, 86343 Königsbrunn)",
+      "summary": "Zauberhafte Adventsstimmung in unserer schönen Stadt!",
+      "category": "Kinder",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-zweiter-von-vier-tagen"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-dritter-von-vier-tagen",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Niklausmarkt 2026: Dritter von vier Tagen",
+      "start": "2026-12-05T15:00",
+      "end": "2026-12-05T21:00",
+      "place": "Zwischen Pharmpur EISARENA (Königsallee 1, 86343 Königsbrunn) und Infopavillon 955 (Alter Postweg 1, 86343 Königsbrunn)",
+      "summary": "Zauberhafte Adventsstimmung in unserer schönen Stadt!",
+      "category": "Kinder",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-dritter-von-vier-tagen"
+    },
+    {
+      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-letzter-von-vier-tagen",
+      "source": "koenigsbrunn",
+      "title": "Königsbrunner Niklausmarkt 2026: Letzter von vier Tagen",
+      "start": "2026-12-06T14:00",
+      "end": "2026-12-06T19:00",
+      "place": "Zwischen Pharmpur EISARENA (Königsallee 1, 86343 Königsbrunn) und Infopavillon 955 (Alter Postweg 1, 86343 Königsbrunn)",
+      "summary": "Zauberhafte Adventsstimmung in unserer schönen Stadt!",
+      "category": "Kinder",
+      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-niklausmarkt-2026-letzter-von-vier-tagen"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/dreikoenigskonzert-2027",
