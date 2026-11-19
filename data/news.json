@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-19T11:43:05.692Z",
+  "fetchedAt": "2026-11-19T22:40:25.846Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,22 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18936",
+      "source": "augsburg",
+      "title": "Anmeldung zum Gaudiwurm am 8. Februar",
+      "summary": "Im kommenden Jahr zieht der Gaudiwurm am Rosenmontag, 8. Februar, ab 11:33 Uhr wieder durch die Innenstadt. Faschingsgesellschaften, Kindergärten, Grundschulklassen, Vereine und soziale Einrichtungen können sich jetzt für das bunte Spektakel anmelden.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/anmeldung-zum-gaudiwurm-am-8-februar",
+      "published": "2026-11-19T15:50:40.000Z"
+    },
+    {
+      "id": "augsburg:news-18963",
+      "source": "augsburg",
+      "title": "Kindersprechstunde des OB: „Wie oft siehst du eigentlich meinen Papa?“",
+      "summary": "„Wie lange bist du schon Bürgermeister?“ „Haben Sie viele Aufgaben?“ „Was hast du heute schon gemacht?“ Im Rahmen der Kinderrechtswoche durften Kinder der Kita Ulrich-Schiegg-Straße und der Hans-Adlhoch-Schule Fragen zu Amt und Alltag von Dr. Florian Freund stellen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kindersprechstunde-des-ob-wie-oft-siehst-du-eigentlich-meinen-papa",
+      "published": "2026-11-19T15:40:30.000Z"
+    },
     {
       "id": "augsburg:news-18970",
       "source": "augsburg",
@@ -145,22 +161,6 @@
       "published": "2026-11-10T06:55:15.000Z"
     },
     {
-      "id": "augsburg:news-18935",
-      "source": "augsburg",
-      "title": "Mach mit, Augsburg: Zukunftsleitlinien werden aktualisiert",
-      "summary": "Die „Zukunftsleitlinien für Augsburg“ beschreiben, wie sich die Stadt in Zukunft entwickeln soll. Jetzt werden sie aktualisiert. Alle Interessierten können sich ab sofort auf machmit.augsburg.de beteiligen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/mach-mit-augsburg-zukunftsleitlinien-werden-aktualisiert",
-      "published": "2026-11-09T14:30:29.000Z"
-    },
-    {
-      "id": "augsburg:news-18911",
-      "source": "augsburg",
-      "title": "Informationen zu Selbstschutz und Notfallfürsorge auf augsburg.de",
-      "summary": "Wie kann ich mich auf Krisen und Notfälle vorbereiten? Antworten gibt es ab sofort auf augsburg.de/krisenvorsorge. Informationen und Tipps zur Vorbereitung auf Krisenlagen wie andauernde Stromausfälle und Unwetterlagen stehen in 17 Sprachen zur Verfügung.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/informationen-zu-selbstschutz-und-notfallfuersorge-auf-augsburgde",
-      "published": "2026-11-09T14:04:34.000Z"
-    },
-    {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
       "source": "koenigsbrunn",
       "title": "Dreikönigskonzert 2027: \"Drei Facetten – eine Leidenschaft\"",
@@ -268,17 +268,6 @@
       "summary": "",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-archivherbst-ausstellung"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/koenigsbrunner-mithrastag",
-      "source": "koenigsbrunn",
-      "title": "Königsbrunner Mithrastag",
-      "start": "2026-11-19T19:00",
-      "end": null,
-      "place": "Infopavillon 955: Alter Postweg 1, 86343 Königsbrunn",
-      "summary": "Von Reiterkriegern und Saaljubel Grabfunde des frühen Mittelalters aus dem Lechtal Vortrag von Volker Babucke M. A., Frühmittelalterarchäologe",
-      "category": "",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-mithrastag"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/bundesweiter-vorlesetag-der-regenbogenfisch-von-marcus-pfister",
