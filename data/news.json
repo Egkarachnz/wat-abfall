@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-20T11:43:06.749Z",
+  "fetchedAt": "2026-11-20T22:14:59.851Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -268,28 +268,6 @@
       "summary": "",
       "category": "Ausstellung",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/koenigsbrunner-archivherbst-ausstellung"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/bundesweiter-vorlesetag-der-regenbogenfisch-von-marcus-pfister",
-      "source": "koenigsbrunn",
-      "title": "Bundesweiter Vorlesetag: \"Der Regenbogenfisch\" von Marcus Pfister",
-      "start": "2026-11-20T15:00",
-      "end": null,
-      "place": "Cineplex Königsbrunn, Bürgermeister-Wohlfarth-Str. 81",
-      "summary": "Die Stadtbücherei ist mit dem Cineplex beim bundesweiten Vorlesetag dabei.",
-      "category": "Kinder",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/bundesweiter-vorlesetag-der-regenbogenfisch-von-marcus-pfister"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/geschichten-zur-guten-nacht",
-      "source": "koenigsbrunn",
-      "title": "Geschichten zur guten Nacht.",
-      "start": "2026-11-20T19:00",
-      "end": null,
-      "place": "Stadtbücherei Königsbrunn, Schwabenstr. 43, 86343 Königsbrunn",
-      "summary": "Vorlesen oder einfach zuhören.",
-      "category": "Literatur",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/geschichten-zur-guten-nacht"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/weihnachtsdeko-tauschboerse",
