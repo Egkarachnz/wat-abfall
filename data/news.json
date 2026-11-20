@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-19T22:40:25.846Z",
+  "fetchedAt": "2026-11-20T11:43:06.749Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,38 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18948",
+      "source": "augsburg",
+      "title": "Der Christkindlesmarkt wird eröffnet",
+      "summary": "Am Montag gehen auf dem Rathausplatz die Lichter an: Der Christkindlesmarkt wird am 23. November eröffnet. Um 18 Uhr wird Oberbürgermeister Dr. Florian Freund zum ersten Mal die Eröffnungsrede halten, umrahmt von den Domsingknaben und dem Engelesspiel.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/christkindlesmarkt-beginnt-am-23-november",
+      "published": "2026-11-20T10:16:24.000Z"
+    },
+    {
+      "id": "augsburg:news-18973",
+      "source": "augsburg",
+      "title": "Sanierung: Bauernmarkt wieder in Betrieb",
+      "summary": "Ab dem heutigen Freitag, 20. November, verkaufen Markthändlerinnen und Markthändler ihre Waren wieder auf der neuen Fläche des Bauernmarkts auf dem Augsburger Stadtmarkt. Mit dem ersten Markttag beginnt eine Testphase.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/neuer-bauernmarkt-wieder-in-betrieb",
+      "published": "2026-11-20T09:58:19.000Z"
+    },
+    {
+      "id": "augsburg:news-18975",
+      "source": "augsburg",
+      "title": "Deponie-Erweiterung: Antworten auf viele Fragen",
+      "summary": "Die Deponie Augsburg-Nord soll erweitert werden. Das beschäftigt vor allem die Bürgerinnen und Bürger in den umliegenden Wohngebieten. Bei der Öffentlichkeitsbeteiligung wurden viele Fragen gestellt und Bedenken geäußert. Die Antworten gibt es jetzt auf augsburg.de.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/deponie-erweiterung-antworten-auf-viele-fragen",
+      "published": "2026-11-20T08:41:15.000Z"
+    },
+    {
+      "id": "augsburg:news-18974",
+      "source": "augsburg",
+      "title": "Viele neue Kiefern für den Stadtwald",
+      "summary": "Ende November beginnt die städtische Forstverwaltung im Haunstetter Wald mit der Pflanzung von rund 10.000 jungen Kiefern und verschiedenen Laubbaumarten. Gepflanzt wird gezielt im südlichen Teil des Stadtwaldes, der vom schweren Hagelschlag im August 2023 am stärksten getroffen wurde.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/viele-neue-kiefern-fuer-den-stadtwald",
+      "published": "2026-11-20T07:33:07.000Z"
+    },
     {
       "id": "augsburg:news-18936",
       "source": "augsburg",
@@ -97,14 +129,6 @@
       "published": "2026-11-17T09:11:00.000Z"
     },
     {
-      "id": "augsburg:news-18948",
-      "source": "augsburg",
-      "title": "Der Christkindlesmarkt beginnt am 23. November",
-      "summary": "Noch zehn Tage, dann gehen auf dem Rathausplatz die Lichter an: Der Christkindlesmarkt wird am Montag, 23. November, eröffnet. Um 18 Uhr wird Oberbürgermeister Dr. Florian Freund zum ersten Mal die Eröffnungsrede halten, umrahmt von den Domsingknaben und dem Engelesspiel.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/christkindlesmarkt-beginnt-am-23-november",
-      "published": "2026-11-13T10:36:47.000Z"
-    },
-    {
       "id": "augsburg:news-18938",
       "source": "augsburg",
       "title": "Vielfältige Lebensgeschichten in der „Living Library“",
@@ -135,30 +159,6 @@
       "summary": "Rund 100 originale Kunstobjekte, gestiftet aus Privatsammlungen, kommen in der Benefizauktion „Kunst für die Kunst“ am Freitag, 27. November, ab 15 Uhr in der Neuen Galerie im Höhmannhaus unter den Hammer. Viele Anfangsgebote starten schon bei 10 Euro.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kunst-unterm-hammer-benefizauktion-zugunsten-der-kunstsammlungen-museen-augsburg",
       "published": "2026-11-11T07:52:10.000Z"
-    },
-    {
-      "id": "augsburg:news-18939",
-      "source": "augsburg",
-      "title": "Der „Christbaum für alle“ steht",
-      "summary": "Am heutigen Dienstagmittag traf er auf dem Rathausplatz ein: der „Christbaum für alle“, das Wahrzeichen des Christkindlesmarktes. Er wurde direkt aufgestellt und bekommt jetzt seinen Weihnachtsschmuck. Die 17 Meter hohe Tanne ist eine Spende aus der Gögginger Schafweidsiedlung.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/der-christbaum-fuer-alle-steht",
-      "published": "2026-11-10T15:11:26.000Z"
-    },
-    {
-      "id": "augsburg:news-18802",
-      "source": "augsburg",
-      "title": "Führerscheine 2002 bis 2004 jetzt umtauschen",
-      "summary": "Wer seinen Führerschein zwischen 2002 und 2004 erhalten hat, muss diesen bis 19. Januar 2027 in einen EU-Führerschein umtauschen. Ausgenommen sind Personen, die vor 1953 geboren sind. Diese müssen ihren Führerschein bis 2033 umtauschen. Der Umtausch kostet rund 25 bis 30 Euro.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/fuehrerscheine-von-2002-bis-2004-jetzt-umtauschen",
-      "published": "2026-11-10T09:06:15.000Z"
-    },
-    {
-      "id": "augsburg:news-17629",
-      "source": "augsburg",
-      "title": "Volkstrauertag am 15. November",
-      "summary": "Die Stadt Augsburg gestaltet zusammen mit dem Volksbund Deutsche Kriegsgräberfürsorge am Sonntag, 15. November, wieder die zentrale Gedenkfeier zum Volkstrauertag. Sie beginnt um 11 Uhr direkt am Mahnmal „An der Blauen Kappe“. Im Anschluss erfolgen dort die Kranzniederlegungen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/volkstrauertag-am-15-november",
-      "published": "2026-11-10T06:55:15.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/dreikoenigskonzert-2027-drei-facetten-eine-leidenschaft",
