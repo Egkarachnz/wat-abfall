@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-20T22:14:59.851Z",
+  "fetchedAt": "2026-11-22T11:28:18.640Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -71,14 +71,6 @@
       "summary": "Für die Augsburger Zukunftspreise, die seit 2006 das Engagement für Nachhaltigkeit würdigen, gingen in diesem Jahr 50 Bewerbungen ein. Am gestrigen Mittwoch wurden bei einer feierlichen Preisverleihung die sechs Preisträgerinnen und Preisträger bekannt gegeben.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/die-zukunftspreise-2026-wurden-verliehen",
       "published": "2026-11-19T11:28:17.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/feuerwerk-am-samstag-21-november-2026",
-      "source": "koenigsbrunn",
-      "title": "Feuerwerk am Samstag, 21. November 2026 zwischen 21:30 und 22:00 Uhr im Rahmen einer privaten Feier",
-      "summary": "Wie vielfach gewünscht, informieren wir vorab über Feuerwerke. Damit sind Tierbesitzerinnen und Tierbesitzer sowie Betroffene, die durch den Lärm an Kriegserlebnisse erinnert werden, vorgewarnt und können gegebenenfalls Vorkehrungen treffen.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/feuerwerk-am-samstag-21-november-2026",
-      "published": "2026-11-19T08:09:00.000Z"
     },
     {
       "id": "augsburg:news-18957",
@@ -255,6 +247,14 @@
       "summary": "Die Königsbrunner Stadtwerke weisen auf notwendige Spül- und Reinigungsarbeiten von Hausanschlüssen und Abwasserleitungen im Straßenbereich hin. Wo? westlich der Haunstetter Straße / Bürgermeister-Wohlfarth-Straße / Landsberger Straße ab der Augsburger Straße bis zum südlichen Stadtrand Wann?",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/stadtwerke-spuel-und-reinigungsarbeiten-im-strassenbereich",
       "published": "2026-10-19T05:10:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:leben-erleben/sport/oeffentliches-schwimmen-im-gymnasium-koenigsbrunn",
+      "source": "koenigsbrunn",
+      "title": "Gymnasium-Hallenbad: Wintersaison seit 2. Oktober 2026!",
+      "summary": "Dann auch wieder am Wochenende geöffnet! Für alle Schwimmfreunde: Im Gymnasium-Hallenbad (Alter Postweg 3, 86343 Königsbrunn) darf auch die Königsbrunner Öffentlichkeit schwimmen. Am 1. Mai 2024 hat im Hallenbad in die Sommersaison begonnen.",
+      "url": "https://www.koenigsbrunn.de/leben-erleben/sport/oeffentliches-schwimmen-im-gymnasium-koenigsbrunn",
+      "published": "2026-10-16T06:12:00.000Z"
     }
   ],
   "events": [
