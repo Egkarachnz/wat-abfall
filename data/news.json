@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-25T12:58:56.645Z",
+  "fetchedAt": "2026-11-25T23:38:42.312Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -279,17 +279,6 @@
       "summary": "",
       "category": "Freizeit",
       "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/weihnachtsdeko-tauschboerse"
-    },
-    {
-      "id": "koenigsbrunn:veranstaltungen/veranstaltung/herz-aus-dem-takt-vorhofflimmern-erkennen-und-handeln",
-      "source": "koenigsbrunn",
-      "title": "Herz aus dem Takt – Vorhofflimmern erkennen und handeln",
-      "start": "2026-11-25T19:30",
-      "end": "2026-11-25T21:00",
-      "place": "Bürgerservicezentrum, Marktstr. 3a, Königsbrunn",
-      "summary": "Arztvortrag",
-      "category": "Vortrag",
-      "url": "https://www.koenigsbrunn.de/veranstaltungen/veranstaltung/herz-aus-dem-takt-vorhofflimmern-erkennen-und-handeln"
     },
     {
       "id": "koenigsbrunn:veranstaltungen/veranstaltung/adventsbasteln-fuer-alle",
