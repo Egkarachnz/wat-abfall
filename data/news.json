@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-24T13:45:57.650Z",
+  "fetchedAt": "2026-11-25T12:58:56.645Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -16,6 +16,22 @@
   },
   "stale": [],
   "news": [
+    {
+      "id": "augsburg:news-18986",
+      "source": "augsburg",
+      "title": "Bürgerinformation am Freitag zu",
+      "summary": "Am Freitag, 27. November, ist die Bürgerinformation am Rathausplatz geschlossen. Grund dafür ist ein krankheitsbedingter Personalausfall. Die Mitarbeiterinnen in der Bürgerinformation am Rathausplatz helfen beim Ausfüllen von Formularen, geben Auskünfte zu städtischen Ämtern und Dienststellen und…",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/buergerinformation-am-freitag-zu",
+      "published": "2026-11-25T07:33:43.000Z"
+    },
+    {
+      "id": "augsburg:news-18969",
+      "source": "augsburg",
+      "title": "Heute ist Tag gegen Gewalt an Frauen",
+      "summary": "Am heutigen 25. November ist Internationaler Tag zur Beseitigung von Gewalt gegen Frauen. Das Augsburger Aktionsbündnis lädt an die orange Bank am Königsplatz ein, um das Thema sichtbar zu machen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/aktionen-zum-tag-gegen-gewalt-an-frauen",
+      "published": "2026-11-25T07:19:50.000Z"
+    },
     {
       "id": "koenigsbrunn:nachrichten/artikel/koenigsbrunner-niklausmarkt-3-bis-6-dezember-2026",
       "source": "koenigsbrunn",
@@ -52,9 +68,17 @@
       "id": "koenigsbrunn:nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
       "source": "koenigsbrunn",
       "title": "Wasserzählerstand: ablesen und melden bis 18. Dezember 2026: per Rückmelde-Karte oder Online-Formular",
-      "summary": "Die Stände der Wasserzähler werden wie auch in den vergangen Jahren nicht durch die Mitarbeitenden der Stadtwerke Königsbrunn vor Ort abgelesen. Grundstückseigentümer bzw. Gebührenpflichtige müssen den Wasserzählerstand auch im Jahr 2026 selbst ablesen.",
+      "summary": "Die Stände der Wasserzähler werden wie auch in den vergangenen Jahren nicht durch die Mitarbeitenden der Stadtwerke Königsbrunn vor Ort abgelesen. Grundstückseigentümer bzw. Gebührenpflichtige müssen den Wasserzählerstand auch im Jahr 2026 selbst ablesen.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/wasserzaehlerstand-ablesen-und-melden",
-      "published": "2026-11-23T08:01:00.000Z"
+      "published": "2026-11-23T14:01:00.000Z"
+    },
+    {
+      "id": "koenigsbrunn:leben-erleben/kinder-jugendliche/kinderbetreuung/anmeldung-fuer-einen-kinderbetreuungsplatz",
+      "source": "koenigsbrunn",
+      "title": "Kinderbetreuungsplatz für 2027/2028: Zentrales Online-Anmeldeverfahren",
+      "summary": "Bedarfsmeldung möglich vom 1. Januar (ab ca. 12:00 Uhr) bis zum 21. Februar 2027 (23:59 Uhr)",
+      "url": "https://www.koenigsbrunn.de/leben-erleben/kinder-jugendliche/kinderbetreuung/anmeldung-fuer-einen-kinderbetreuungsplatz",
+      "published": "2026-11-23T10:12:00.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/sportlerehrung-fuer-das-jahr-2026-anmeldefrist",
@@ -129,14 +153,6 @@
       "published": "2026-11-19T06:55:00.000Z"
     },
     {
-      "id": "augsburg:news-18969",
-      "source": "augsburg",
-      "title": "Aktionen zum Tag gegen Gewalt an Frauen",
-      "summary": "Am 25. November ist Internationaler Tag zur Beseitigung von Gewalt gegen Frauen. Rund um den Tag gibt es vielfältige Veranstaltungen wie eine Fotoausstellung, einen asylpolitischen Frühschoppen und den Lernort Istanbul Konvention.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/aktionen-zum-tag-gegen-gewalt-an-frauen",
-      "published": "2026-11-18T12:46:22.000Z"
-    },
-    {
       "id": "augsburg:news-18818",
       "source": "augsburg",
       "title": "Bürgerbüro und Bücherei in Göggingen sind eröffnet",
@@ -183,14 +199,6 @@
       "summary": "Jeweils tagsüber, trainieren Einsatzhundertschaften der Bayerischen Bereitschaftspolizei im Stadtbereich verschiedene Einsatzszenarien, die sich im täglichen Einsatzgeschehen ergeben könnten.",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/bayer-bereitschaftspolizei-informiert-einsatzkraefte-trainieren-in-koenigsbrunn",
       "published": "2026-11-12T08:20:25.000Z"
-    },
-    {
-      "id": "augsburg:news-18944",
-      "source": "augsburg",
-      "title": "Wettbewerb „pflanz mit!“: Preisverleihung am 30. November",
-      "summary": "Ideen von Bürgerinnen und Bürgern für mehr Grün und Biodiversität in der Stadt werden am Montag, 30. November, um 18 Uhr in der Stadtbücherei vorgestellt und prämiert.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/wettbewerb-pflanz-mit-preisverleihung-am-30-november",
-      "published": "2026-11-11T11:32:53.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/schulbus-linien-fahrplaene-fuer-das-schuljahr-2026-2027",
@@ -247,14 +255,6 @@
       "summary": "Nur noch wenige Gutscheine: am besten gleich registrieren! Nach dem großen Erfolg des \"Ofenführerscheins“ in der vergangenen Heizperiode bietet die städtische Abteilung für Energieeffizienz und Klimaschutz auch in diesem Jahr wieder allen Königsbrunner Ofenbesitzerinnen und -besitzern die…",
       "url": "https://www.koenigsbrunn.de/nachrichten/artikel/besser-heizen-mit-dem-ofenfuehrerschein-kostenloser-online-kurs",
       "published": "2026-10-19T17:02:00.000Z"
-    },
-    {
-      "id": "koenigsbrunn:nachrichten/artikel/personalausweis-pin-ruecksetz-und-aktivierungsdienst-prsd",
-      "source": "koenigsbrunn",
-      "title": "Personalausweis: PIN-Rücksetz- und Aktivierungsdienst (PRSD)",
-      "summary": "Online-Dienst wieder verfügbar Wer die Online-Ausweisfunktion des elektronischen Personalausweises nachträglich aktivieren möchte oder die PIN verloren oder vergessen hat, kann nun den Code kostenlos per Brief zurücksetzen lassen. Das erspart Betroffenen den Gang zum Amt.",
-      "url": "https://www.koenigsbrunn.de/nachrichten/artikel/personalausweis-pin-ruecksetz-und-aktivierungsdienst-prsd",
-      "published": "2026-10-19T06:07:00.000Z"
     }
   ],
   "events": [
