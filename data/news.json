@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-26T12:38:32.673Z",
+  "fetchedAt": "2026-11-27T12:25:15.860Z",
   "sources": {
     "koenigsbrunn": {
       "name": "Stadt Königsbrunn",
@@ -17,20 +17,60 @@
   "stale": [],
   "news": [
     {
-      "id": "augsburg:news-18884",
+      "id": "augsburg:news-18997",
       "source": "augsburg",
-      "title": "Live-Stream aus dem Stadtrat",
-      "summary": "Am heutigen Donnerstag, 26. November, kommt der Stadtrat im Rathaus zusammen. Die öffentliche Sitzung beginnt um 14:30 Uhr. Wir übertragen wie immer live. Die Sitzung findet im Großen Sitzungssaal des Rathauses im Oberen Fletz (1. Obergeschoss) statt.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/live-stream-aus-dem-stadtrat",
-      "published": "2026-11-26T08:07:20.000Z"
+      "title": "ÖPNV-Sozialticket ab Januar zurück",
+      "summary": "Die Stadt Augsburg führt ab 1. Januar 2027 den Zuschuss zum Deutschlandticket wieder ein. Das hat der Stadtrat am gestrigen Donnerstag beschlossen. Sozialleistungsberechtigte Bürgerinnen und Bürger können das ÖPNV-Sozialticket ab sofort beantragen. Der Zuschuss beträgt weiterhin 19 Euro pro Monat.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/oepnv-sozialticket-kommt-ab-januar-zurueck",
+      "published": "2026-11-27T12:03:00.000Z"
+    },
+    {
+      "id": "augsburg:news-18999",
+      "source": "augsburg",
+      "title": "Problem Saatkrähen: Stadt startet Pilotversuch",
+      "summary": "An zwei Standorten im Stadtgebiet ergreift die Stadt ab Dezember Maßnahmen, um Saatkrähenkolonien zu vergrämen. Für den Pilotversuch hat die Regierung von Schwaben eine artenschutzrechtliche Ausnahmegenehmigung erteilt. Hintergrund für das Vorgehen sind seit Jahren bestehende Probleme.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/problem-saatkraehen-stadt-startet-pilotversuch",
+      "published": "2026-11-27T10:01:02.000Z"
+    },
+    {
+      "id": "augsburg:news-18998",
+      "source": "augsburg",
+      "title": "Kunstförderpreis an acht Talente verliehen",
+      "summary": "Am Mittwochabend, 25. November, hat die Stadt Augsburg zum 67. Mal den Kunstförderpreis verliehen. Damit wurden herausragende junge Künstlerinnen und Künstler für ihre Leistungen ausgezeichnet.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kunstfoerderpreis-an-acht-talente-verliehen",
+      "published": "2026-11-27T09:39:03.000Z"
+    },
+    {
+      "id": "augsburg:news-18996",
+      "source": "augsburg",
+      "title": "Adventszeit im Botanischen Garten",
+      "summary": "Im Advent bietet der Botanische Garten Augsburg einen stimmungsvollen Rahmen, um die Natur in der kalten Jahreszeit neu zu erleben. Winterliche Gartenbilder, Ausstellungen, musikalische Programmpunkte und Familienangebote verbinden Naturgenuss mit vorweihnachtlicher Atmosphäre und laden zum…",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/adventszeit-im-botanischen-garten",
+      "published": "2026-11-27T08:54:32.000Z"
+    },
+    {
+      "id": "augsburg:news-18992",
+      "source": "augsburg",
+      "title": "600 neue Bäume für Augsburg",
+      "summary": "In der neuen Grünanlage „Zentrale Mitte“ im Innovationspark werden gerade 430 Bäume gepflanzt. Weitere 170 Bäume folgen im Frühjahr 2027. Durch die Bäume erhält die Anlage ihren künftigen Charakter.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/600-neue-baeume-fuer-augsburg",
+      "published": "2026-11-27T08:11:43.000Z"
     },
     {
       "id": "augsburg:news-18306",
       "source": "augsburg",
       "title": "Nicht abgeholte Fundsachen werden online versteigert",
-      "summary": "Rund 100 Fahrräder sowie zahlreiche weitere Fundsachen, die im städtischen Fundbüro nicht abgeholt wurden, kommen ab 3. Dezember unter den Hammer. Dafür wird ein Online-Portal genutzt. Bereits ab Donnerstag, 5. November, ist das Angebot dort einsehbar.",
+      "summary": "Rund 100 Fahrräder sowie zahlreiche weitere Fundsachen, die im städtischen Fundbüro nicht abgeholt wurden, kommen ab 3. Dezember unter den Hammer. Dafür wird ein Online-Portal genutzt. Bereits jetzt ist das Angebot dort einsehbar.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/nicht-abgeholte-fundsachen-werden-online-versteigert",
       "published": "2026-11-26T06:48:15.000Z"
+    },
+    {
+      "id": "augsburg:news-18987",
+      "source": "augsburg",
+      "title": "Sozialverwaltung am 30.11. nur eingeschränkt erreichbar",
+      "summary": "Wegen einer zentralen Personalversammlung sind die Dienststellen, die zum Referat für Soziales und Sport gehören, am Montag, 30. November, von 8 bis 14 Uhr nur eingeschränkt erreichbar. Das gilt nicht für die Zentrale Fallaufnahme bei Kindswohlgefährdungen.",
+      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/sozialverwaltung-am-3011-nur-eingeschraenkt-erreichbar",
+      "published": "2026-11-26T06:40:29.000Z"
     },
     {
       "id": "augsburg:news-18986",
@@ -143,46 +183,6 @@
       "summary": "Im kommenden Jahr zieht der Gaudiwurm am Rosenmontag, 8. Februar, ab 11:33 Uhr wieder durch die Innenstadt. Faschingsgesellschaften, Kindergärten, Grundschulklassen, Vereine und soziale Einrichtungen können sich jetzt für das bunte Spektakel anmelden.",
       "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/anmeldung-zum-gaudiwurm-am-8-februar",
       "published": "2026-11-19T15:50:40.000Z"
-    },
-    {
-      "id": "augsburg:news-18963",
-      "source": "augsburg",
-      "title": "Kindersprechstunde des OB: „Wie oft siehst du eigentlich meinen Papa?“",
-      "summary": "„Wie lange bist du schon Bürgermeister?“ „Haben Sie viele Aufgaben?“ „Was hast du heute schon gemacht?“ Im Rahmen der Kinderrechtswoche durften Kinder der Kita Ulrich-Schiegg-Straße und der Hans-Adlhoch-Schule Fragen zu Amt und Alltag von Dr. Florian Freund stellen.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/kindersprechstunde-des-ob-wie-oft-siehst-du-eigentlich-meinen-papa",
-      "published": "2026-11-19T15:40:30.000Z"
-    },
-    {
-      "id": "augsburg:news-18970",
-      "source": "augsburg",
-      "title": "Die Zukunftspreise 2026 wurden verliehen",
-      "summary": "Für die Augsburger Zukunftspreise, die seit 2006 das Engagement für Nachhaltigkeit würdigen, gingen in diesem Jahr 50 Bewerbungen ein. Am gestrigen Mittwoch wurden bei einer feierlichen Preisverleihung die sechs Preisträgerinnen und Preisträger bekannt gegeben.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/die-zukunftspreise-2026-wurden-verliehen",
-      "published": "2026-11-19T11:28:17.000Z"
-    },
-    {
-      "id": "augsburg:news-18957",
-      "source": "augsburg",
-      "title": "HIV-Testnachmittag am 25. November",
-      "summary": "Im Rahmen der Bayerischen HIV-Testwochen gibt es am Mittwoch, 25. November, einen zusätzlichen Testnachmittag im Amt für Gesundheit und Prävention – kostenfrei und anonym. Die Aktion umfasst neben HIV auch weitere sexuell übertragbare Krankheiten. Eine vorherige Anmeldung ist erforderlich.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/hiv-testnachmittag-am-25-november",
-      "published": "2026-11-19T06:55:00.000Z"
-    },
-    {
-      "id": "augsburg:news-18818",
-      "source": "augsburg",
-      "title": "Bürgerbüro und Bücherei in Göggingen sind eröffnet",
-      "summary": "Am Dienstag hat in Göggingen das sechste Bürgerbüro der Stadt Augsburg eröffnet. Auch die Stadtteilbücherei ist ab sofort in den frisch renovierten Räumen am Klausenberg 8a zu finden. Göggingen hat ein neues Servicezentrum: Am Dienstag, 17. November, haben Oberbürgermeister Dr.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/goeggingen-buergerbuero-und-buecherei-oeffnen",
-      "published": "2026-11-18T12:38:19.000Z"
-    },
-    {
-      "id": "augsburg:news-18960",
-      "source": "augsburg",
-      "title": "Weihnachtssterne aus dem Christbaum für alle",
-      "summary": "Auch in diesem Jahr gibt es in der Bürgerinfo ein ganz besonderes Geschenk: Weihnachtssterne, die von der Berufsfeuerwehr aus dem Stamm des Christbaums für alle 2025 gesägt wurden. Der Erlös geht an einen guten Zweck. Der Preis der Holzsterne liegt, je nach Größe, zwischen 3 und 25 Euro.",
-      "url": "https://www.augsburg.de/aktuelles-aus-der-stadt/detail/weihnachtssterne-aus-dem-christbaum-fuer-alle-2",
-      "published": "2026-11-17T14:36:34.000Z"
     },
     {
       "id": "koenigsbrunn:nachrichten/artikel/wohnsitzanmeldung-jetzt-bequem-online",
